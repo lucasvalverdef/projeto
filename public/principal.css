@@ -1,0 +1,404 @@
+/* estilização geral da página */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   font-family: 'Outfit', sans-serif;
+   }
+    /* corpo da página*/
+   body{
+     height: 100%;
+   }
+   
+    /* caixa de menu da página*/
+   nav.menu-lateral{
+     width: 70px; 
+     height:100%;
+     background-color: aliceblue;
+     padding: 40px 0 40px 1%;
+     box-shadow: 3px 0 0 black;
+     position: fixed;
+     top: 0;
+     left: 0;
+     overflow: hidden;
+     transition: .2s;
+   }
+     /* expande o menu lateral */
+   nav.menu-lateral.expandir{
+   width: 300px;
+   }
+   
+    /*div icone de expadir menu (3 risquinhos) */
+   .btn-expandir{
+      width: 100%;
+      padding-left:10px;
+   }
+    /* icone de expadir menu (3 risquinhos)*/
+   .btn-expandir > i{
+   color: black;
+   font-size: 24px ;
+   cursor: pointer;
+   }
+   /* caixa geral das ul*/
+   ul{
+     height: 100%;
+     list-style-type: none;
+   /*icones dos itens de menu*/
+   }
+   ul li.item-menu{
+     transition: 0.5s;
+   }
+   ul li.ativo{
+     background-color:rgb(138, 137, 137) ;
+   }
+   ul li.item-menu:hover{
+    background-color: rgb(138, 137, 137);
+   }
+   ul li.item-menu a{
+     color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 20px 4%;
+    display: flex;
+    margin-bottom: 60px;
+    line-height: 40px;
+   }
+   ul li.item-menu a .txt-link{
+     margin-left: 70px;
+     transition: .5s;
+     opacity: 0;
+   }
+   nav.menu-lateral.expandir .txt-link{
+     margin-left: 40px;
+     opacity: 1;
+   }
+   ul li.item-menu a .icon > i{
+     font-size: 30px;
+   }
+   section div.cxfornecedor{
+     display: none;
+     text-align: center;
+     margin: 100px;
+     margin-left: 300px ;
+     min-width: 768 px;
+     background-color: rgb(207, 207, 207);
+   }
+   section div .cxmais{
+     display: none;
+     text-align: center;
+     margin: 100px;
+     margin-left: 300px ;
+     padding-left: 0px;
+     min-width: 768 px;
+     background-color: rgb(207, 207, 207);
+   }
+   .cxvenda {
+     display: block;
+     width: 80%;
+     margin: auto;
+   }
+   .section {
+     padding: 20px;
+     margin-bottom: 20px;
+     border: 1px solid #ddd;
+     border-radius: 5px;
+   }
+   h2 {
+     margin-top: 0;
+   }
+   label {
+     display: block;
+     margin-top: 10px;
+   }
+   input, select, button {
+     width: 100%;
+     padding: 10px;
+     margin-top: 5px;
+     border: 1px solid #ddd;
+     border-radius: 5px;
+   }
+   button {
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     cursor: pointer;
+   }
+   button:hover {
+     background-color: #45a049;
+   }
+   .class-cadastrar-cliente{
+     display: none;
+     margin: 300px;
+     margin-top: 30px;
+   }
+   .class-fazer-venda{
+     display: block;
+     margin: 300px;
+     margin-top:30px;
+   }
+    /* botão de voltar  */
+   .btn-voltar{
+     background-color: red;
+   }
+   .btn-voltar:hover{
+    background-color: #ac0b00;
+   }
+   /* fim botão de voltar  */
+    /* caixa de produtos */
+   .cxproduto{
+     display: none;
+     width: 80%;  
+     max-width: 800px;
+     margin: auto;
+     padding: 20px;
+     background: #fff;
+     border-radius: 8px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+   
+   .cxproduto h1 {
+     text-align: center;
+     color: #333;
+   }
+   
+   .cxproduto form{
+     display: flex;
+     flex-direction: column;
+   }
+   
+   .cxproduto label {
+     margin-top: 10px;
+     font-weight: bold;
+   }
+   
+   .cxproduto input[type="text"], textarea {
+     padding: 10px;
+     margin-top: 5px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     
+   }
+   
+   .cxproduto textarea {
+     resize: vertical;
+     height: 100px;
+   }
+   
+   .cxproduto button {
+     margin-top: 10px;
+     padding: 10px;
+     background-color: #a3a3a3;
+     color: white;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+   }
+   
+   .cxproduto button:hover{
+     background-color: #218838;
+   }
+   
+   .cxproduto.container{
+     width: 80%;
+     max-width: 600px;
+     margin: auto;
+     padding: 20px;
+     background: #fff;
+     border-radius: 8px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+   
+   .cxproduto h1{
+     text-align: center;
+       color: #333;
+     text-align: center;
+     color: #333;
+   }
+   
+   .cxproduto.button{
+     display: inline-block;
+     padding: 10px 20px;
+     background-color: #007bff;
+     color: white;
+     text-align: center;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     font-size: 16px;
+     margin-top: 10px;
+   }
+   
+   .cxproduto button:hover {
+     background-color: #0056b3;
+   }
+   
+   .cxproduto #image-preview {
+     margin-top: 20px;
+     text-align: center;
+   }
+   
+   .cxproduto #image-preview img {
+     max-width: 100%;
+     height: auto;
+     border-radius: 4px;
+   }
+   .cxproduto.botão-escolher-imagem{
+     padding:3px;
+     background-color: #0056b3;
+   }
+   .cadastrar-produtos{
+     display: block;
+   
+   }
+   .cadastrar-produtos body{
+     font-family: Arial, sans-serif;
+     padding: 20px;
+   }
+   
+   .cadastrar-produtos h1{
+     color: #333;
+   }
+   
+   .cadastrar-produtos form{
+     margin-bottom: 20px;
+   }
+     /* fim da caixa de produtos */
+     /* lista de produtos */
+   .lista-produtos{
+     display: block;
+     background-color: #bfc0c2;
+     margin-bottom: 100px;
+     display: flex;
+     flex-direction: row; /* Alinhamento horizontal */
+   }
+   .item-produto{
+     display: block;
+     border: 1px solid #000000;
+     border-radius: 1px;
+     margin: 1px;
+     padding: 1px;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     width: 30%;
+   }
+   .item-produto img{
+     text-align: center;
+     max-width: 100%;
+     border-radius: 5px;
+   }
+   .item-produto p{
+     margin: 5px 0;
+   }
+    /* fim da lista de produtos */
+   #btn-produtos{
+    align-self: flex-end;
+     padding: 0;
+   }
+   .cadastrar-produtos{
+     display: none;
+   }
+   
+   .fornecedor-form{
+     text-align: right;
+    
+   }
+   .cxfornecedor{
+     display: block;
+     margin: 300px;
+     margin-top:30px;
+   }
+   
+   .cxfornecedor{
+      display: none;
+     text-align: center;
+     margin: 100px;
+     margin-left: 300px ;
+     padding-left: 0px;
+     min-width: 768 px;
+     background-color: rgb(207, 207, 207);
+   }
+   .btn-zap {
+     
+     color: white;
+     text-decoration: none;
+   }
+   .cadastrar-fornecedor{
+   display: none;
+   }
+   .class-fazer-pedido{
+     display: block;
+   }
+   
+   .class-cadastrar-fornecedor{
+     text-align: center;
+     margin: 100px;
+     margin-left: 300px ;
+     padding-left: 0px;
+     min-width: 768 px;
+   }
+   
+   .cadastrar-fornecedor{
+   text-align: left;
+     padding: 10px 20px;
+     background-color: rgb(207, 207, 207);
+     border: none;
+     
+   }
+   
+   .cadastrar-fornecedor textarea{
+     font-size:23px ;
+   }
+   .class-fazer-pedido textarea {
+     font-size:20px ;
+   
+   }
+   .class-fazer-pedido{
+     text-align: left;
+   }
+   
+   .class-fazer-pedido h2{
+     text-align: center;
+   }
+   
+   .cadastrar-fornecedor h2 {
+   text-align: center;
+   
+   }
+   
+   .cxmais {
+     display: none; /* Seção "Mais Opções" oculta por padrão */
+     text-align: center;
+     margin: 100px;
+     margin-left: 300px;
+     padding: 20px;
+     background-color: rgb(207, 207, 207);
+   }
+   
+   .opcoes-interativas {
+     display: flex;
+     justify-content: space-around;
+     margin-bottom: 20px;
+   }
+   
+   .opcao button {
+     padding: 15px 20px;
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     cursor: pointer;
+     border-radius: 5px;
+     font-size: 16px;
+     transition: background-color 0.3s ease;
+   }
+   
+   .opcao button:hover {
+     background-color: #45a049;
+   }
+   
+   .conteudo-interativo {
+     margin-top: 20px;
+     padding: 20px;
+     background-color: #fff;
+     border-radius: 5px;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   }
+   
