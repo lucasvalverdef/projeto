@@ -1,0 +1,81 @@
+section div.cxfornecedor{
+    display: none;
+    text-align: center;
+    margin: 100px;
+    margin-left: 300px ;
+    min-width: 768 px;
+    background-color: rgb(207, 207, 207);
+  }
+  .fornecedor-form{
+    text-align: right;
+   
+  }
+  .cxfornecedor{
+    display: block;
+    margin: 300px;
+    margin-top:30px;
+  }
+  
+  .cxfornecedor{
+     display: none;
+    text-align: center;
+    margin: 100px;
+    margin-left: 300px ;
+    padding-left: 0px;
+    min-width: 768 px;
+    background-color: rgb(207, 207, 207);
+  }
+  .btn-zap {
+    
+    color: white;
+    text-decoration: none;
+  }
+  .cadastrar-fornecedor{
+  display: block;
+  }
+  .class-cadastrar-fornecedor{
+    display: block;
+    text-align: center;
+    margin: 100px;
+    margin-left: 300px ;
+    padding-left: 0px;
+    min-width: 768 px;
+  }
+  
+  .cadastrar-fornecedor{
+    display: block;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: rgb(207, 207, 207);
+    border: none;
+    
+  }
+  
+  .cadastrar-fornecedor textarea{
+    font-size:23px ;
+  }
+  
+
+
+.class-fazer-pedido{
+    display: block;
+  }
+  
+  
+  .class-fazer-pedido textarea {
+    font-size:20px ;
+  
+  }
+  .class-fazer-pedido{
+    text-align: left;
+  }
+  
+  .class-fazer-pedido h2{
+    text-align: center;
+  }
+  
+  .cadastrar-fornecedor h2 {
+  text-align: center;
+  
+  }
+  

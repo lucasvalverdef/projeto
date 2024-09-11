@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja de Telefones</title>
-  <link rel="stylesheet" href="principal.css">
+  <link rel="stylesheet" href="/principal.css">
+  <link rel="stylesheet" href="/fornecedores.css">
+  <link rel="stylesheet" href="/vendas.css">
+  <link rel="stylesheet" href="/mais.css">
+  <link rel="stylesheet" href="/produtos.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <header>
@@ -69,27 +73,19 @@
       </div>
       <!-- fim da div de cadastrar clientes -->
       <!-- div de Fazer Venda -->
-      <div class="class-fazer-venda" id="id-fazer-venda">
-        <h2>Fazer Venda</h2>
-        <form>
-          <label for="label-cliente">Cliente:</label>
-          <select id="sale-client" name="sale-client" required>
-            <option value="">Selecione um cliente</option>
-          </select>
-          <button type="submit" id="btn-cliente">Cadastrar</button>
-          <label for="sale-product">Produto:</label>
-          <select id="sale-product" name="sale-product" required>
-            <option value="">Selecione um produto</option>
 
-          </select>
 
-          <label for="sale-quantity">Quantidade:</label>
-          <input type="number" id="sale-quantity" name="sale-quantity" required>
 
-          <button type="submit">Fazer Venda</button>
-        </form>
-      </div>
-    </div> <!--fim da div de vendas -->
+      <main>
+        <div class="content">
+           <section>listagem de produtos</section>
+           <aside>resumo das compras</aside>
+        </div>
+      </main>
+    </div> 
+    
+    
+    <!--fim da div de vendas -->
 
     <!-- div produtos -->
 
@@ -129,7 +125,7 @@
    
       <!-- div fornecedores -->
     
-    <div class="cxfornecedor" style="display: none;">
+    <div class="cxfornecedor">
       <div class="class-fazer-pedido" id="id-fazer-pedido">
         <h2>Fazer Pedidos</h2>
         <br><br>
@@ -162,7 +158,7 @@
                
            
        
-   </div>
+   
        
 
 <div class="class-cadastrar-fornecedor" style="display: block;">
@@ -247,9 +243,9 @@
         <button id="btn-voltar-fonecedor" name="btn-voltar">Voltar</button>
      
         </form>
-</div>    
-</div>
-    
+ </div>    
+ </div>
+</div>   
 
 <!-- fim da div Fornecedores -->
 
@@ -263,8 +259,12 @@
 
 
 <!-- JAVA SCRIPT-->
-<script type="text/javascript" src="/projetinho - IM/PRINCIPAL/cep.js"></script>
-<script src="principal.js"></script>
-
+<script type="text/javascript" src="/cep.js"></script>
+<script src="/principal.js"></script>
+<script src="/vendas.js"></script>
+<script src="/produtos.js"></script>
+<script src="/fornecedores.js"></script>
+<script src="/mais.js"></script>
+<!-- JAVA SCRIPT-->
 </body>
 </html>
