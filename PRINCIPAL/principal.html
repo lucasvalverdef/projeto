@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja de Telefones</title>
   <link rel="stylesheet" href="/principal.css">
-  <link rel="stylesheet" href="/fornecedores.css">
-  <link rel="stylesheet" href="/vendas.css">
-  <link rel="stylesheet" href="/mais.css">
-  <link rel="stylesheet" href="/produtos.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <header>
@@ -52,8 +48,9 @@
   </nav>
 
   <section class="menu-principal"><!-- section com as divs clicáveis -->
-    <!-- div principal vendas -->
+  <!-- div principal vendas -->
     <div class="cxvenda">
+      <link rel="stylesheet" href="/public/vendas.css">
       <!-- div de Cadastrar Cliente -->
       <div class="class-cadastrar-cliente">
         <h2>Cadastrar Cliente</h2>
@@ -72,26 +69,20 @@
         </form>
       </div>
       <!-- fim da div de cadastrar clientes -->
+
       <!-- div de Fazer Venda -->
-
-
-
-      <main>
-        <div class="content">
-           <section>listagem de produtos</section>
+        <div class="vendas">
+          <section>listagem de produtos</section>
            <aside>resumo das compras</aside>
         </div>
-      </main>
-    </div> 
-    
-    
+       </div>
     <!--fim da div de vendas -->
-
     <!-- div produtos -->
 
 
 
     <div class="cxproduto">
+      <link rel="stylesheet" href="/public/produtos.css">
       <div id="lista-produtos" class="lista-produtos">
         <div id="btn-produtos">
           <button class="icon"><i class="bi bi-plus-circle"></i></button>
@@ -126,6 +117,7 @@
       <!-- div fornecedores -->
     
     <div class="cxfornecedor">
+      <link rel="stylesheet" href="/public/fornecedores.css">
       <div class="class-fazer-pedido" id="id-fazer-pedido">
         <h2>Fazer Pedidos</h2>
         <br><br>
@@ -253,6 +245,7 @@
 
   <!-- div mais -->
   <div class="cxmais">
+    <link rel="stylesheet" href="/public/mais.css">
     <h1>teste mais aparecer</h1>
   </div>
 </section><!-- fim da section com as divs clicáveis -->

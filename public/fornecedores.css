@@ -1,12 +1,4 @@
-section div.cxfornecedor{
-    display: none;
-    text-align: center;
-    margin: 100px;
-    margin-left: 300px ;
-    min-width: 768 px;
-    background-color: rgb(207, 207, 207);
-  }
-  .fornecedor-form{
+ .fornecedor-form{
     text-align: right;
    
   }

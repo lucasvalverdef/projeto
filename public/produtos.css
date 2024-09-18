@@ -1,13 +1,4 @@
-.cxproduto{
-    display: none;
-    width: 80%;  
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+
   
   .cxproduto h1 {
     text-align: center;

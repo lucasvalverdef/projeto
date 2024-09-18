@@ -1,12 +1,4 @@
-section div .cxmais{
-    display: none;
-    text-align: center;
-    margin: 100px;
-    margin-left: 300px ;
-    padding-left: 0px;
-    min-width: 768 px;
-    background-color: rgb(207, 207, 207);
-  }
+
   .cxmais {
     display: none; /* Seção "Mais Opções" oculta por padrão */
     text-align: center;

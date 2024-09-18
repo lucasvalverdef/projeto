@@ -117,4 +117,45 @@ button:hover {
  background-color: #ac0b00;
 }
 
+.cxvenda{
+  display: block;
+  width: 80%;  
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cxproduto{
+  display: none;
+  width: 80%;  
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cxfornecedor{
+  display: none;
+  text-align: center;
+  margin: 100px;
+  margin-left: 300px ;
+  min-width: 768 px;
+  background-color: rgb(207, 207, 207);
+}
+
+.cxmais{
+  display: none;
+  text-align: center;
+  margin: 100px;
+  margin-left: 300px ;
+  padding-left: 0px;
+  min-width: 768 px;
+  background-color: rgb(207, 207, 207);
+}
+
+
 
