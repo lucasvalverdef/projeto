@@ -1,0 +1,175 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    height: 100vh; /* Altura total da tela */
+}
+
+.menu-lateral {
+    width: 20vh; /* 20vh de largura */
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-lateral ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-lateral li {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Seção de Produtos */
+.products {
+    flex: 1; /* Ocupa o restante do espaço */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
+    grid-gap: 20px; /* Espaçamento entre os produtos */
+    padding: 10px;
+    background-color: #fff;
+    margin-right: 20vw; /* Espaço à direita igual à largura da comanda */
+    margin-left: 15vw;
+}
+
+.products h2 {
+    grid-column: span 4; /* O título ocupa a largura total */
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.product {
+    background-color: #f9f9f9;
+    padding: 10px; /* Menos padding para mais compactação */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* Indica que é clicável */
+    transition: box-shadow 0.3s;
+}
+
+.product:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
+}
+
+.products h2 {
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    color: #333;
+    grid-column: span 4; /* O título ocupará a largura total da grid */
+}
+
+/* Produtos individuais */
+.product {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.product p {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.product button {
+    background-color: #28a745;
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #218838;
+}
+
+/* Seção de Comanda */
+.comanda {
+    width: 20vw; /* 20% da largura da tela para a comanda */
+    height: 80vh; /* Altura ajustada */
+    background-color: rgb(223, 217, 217);
+    padding: 20px;
+    border: 1px solid #333; /* Border fixada */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixa a comanda na tela */
+    right: 0; /* Alinha a comanda à direita */
+    top: 10vh; /* Alinha a comanda um pouco abaixo do topo */
+    display: flex; /* Usar flexbox */
+    flex-direction: column; /* Organiza os itens em coluna */
+}
+.comanda h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Lista de itens na comanda */
+#cartitems {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Para ocupar o espaço vertical disponível */
+    overflow-y: auto; /* Permitir rolagem se houver muitos itens */
+}
+
+#cartitems li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+    color: #555;
+}
+
+/* Total da Comanda */
+.comanda p {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: auto; /* Empurra o total para o final */
+}
+
+#total {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#finalizarVenda {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#finalizarVenda:hover {
+    background-color: #0056b3;
+}

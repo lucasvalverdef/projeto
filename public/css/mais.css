@@ -8,7 +8,7 @@
     background-color: rgb(207, 207, 207);
   }
   
-.opcoes-interativas {
+.opcoesinterativas {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
@@ -29,7 +29,7 @@
     background-color: #45a049;
   }
   
-  .conteudo-interativo {
+  .conteudointerativo {
     margin-top: 20px;
     padding: 20px;
     background-color: #fff;

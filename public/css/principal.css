@@ -6,13 +6,19 @@
  box-sizing: border-box;
 font-family: 'Outfit', sans-serif;
 }
- /* corpo da página*/
-body{
-  height: 100%;
+header{
+  width: 0;
+  height: 0;
 }
+ /* corpo da página*/
+/* body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #ddd;
+} */
 
  /* caixa de menu da página*/
-nav.menu-lateral{
+nav.menulateral{
   width: 70px; 
   height:100%;
   background-color: aliceblue;
@@ -25,17 +31,17 @@ nav.menu-lateral{
   transition: .2s;
 }
   /* expande o menu lateral */
-nav.menu-lateral.expandir{
-width: 300px;
+nav.menulateral.expandir{
+width: 200px;
 }
 
  /*div icone de expadir menu (3 risquinhos) */
-.btn-expandir{
+.btnexpandir{
    width: 100%;
    padding-left:10px;
 }
  /* icone de expadir menu (3 risquinhos)*/
-.btn-expandir > i{
+.btnexpandir > i{
 color: black;
 font-size: 24px ;
 cursor: pointer;
@@ -46,34 +52,35 @@ ul{
   list-style-type: none;
 /*icones dos itens de menu*/
 }
-ul li.item-menu{
+ul li.itemmenu{
   transition: 0.5s;
 }
 ul li.ativo{
   background-color:rgb(138, 137, 137) ;
 }
-ul li.item-menu:hover{
+ul li.itemmenu:hover{
  background-color: rgb(138, 137, 137);
 }
-ul li.item-menu a{
-  color: black;
+ul li.itemmenu a{
+color: black;
  text-decoration: none;
- font-size: 20px;
+ font-size: 15px;
  padding: 20px 4%;
  display: flex;
  margin-bottom: 60px;
  line-height: 40px;
+ 
 }
-ul li.item-menu a .txt-link{
+ul li.itemmenu a .txtlink{
   margin-left: 70px;
   transition: .5s;
   opacity: 0;
 }
-nav.menu-lateral.expandir .txt-link{
+nav.menulateral.expandir .txtlink{
   margin-left: 40px;
   opacity: 1;
 }
-ul li.item-menu a .icon > i{
+ul li.itemmenu a .icon > i{
   font-size: 30px;
 }
 .section {
@@ -105,32 +112,32 @@ button {
 button:hover {
   background-color: #45a049;
 }
-.class-cadastrar-cliente{
+.classcadastrarcliente{
   display: none;
   margin: 300px;
   margin-top: 30px;
 }
-.btn-voltar{
+.btnvoltar{
   background-color: red;
 }
-.btn-voltar:hover{
+.btnvoltar:hover{
  background-color: #ac0b00;
 }
 
 .cxvenda{
   display: block;
-  width: 80%;  
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+  width: 100%;  
+  max-width: 100%;
+  margin: auto; 
+  padding: 20px; 
   background: #fff;
-  border-radius: 8px;
+  border-radius: 8px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .cxproduto{
   display: none;
-  width: 80%;  
+  width: 100%;  
   max-width: 800px;
   margin: auto;
   padding: 20px;

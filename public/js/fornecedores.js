@@ -30,7 +30,7 @@
     return true;
   }
   
-  document.getElementById('cnpj-valida').addEventListener('submit', function(e) {
+  document.getElementById('cnpjvalida').addEventListener('submit', function(e) {
     var cnpj = document.getElementById('cnpj').value;
     if (!validaCNPJ(cnpj)) {
       e.preventDefault(); // Impede o envio do formulário
@@ -62,9 +62,9 @@
 
 
 
-var btncadastrofornecedor = document.querySelector('#btn-fornecedor')
-var divfazerpedido = document.querySelector('.class-fazer-pedido')
-var divcadastrarfornecedor = document.querySelector('.cadastrar-fornecedor')
+var btncadastrofornecedor = document.querySelector('#btnfornecedor')
+var divfazerpedido = document.querySelector('.classfazerpedido')
+var divcadastrarfornecedor = document.querySelector('.cadastrarfornecedor')
 
  
 btncadastrofornecedor.addEventListener('click', function(){
@@ -77,43 +77,15 @@ btncadastrofornecedor.addEventListener('click', function(){
   window.history.back();
  
 }
-var btnVoltar = document.querySelector('#btn-voltar')
+var btnVoltar = document.querySelector('#btnvoltar')
 btnVoltar.addEventListener('click', function(){
      menuCliente.style.display = 'none';
      menuFazervenda.style.display = 'block';
 });
 
-var btnVoltarFornec = document.querySelector('#btn-voltar-fornecedor')
+var btnVoltarFornec = document.querySelector('#btnvoltarfornecedor')
 btnVoltarFornec.addEventListener('click', function(){
       divcadastrarforncedor.style.display = 'none';
       divfazerpedido.style.display = 'block';
 });
 
-
-
-function redirecionar(){
-  var numero = document.getElementById('numero-fornecedor').value;
-    var qtdprodutos = document.getElementById('quantidade').value;
-     
-  if(numero && quantidade){
-     var texto = 'Olá, Quero fazer um Pedido. > Produto:  >  Quantidade: ${quantidade} ' ;
-     var urlwhatsapp = 'https://wa.me/$[numero}?text=${encodeURIComponent(mensagem)}';
-     window.open(urlwhatsapp, '_blank');
-
-  } else {
-alert("Por favor, preencha o número e a quantiade de produtos.");
-
-  }
-}
-     
-      
-
-var btnenviar = document.querySelector('#btn-enviar')
-function enviar(){
-var qtdprod = document.getElementById('quantidade')
-btnenviar.addEventListener('click', function(){
-
-
-});
-    
-}

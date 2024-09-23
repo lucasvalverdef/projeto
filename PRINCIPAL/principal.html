@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja de Telefones</title>
-  <link rel="stylesheet" href="/principal.css">
+  <link rel="stylesheet" href="/css/principal.css">
+  <link rel="stylesheet" href="/css/produtos.css">
+  <link rel="stylesheet" href="/css/vendas.css">
+  <link rel="stylesheet" href="/css/mais.css">
+  <link rel="stylesheet" href="/css/fornecedores.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <header>
@@ -13,68 +17,141 @@
 </header>
 
 <body>
-  <nav class="menu-lateral">
+  <nav class="menulateral">
 
-    <div class="btn-expandir">
-      <i class="bi bi-list" id="btn-exp"></i>
+    <div class="btnexpandir">
+      <i class="bi bi-list" id="btnexp"></i>
     </div>
 
     <ul>
-      <li class="item-menu ativo">
+      <li class="itemmenu ativo">
         <a href="#" id="vender">
           <span class="icon"><i class="bi bi-cart-plus"></i></i></span>
-          <span class="txt-link">VENDER</span>
+          <span class="txtlink">VENDER</span>
         </a>
       </li>
-      <li class="item-menu">
+      <li class="itemmenu">
         <a href="#" id="produtos">
           <span class="icon"><i class="bi bi-box-seam"></i></span>
-          <span class="txt-link">PRODUTOS</span>
+          <span class="txtlink">PRODUTOS</span>
         </a>
       </li>
-      <li class="item-menu">
+      <li class="itemmenu">
         <a href="#" id="fornecedores">
           <span class="icon"><i class="bi bi-shop"></i></span>
-          <span class="txt-link">FORNECEDORES</span>
+          <span class="txtlink">FORNECEDORES</span>
         </a>
       </li>
-      <li class="item-menu">
+      <li class="itemmenu">
         <a href="#" id="mais">
           <span class="icon"><i class="bi bi-three-dots"></i></span>
-          <span class="txt-link">MAIS OPÇÕES</span>
+          <span class="txtlink">MAIS</span>
         </a>
       </li>
     </ul>
   </nav>
 
-  <section class="menu-principal"><!-- section com as divs clicáveis -->
+  <!-- <section class="menuprincipal">section com as divs clicáveis -->
   <!-- div principal vendas -->
     <div class="cxvenda">
-      <link rel="stylesheet" href="/public/vendas.css">
+      <div class="container">
+        <!-- Seção de Produtos -->
+        <section class="products">
+            <h2>Produtos</h2>
+
+
+
+
+
+            <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+              <img src="produto1.jpg" alt="Produto 1">
+              <p>Produto 1</p>
+              <p>R$ 10,00</p>
+          </div>
+          <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+            <img src="produto1.jpg" alt="Produto 1">
+            <p>Produto 1</p>
+            <p>R$ 10,00</p>
+        </div>
+        <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+          <img src="produto1.jpg" alt="Produto 1">
+          <p>Produto 1</p>
+          <p>R$ 10,00</p>
+      </div>
+      <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+        <img src="produto1.jpg" alt="Produto 1">
+        <p>Produto 1</p>
+        <p>R$ 10,00</p>
+    </div>
+    <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+      <img src="produto1.jpg" alt="Produto 1">
+      <p>Produto 1</p>
+      <p>R$ 10,00</p>
+  </div>
+  <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+    <img src="produto1.jpg" alt="Produto 1">
+    <p>Produto 1</p>
+    <p>R$ 10,00</p>
+</div>
+<div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+  <img src="produto1.jpg" alt="Produto 1">
+  <p>Produto 1</p>
+  <p>R$ 10,00</p>
+</div>
+<div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
+  <img src="produto1.jpg" alt="Produto 1">
+  <p>Produto 1</p>
+  <p>R$ 10,00</p>
+</div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Os produtos serão adicionados aqui dinamicamente -->
+        </section>
+    
+        <!-- Seção de Comanda -->
+        <aside class="comanda">
+            <h2>Comanda</h2>
+            <ul id="cartitems">
+                <!-- Produtos adicionados aparecerão aqui -->
+            </ul>
+            <p>Total R$:<span id="total">0.00</span></p>
+            <button id="finalizarVenda">Finalizar Venda</button> 
+        </aside>
+    </div>
       <!-- div de Cadastrar Cliente -->
-      <div class="class-cadastrar-cliente">
+      <div class="classcadastrarcliente">
         <h2>Cadastrar Cliente</h2>
         <form action = "/add" method="post">
-          <label for="nome-cliente">Nome do Cliente:</label>
+          <label for="nomecliente">Nome do Cliente:</label>
           <input type="text" id="nomeC" name="nomeC">
 
-          <label for="email-cliente">Email:</label>
+          <label for="emailcliente">Email:</label>
           <input type="email" id="emailC" name="emailC">
 
-          <label for="fone-cliente">Telefone:</label>
+          <label for="fonecliente">Telefone:</label>
           <input type="number" id="foneC" name="foneC">
 
           <button type="submit">Adicionar Cliente</button>
-          <button class="btn-voltar" id="btn-voltar" type="submit">Voltar</button>
+          <button class="btnvoltar" id="btnvoltar" type="submit">Voltar</button>
         </form>
       </div>
       <!-- fim da div de cadastrar clientes -->
 
       <!-- div de Fazer Venda -->
-        <div class="vendas">
-          <section>listagem de produtos</section>
-           <aside>resumo das compras</aside>
-        </div>
+
        </div>
     <!--fim da div de vendas -->
     <!-- div produtos -->
@@ -83,16 +160,16 @@
 
     <div class="cxproduto">
       <link rel="stylesheet" href="/public/produtos.css">
-      <div id="lista-produtos" class="lista-produtos">
-        <div id="btn-produtos">
+      <div id="listaprodutos" class="listaprodutos">
+        <div id="btncadastrarprodutos">
           <button class="icon"><i class="bi bi-plus-circle"></i></button>
         </div>
       </div>
        
       
-      <div class="cadastrar-produtos">
+      <div class="cadastrarprodutos">
         <h1>Cadastrar Produto</h1>
-        <form id="product-form">
+        <form id="productform">
           
           <label for="productimg">Imagem do Produto:</label>
           <input type="file" id="productimg" accept="image/*" required><br><br>
@@ -103,14 +180,14 @@
           <label for="productprice">Valor do Produto:</label>
           <input type="number" id="productprice" required><br><br>
 
-          <button id="btn-adicionar-produtos" type="submit">Adicionar Produto</button>
+          <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
           
         </form>
       
       </div>
     </div>
 
-    </div> 
+    
     <!-- fim da div produtos -->
     
    
@@ -118,80 +195,70 @@
     
     <div class="cxfornecedor">
       <link rel="stylesheet" href="/public/fornecedores.css">
-      <div class="class-fazer-pedido" id="id-fazer-pedido">
+      <div class="classfazerpedido" id="idfazerpedido">
         <h2>Fazer Pedidos</h2>
         <br><br>
         <form>
-          <select id="select-fornecedor" name="select-fornecedor" >
+          <select id="selectfornecedor" name="selectfornecedor" >
              <option value="">Selecione um Fornecedor</option></select>
-               <select id="select-produto" name="select-produto" >
+               <select id="selectproduto" name="selectproduto" >
                   <option value="">Selecione um Produto</option>
                     </select>
                       <br><br>
                         <h4>Quantidade de Produtos:</h4><input type="number"  id="quantidade" name="quantidade">
                         <br>
                       <label><h4>Numero</h4></label>
-                    <input id="numero-fornecedor" type="text" name="numero-mesagem-fornecedor" maxlength="14">
+                    <input id="numerofornecedor" type="text" name="numeromesagemfornecedor" maxlength="14">
              <br> 
             
 
-              <button  type="submit" id="btn-enviar">Enviar Mensagem</button>                                 
-              <button type="submit" id="btn-fornecedor">Cadastrar Fornecedor</button>
+              <button  type="submit" id="btnenviar">Enviar Mensagem</button>                                 
+              <button type="submit" id="btnfornecedor">Cadastrar Fornecedor</button>
                               
                  </div>
-                 <form onsubmit = "event.preventDefault(); redirecionar()";>
-                 <a href="https://api.whatsapp.com/send?phone=5531982327065&text=Olá, Quero fazer um Pedido. Pedidos: > " id="waurlsite" class="bt-whatsApp" target="_blank" style="right:25px; position:fixed;width:60px;height:60px;bottom:40px;z-index:100;">
-                    <img   src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgdmlld0JveD0iMjYxOSA1MDYgMTIwIDEyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogIzI3ZDA0NTsKICAgICAgfQoKICAgICAgLmNscy0yLCAuY2xzLTUgewogICAgICAgIGZpbGw6IG5vbmU7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlOiAjZmZmOwogICAgICAgIHN0cm9rZS13aWR0aDogNXB4OwogICAgICB9CgogICAgICAuY2xzLTMgewogICAgICAgIGZpbGw6ICNmZmY7CiAgICAgIH0KCiAgICAgIC5jbHMtNCB7CiAgICAgICAgc3Ryb2tlOiBub25lOwogICAgICB9CiAgICA8L3N0eWxlPjwvZGVmcz48ZyBkYXRhLW5hbWU9Ikdyb3VwIDM2IiBpZD0iR3JvdXBfMzYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIzMDAgNzMpIj48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjYwIiBjeT0iNjAiIGRhdGEtbmFtZT0iRWxsaXBzZSAxOCIgaWQ9IkVsbGlwc2VfMTgiIHI9IjYwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMTkgNDMzKSIvPjxnIGRhdGEtbmFtZT0iR3JvdXAgMzUiIGlkPSJHcm91cF8zNSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjU0IDM4NikiPjxnIGRhdGEtbmFtZT0iR3JvdXAgMzQiIGlkPSJHcm91cF8zNCI+PGcgY2xhc3M9ImNscy0yIiBkYXRhLW5hbWU9IkVsbGlwc2UgMTkiIGlkPSJFbGxpcHNlXzE5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5NCA3NSkiPjxjaXJjbGUgY2xhc3M9ImNscy00IiBjeD0iMzEuNSIgY3k9IjMxLjUiIHI9IjMxLjUiLz48Y2lyY2xlIGNsYXNzPSJjbHMtNSIgY3g9IjMxLjUiIGN5PSIzMS41IiByPSIyOSIvPjwvZz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xNDI0LDE5MWwtNC42LDE2LjMsMTYuOS00LjcuOS01LjItMTEsMy41LDIuOS0xMC41WiIgZGF0YS1uYW1lPSJQYXRoIDEyNiIgaWQ9IlBhdGhfMTI2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTMyNSAtNjgpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTI2Niw5MGMwLS4xLDMuNS0xMS43LDMuNS0xMS43bDguNCw3LjlaIiBkYXRhLW5hbWU9IlBhdGggMTI3IiBpZD0iUGF0aF8xMjciIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTY1IDQzKSIvPjwvZz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xNDM5LjMsMTYwLjZhOS40LDkuNCwwLDAsMC0zLjksNi4xYy0uNSwzLjksMS45LDcuOSwxLjksNy45YTUwLjg3Niw1MC44NzYsMCwwLDAsOC42LDkuOCwzMC4xODEsMzAuMTgxLDAsMCwwLDkuNiw1LjEsMTEuMzc4LDExLjM3OCwwLDAsMCw2LjQuNiw5LjE2Nyw5LjE2NywwLDAsMCw0LjgtMy4yLDkuODUxLDkuODUxLDAsMCwwLC42LTIuMiw1Ljg2OCw1Ljg2OCwwLDAsMCwwLTJjLS4xLS43LTcuMy00LTgtMy44cy0xLjMsMS41LTIuMSwyLjYtMS4xLDEuNi0xLjksMS42LTQuMy0xLjQtNy42LTQuNGExNS44NzUsMTUuODc1LDAsMCwxLTQuMy02cy42LS43LDEuNC0xLjhhNS42NjQsNS42NjQsMCwwLDAsMS4zLTIuNGMwLS41LTIuOC03LjYtMy41LTcuOUExMS44NTIsMTEuODUyLDAsMCwwLDE0MzkuMywxNjAuNloiIGRhdGEtbmFtZT0iUGF0aCAxMjgiIGlkPSJQYXRoXzEyOCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEzMjYuMzMyIC02OC40NjcpIi8+PC9nPjwvZz48L3N2Zz4=" alt="" width="60px">
-                    </a>
-                    <span id="alertWapp" style="right:30px; visibility: hidden; position:fixed;	width:17px;	height:17px;bottom:90px; background:red;z-index:101; font-size:11px;color:#fff;text-align:center;border-radius: 50px; font-weight:bold;line-height: normal; "> 1 </span>
-                    <div id="msg1" style="right: 90px; visibility: visible; background: #fff; color: #000; position: fixed; width: 200px; bottom: 52px; text-align: center; font-size: 13px; line-height: 31px; height: 32px; border-radius: 100px; z-index: 100;border: 1px solid #ccc; ">Pedido ao Fornecedor</div>
-                    
-                     </form>
                
            
        
    
        
 
-<div class="class-cadastrar-fornecedor" style="display: block;">
-   <br> <br>
-     <div class="cadastrar-fornecedor">
+<div class="classcadastrarfornecedor">
       <h2>Cadastro de Fornecedor</h2> 
-       <form id="cnpj-valida">
+       <form id="cnpjvalida">
        <br><br>
-              <label for="nome-fornecedor"><h4> Nome do Fornecedor:</h4></label>
-                <input type="text" id="nome-fornecedor" maxlength="200" name="nome">
+              <label for="nomefornecedor"><h4> Nome do Fornecedor:</h4></label>
+                <input type="text" id="nomefornecedor" maxlength="200" name="nome">
                  <br>
                  <div class="row">
-                  <div class="input-field col m6">
+                  <div class="inputfield col m6">
                  <label for="txtcep"><h4>CEP</h4> </label> 
                   <input type="text" id="txtcep" name="cep">
                   </div>
                  </div>
                  
                 <div class="row">
-                  <div class="input-field col m6">
+                  <div class="inputfield col m6">
                     <label for="txtrua"><h4>Rua:</h4></label>
                     <input type="text" id="txtrua" name="txtrua">
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="input-field col m6">
+                  <div class="inputfield col m6">
                     <label for="txtbairro"><h4>Bairro:</h4> </label>
                     <input type="text" id="txtbairro" name="txtbairro">
                   </div>
                 </div>
                 
                 <div class="row">
-                  <div class="input-field col m6">
+                  <div class="inputfield col m6">
                     <label for="txtcidade"><h4>Cidade:</h4></label>
                     <input type="text" id="txtcidade" name="txtcidade">
                   </div>
                 </div>
                 
                 <div class="row">
-                  <div class="input-field col m6">
+                  <div class="inputfield col m6">
                     <label for="txtestado"><h4> Estado:</h4></label>
                     <input type="text" id="txtestado" name="txtestado">
                   </div>
@@ -199,44 +266,43 @@
                 
 
                  <div class="row">
-                  <div class="input-fiel col m6">
+                  <div class="inputfiel col m6">
                      <label for="txtnumero"><h4>Numero:</h4></label>
                      <input type="text" id="txtnumero" maxlength="200" name="numero">
                   </div>
                  </div>
 
                  <div class="row">
-                  <div class="input-fiel col m6">
+                  <div class="inputfiel col m6">
                         <label for="txttelefone"><h4>Telefone (fone):</h4></label>
                           <input type="text" id="txttelefone" maxlength="200" name="telefone">
                   </div>
                 </div>
                  
                 <div class="row">
-                  <div class="input-fiel col m6">
-                           <label for="txtemail"><h4>E-mail:</h4></label>
+                  <div class="inputfiel col m6">
+                           <label for="txtemail"><h4>Email:</h4></label>
                               <input type="text" id="txtemail" maxlength="200" name="email">
                   </div>
                 </div>
                 
                 <div class="row">
-                  <div class="input-fiel col m6">                   
+                  <div class="inputfiel col m6">                   
                                 <label for="txtcnpj"><h4>CNPJ do Fornecedor:</h4></label>
                                   <input type="text" id="txtcnpj" name="cnpj">
                   </div>
                 </div>
                        <br>
-                            <label  for="descricao-fornecedor"><h4>Descrição do Fornecedor:</h4></label>
-                               <textarea id="textfornecedor" name="desc-fornecedor" cols="72" maxlength="4000" ></textarea>
+                            <label  for="descricaofornecedor"><h4>Descrição do Fornecedor:</h4></label>
+                               <textarea id="textfornecedor" name="descfornecedor" cols="72" maxlength="4000" ></textarea>
                                             
           
         <br><br> 
         <button>Cadastrar</button>
-        <button id="btn-voltar-fonecedor" name="btn-voltar">Voltar</button>
+        <button id="btnvoltarfonecedor" name="btnvoltar">Voltar</button>
      
         </form>
  </div>    
- </div>
 </div>   
 
 <!-- fim da div Fornecedores -->
@@ -246,60 +312,60 @@
   <!-- div mais -->
   <div class="cxmais">
     <link rel="stylesheet" href="/public/mais.css">
-    <div id="mais-opcoes">
+    <div id="maisopcoes">
       <h2>Mais Opções</h2>
       
-      <div class="opcoes-interativas">
+      <div class="opcoesinterativas">
         <div class="opcao">
-          <button id="btn-config-sistema">
+          <button id="btnconfigsistema">
             Configurações do Sistema
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-relatorios">
+          <button id="btnrelatorios">
             Relatórios
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-usuarios">
+          <button id="btnusuarios">
             Gerenciamento de Usuários
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-integracoes">
+          <button id="btnintegracoes">
             Integrações
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-backup">
+          <button id="btnbackup">
             Backup e Restauração
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-historico">
+          <button id="btnhistorico">
             Histórico de Transações
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-manutencao">
+          <button id="btnmanutencao">
             Manutenção e Suporte
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-atualizacoes">
+          <button id="btnatualizacoes">
             Atualizações
           </button>
         </div>
     
         <div class="opcao">
-          <button id="btn-importacao">
+          <button id="btnimportacao">
             Ferramentas de Importação/Exportação
           </button>
         </div>
@@ -311,12 +377,12 @@
 
 
 <!-- JAVA SCRIPT-->
-<script type="text/javascript" src="/cep.js"></script>
-<script src="/principal.js"></script>
-<script src="/vendas.js"></script>
-<script src="/produtos.js"></script>
-<script src="/fornecedores.js"></script>
-<script src="/mais.js"></script>
+<script src="/js/principal.js"></script>
+<script src="/js/cep.js"></script>
+<script src="/js/vendas.js"></script>
+<script src="/js/produtos.js"></script>
+<script src="/js/fornecedores.js"></script>
+<script src="/js/mais.js"></script>
 <!-- JAVA SCRIPT-->
 </body>
 </html>

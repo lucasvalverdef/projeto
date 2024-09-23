@@ -1,4 +1,4 @@
- .fornecedor-form{
+ .fornecedorform{
     text-align: right;
    
   }
@@ -17,16 +17,13 @@
     min-width: 768 px;
     background-color: rgb(207, 207, 207);
   }
-  .btn-zap {
+  .btnzap {
     
     color: white;
     text-decoration: none;
   }
-  .cadastrar-fornecedor{
-  display: block;
-  }
-  .class-cadastrar-fornecedor{
-    display: block;
+  .classcadastrarfornecedor{
+    display: none;
     text-align: center;
     margin: 100px;
     margin-left: 300px ;
@@ -34,7 +31,7 @@
     min-width: 768 px;
   }
   
-  .cadastrar-fornecedor{
+  .cadastrarfornecedor{
     display: block;
     text-align: left;
     padding: 10px 20px;
@@ -43,30 +40,30 @@
     
   }
   
-  .cadastrar-fornecedor textarea{
+  .cadastrarfornecedor textarea{
     font-size:23px ;
   }
   
 
 
-.class-fazer-pedido{
+.classfazerpedido{
     display: block;
   }
   
   
-  .class-fazer-pedido textarea {
+  .classfazerpedido textarea {
     font-size:20px ;
   
   }
-  .class-fazer-pedido{
+  .classfazerpedido{
     text-align: left;
   }
   
-  .class-fazer-pedido h2{
+  .classfazerpedido h2{
     text-align: center;
   }
   
-  .cadastrar-fornecedor h2 {
+  .cadastrarfornecedor h2 {
   text-align: center;
   
   }

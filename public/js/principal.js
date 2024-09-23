@@ -1,5 +1,5 @@
 
-var menuItem = document.querySelectorAll('.item-menu')
+var menuItem = document.querySelectorAll('.itemmenu')
 function selectLink(){
     menuItem.forEach((item)=>
       item.classList.remove('ativo')
@@ -13,8 +13,8 @@ menuItem.forEach((item)=>
 
 //expandir menu
 
-var btnExp = document.querySelector('#btn-exp')
-var menuSide = document.querySelector('.menu-lateral')
+var btnExp = document.querySelector('#btnexp')
+var menuSide = document.querySelector('.menulateral')
 
 btnExp.addEventListener('click', function(){
   menuSide.classList.toggle('expandir')
@@ -36,6 +36,9 @@ var menuFornecedores = document.querySelector('.cxfornecedor')
 var btnMais = document.querySelector('#mais')
 var menuMais = document.querySelector('.cxmais')
 
+var btnCadastrarProdutos = document.querySelector('#btnadicionarprodutos')
+var cadastrarprodutos = document.querySelector('.cadastrarprodutos')
+var listaprodutos = document.querySelector('.listaprodutos')
 
 // serve para fazer com que os botões troquem as divs que aparecem na tela
 
@@ -70,15 +73,16 @@ btnMais.addEventListener('click', function(){
   }
 );
 
-var btnCliente = document.querySelector('#btn-cliente')
-var menuCliente = document.querySelector('.class-cadastrar-cliente')
-var menuFazervenda = document.querySelector('.class-fazer-venda')
+var btnCliente = document.querySelector('#btncliente')
+var menuCliente = document.querySelector('.classcadastrarcliente')
+var menuFazervenda = document.querySelector('.classfazervenda')
+
 btnCliente.addEventListener('click', function(){
      menuCliente.style.display = 'block';
      menuFazervenda.style.display ='none';
 });
 
-var btnVoltar = document.querySelector('#btn-voltar')
+var btnVoltar = document.querySelector('#btnvoltar')
 btnVoltar.addEventListener('click', function(){
      menuCliente.style.display = 'none';
      menuFazervenda.style.display = 'block';
