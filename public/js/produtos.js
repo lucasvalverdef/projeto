@@ -1,90 +1,103 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const productList = document.getElementById('productList');
     const cartItems = document.getElementById('cartitems');
     const totalElement = document.getElementById('total');
-    const listaProdutos = document.getElementById('listaprodutos');
     const productForm = document.getElementById('productform');
     let total = 0;
 
-    // Função para adicionar produto à lista de produtos e à seção de vendas
-    function addProductToList(imageSrc, description, price) {
-        // Adicionando na lista de produtos (cxproduto)
+    // Função para adicionar produto à lista de produtos
+    function addProductToList(imageSrc, name, price) {
         const productDiv = document.createElement('div');
-        productDiv.classList.add('product');
+        productDiv.classList.add('itemproduto');
 
         const img = document.createElement('img');
         img.src = imageSrc;
-        img.alt = description;
-        img.style.width = '100px';
+        img.alt = name;
 
         const desc = document.createElement('p');
-        desc.textContent = description + ' - R$' + price.toFixed(2);
+        desc.textContent = `${name} - R$ ${price.toFixed(2)}`;
 
-        // Adiciona a imagem e a descrição à div do produto
         productDiv.appendChild(img);
         productDiv.appendChild(desc);
 
-        // Adiciona evento de clique na div do produto para adicionar à comanda
+        // Evento de clique para adicionar à comanda
         productDiv.addEventListener('click', function () {
-            addToCart(description, price);
+            addToCart(name, price);
         });
 
-        listaProdutos.appendChild(productDiv);
-
-        // Adicionando à seção de vendas (products)
-        const productsSection = document.querySelector('.products');
-        const productInSales = productDiv.cloneNode(true); // Clona o elemento para reutilizar
-        
-        // Define o evento de click no clone
-        productInSales.addEventListener('click', function () {
-            addToCart(description, price);
-        });
-        
-        productsSection.appendChild(productInSales);
+        productList.appendChild(productDiv);
     }
 
     // Função para adicionar produto à comanda
     function addToCart(name, price) {
         const li = document.createElement('li');
-        li.textContent = `${name} - R$${price.toFixed(2)}`;
+        li.textContent = `${name} - R$ ${price.toFixed(2)}`;
         cartItems.appendChild(li);
 
-        // Atualiza o total
         total += price;
         totalElement.textContent = total.toFixed(2);
     }
+
+    // Pré-visualização da imagem ao selecionar um arquivo
+    document.getElementById('productimg').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imagePreview = document.getElementById('imagepreview');
+                imagePreview.innerHTML = ''; // Limpa a pré-visualização anterior
+
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100px'; // Ajuste o tamanho conforme necessário
+
+                imagePreview.appendChild(img);
+                imagePreview.style.display = 'block'; // Mostra a imagem
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
     // Manipulador de envio do formulário de cadastro de produtos
     productForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Pega os dados do formulário
         const imgFile = document.getElementById('productimg').files[0];
-        const description = document.getElementById('productdesc').value;
+        const name = document.getElementById('productname').value;
         const price = parseFloat(document.getElementById('productprice').value);
 
-        // Converte o arquivo de imagem para um URL que pode ser exibido
+        if (!imgFile || !name || isNaN(price)) {
+            alert('Por favor, preencha todos os campos.');
+            return;
+        }
+
         const reader = new FileReader();
         reader.onload = function (event) {
             const imageSrc = event.target.result;
-
-            // Adiciona o produto à lista de produtos e à seção de vendas
-            addProductToList(imageSrc, description, price);
+            addProductToList(imageSrc, name, price);
+            productForm.reset();
+            document.getElementById('imagepreview').innerHTML = ''; // Limpa a pré-visualização
+            document.getElementById('imagepreview').style.display = 'none'; // Esconde a pré-visualização
         };
 
-        if (imgFile) {
-            reader.readAsDataURL(imgFile);
-        }
-
-        // Limpa o formulário após o envio
-        productForm.reset();
+        reader.readAsDataURL(imgFile);
     });
+
+
 });
 
-var btnCadastrarProdutos = document.querySelector('#btncadastrarprodutos')
-var cadastrarprodutos = document.querySelector('.cadastrarprodutos')
-var listaprodutos = document.querySelector('.listaprodutos')
+    
+var btncadastrarprodutos = document.querySelector('#btncadastrarprodutos');
+var containerprodutos = document.querySelector('.containerprodutos');
+var cadastrarprodutos = document.querySelector('.cadastrarprodutos');
+var btnvoltarprodutos = document.querySelector('#btnvoltarprodutos');
 
-btnCadastrarProdutos.addEventListener('click', function(){
-     cadastrarprodutos.style.display = 'block';
-     listaprodutos.style.display = 'none';   
+btncadastrarprodutos.addEventListener('click', function() {
+    containerprodutos.style.display = 'none';
+    cadastrarprodutos.style.display = 'block';
+});
+
+btnvoltarprodutos.addEventListener('click', function() {
+    containerprodutos.style.display = 'flex';
+    cadastrarprodutos.style.display = 'none';
 });

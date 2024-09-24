@@ -30,25 +30,26 @@ body {
 }
 
 /* Seção de Produtos */
-.products {
+.cxvenda .products{
     flex: 1; /* Ocupa o restante do espaço */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
+    grid-template-rows: repeat(4, 1fr);
     grid-gap: 20px; /* Espaçamento entre os produtos */
     padding: 10px;
     background-color: #fff;
-    margin-right: 20vw; /* Espaço à direita igual à largura da comanda */
-    margin-left: 15vw;
+    margin-right: 25vw; /* Espaço à direita igual à largura da comanda */
+    margin-left: 10vw;
 }
 
-.products h2 {
+.cxvenda .products h2 {
     grid-column: span 4; /* O título ocupa a largura total */
     margin-bottom: 10px;
     font-size: 1.5em;
     color: #333;
 }
 
-.product {
+.cxvenda .product {
     background-color: #f9f9f9;
     padding: 10px; /* Menos padding para mais compactação */
     border: 1px solid #ddd;
@@ -58,41 +59,39 @@ body {
     cursor: pointer; /* Indica que é clicável */
     transition: box-shadow 0.3s;
 }
-
-.product:hover {
+.cxvenda .product:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
 }
 
-.products h2 {
+.cxvenda .products h2 {
     margin-bottom: 5px;
     font-size: 1.5em;
     color: #333;
-    grid-column: span 4; /* O título ocupará a largura total da grid */
 }
 
 /* Produtos individuais */
-.product {
+/* .cxvenda .product {
     background-color: #f9f9f9;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
-.product img {
+.cxvenda .product img {
     width: 80px;
     height: 80px;
     margin-bottom: 15px;
 }
 
-.product p {
+.cxvenda .product p {
     margin: 0 0 10px 0;
     font-size: 1em;
     color: #555;
 }
 
-.product button {
+.cxvenda .product button {
     background-color: #28a745;
     width: 100%;
     color: white;
@@ -103,12 +102,12 @@ body {
     transition: background-color 0.3s;
 }
 
-.product button:hover {
+.cxvenda .product button:hover {
     background-color: #218838;
 }
 
 /* Seção de Comanda */
-.comanda {
+.cxvenda .comanda {
     width: 20vw; /* 20% da largura da tela para a comanda */
     height: 80vh; /* Altura ajustada */
     background-color: rgb(223, 217, 217);
@@ -122,7 +121,7 @@ body {
     display: flex; /* Usar flexbox */
     flex-direction: column; /* Organiza os itens em coluna */
 }
-.comanda h2 {
+.cxvenda .comanda h2 {
     margin-bottom: 15px;
     font-size: 1.5em;
     color: #333;
@@ -146,7 +145,7 @@ body {
 }
 
 /* Total da Comanda */
-.comanda p {
+.cxvenda .comanda p {
     font-size: 1.2em;
     color: #333;
     margin-top: auto; /* Empurra o total para o final */

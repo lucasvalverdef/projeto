@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="/css/principal.css">
   <link rel="stylesheet" href="/css/produtos.css">
   <link rel="stylesheet" href="/css/vendas.css">
-  <link rel="stylesheet" href="/css/mais.css">
-  <link rel="stylesheet" href="/css/fornecedores.css">
+  <!-- <link rel="stylesheet" href="/css/mais.css">
+  <link rel="stylesheet" href="/css/fornecedores.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <header>
-
+     <h1 class ="cabeçalho">Vender</h1>
 </header>
 
 <body>
@@ -52,75 +52,17 @@
   </nav>
 
   <!-- <section class="menuprincipal">section com as divs clicáveis -->
+
+
   <!-- div principal vendas -->
-    <div class="cxvenda">
-      <div class="container">
+  <!-- div principal vendas -->
+  <div class="cxvenda">
+    <div class="container">
         <!-- Seção de Produtos -->
-        <section class="products">
-            <h2>Produtos</h2>
-
-
-
-
-
-            <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-              <img src="produto1.jpg" alt="Produto 1">
-              <p>Produto 1</p>
-              <p>R$ 10,00</p>
-          </div>
-          <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-            <img src="produto1.jpg" alt="Produto 1">
-            <p>Produto 1</p>
-            <p>R$ 10,00</p>
-        </div>
-        <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-          <img src="produto1.jpg" alt="Produto 1">
-          <p>Produto 1</p>
-          <p>R$ 10,00</p>
-      </div>
-      <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-        <img src="produto1.jpg" alt="Produto 1">
-        <p>Produto 1</p>
-        <p>R$ 10,00</p>
-    </div>
-    <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-      <img src="produto1.jpg" alt="Produto 1">
-      <p>Produto 1</p>
-      <p>R$ 10,00</p>
-  </div>
-  <div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-    <img src="produto1.jpg" alt="Produto 1">
-    <p>Produto 1</p>
-    <p>R$ 10,00</p>
-</div>
-<div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-  <img src="produto1.jpg" alt="Produto 1">
-  <p>Produto 1</p>
-  <p>R$ 10,00</p>
-</div>
-<div class="product" data-name="Produto 1" data-price="10.00" onclick="addToCart(this)">
-  <img src="produto1.jpg" alt="Produto 1">
-  <p>Produto 1</p>
-  <p>R$ 10,00</p>
-</div>
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
+        <section class="products" id="productList">
             <!-- Os produtos serão adicionados aqui dinamicamente -->
         </section>
-    
+
         <!-- Seção de Comanda -->
         <aside class="comanda">
             <h2>Comanda</h2>
@@ -128,64 +70,68 @@
                 <!-- Produtos adicionados aparecerão aqui -->
             </ul>
             <p>Total R$:<span id="total">0.00</span></p>
-            <button id="finalizarVenda">Finalizar Venda</button> 
+            <button id="finalizarVenda">Finalizar Venda</button>
         </aside>
     </div>
-      <!-- div de Cadastrar Cliente -->
-      <div class="classcadastrarcliente">
+
+    <!-- div de Cadastrar Cliente -->
+    <div class="classcadastrarcliente">
         <h2>Cadastrar Cliente</h2>
-        <form action = "/add" method="post">
-          <label for="nomecliente">Nome do Cliente:</label>
-          <input type="text" id="nomeC" name="nomeC">
+        <form action="/add" method="post">
+            <label for="nomecliente">Nome do Cliente:</label>
+            <input type="text" id="nomeC" name="nomeC" required>
 
-          <label for="emailcliente">Email:</label>
-          <input type="email" id="emailC" name="emailC">
+            <label for="emailcliente">Email:</label>
+            <input type="email" id="emailC" name="emailC" required>
 
-          <label for="fonecliente">Telefone:</label>
-          <input type="number" id="foneC" name="foneC">
+            <label for="fonecliente">Telefone:</label>
+            <input type="number" id="foneC" name="foneC" required>
 
-          <button type="submit">Adicionar Cliente</button>
-          <button class="btnvoltar" id="btnvoltar" type="submit">Voltar</button>
+            <button type="submit">Adicionar Cliente</button>
+            <button type="button" id="btnvoltar">Voltar</button>
         </form>
-      </div>
-      <!-- fim da div de cadastrar clientes -->
+    </div>
+    <!-- fim da div de cadastrar clientes -->
+</div>
+<!-- fim da div de vendas -->
 
-      <!-- div de Fazer Venda -->
+<!-- div produtos -->
+<div class="cxproduto">
+    <div class="containerprodutos" id="containerprodutos">
+        <section class="products" id="productList">
+          
+          <button class="icon" id="btncadastrarprodutos">
+            <i class="bi bi-plus-circle"></i> Cadastrar Produto
+        </button>
+            <!-- Os produtos serão adicionados aqui dinamicamente -->
+        </section>
+    </div>
 
-       </div>
-    <!--fim da div de vendas -->
-    <!-- div produtos -->
-
-
-
-    <div class="cxproduto">
-      <link rel="stylesheet" href="/public/produtos.css">
-      <div id="listaprodutos" class="listaprodutos">
-        <div id="btncadastrarprodutos">
-          <button class="icon"><i class="bi bi-plus-circle"></i></button>
-        </div>
-      </div>
-       
-      
-      <div class="cadastrarprodutos">
+    <div class="cadastrarprodutos">
         <h1>Cadastrar Produto</h1>
         <form id="productform">
-          
-          <label for="productimg">Imagem do Produto:</label>
-          <input type="file" id="productimg" accept="image/*" required><br><br>
+            <label for="productimg">Imagem do Produto:</label>
+            <button type="button" id="btnimportarimagem" onclick="document.getElementById('productimg').click();">
+                <span style="font-size: 24px; font-weight: bold;">+</span>
+            </button>
+            <input type="file" id="productimg" accept="image/*" " required>
+            <div id="imagepreview" style="display: none;"></div>
 
-          <label for="productdesc">Descrição do Produto:</label>
-          <input type="text" id="productdesc" required><br><br>
+            <label for="productname">Nome do Produto:</label>
+            <input type="text" id="productname" maxlength="20" required>
 
-          <label for="productprice">Valor do Produto:</label>
-          <input type="number" id="productprice" required><br><br>
+            <label for="productprice">Valor do Produto:</label>
+            <input type="number" id="productprice" required>
 
-          <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
-          
+            <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
+            <button id="btnvoltarprodutos" type="button">Voltar</button>
         </form>
-      
-      </div>
     </div>
+</div>
+<!-- fim da div de produtos -->
+
+<!-- fim da div de produtos -->
+
 
     
     <!-- fim da div produtos -->
@@ -194,7 +140,6 @@
       <!-- div fornecedores -->
     
     <div class="cxfornecedor">
-      <link rel="stylesheet" href="/public/fornecedores.css">
       <div class="classfazerpedido" id="idfazerpedido">
         <h2>Fazer Pedidos</h2>
         <br><br>
@@ -311,7 +256,6 @@
 
   <!-- div mais -->
   <div class="cxmais">
-    <link rel="stylesheet" href="/public/mais.css">
     <div id="maisopcoes">
       <h2>Mais Opções</h2>
       
@@ -381,8 +325,8 @@
 <script src="/js/cep.js"></script>
 <script src="/js/vendas.js"></script>
 <script src="/js/produtos.js"></script>
-<script src="/js/fornecedores.js"></script>
-<script src="/js/mais.js"></script>
+<!-- <script src="/js/fornecedores.js"></script>
+<script src="/js/mais.js"></script> -->
 <!-- JAVA SCRIPT-->
 </body>
 </html>

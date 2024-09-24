@@ -7,16 +7,11 @@
 font-family: 'Outfit', sans-serif;
 }
 header{
-  width: 0;
-  height: 0;
-}
- /* corpo da página*/
-/* body{
-  width: 100vw;
-  height: 100vh;
+  text-align: center;
   background-color: #ddd;
-} */
-
+  width: 100vw;
+  height: 40px;
+}
  /* caixa de menu da página*/
 nav.menulateral{
   width: 70px; 
@@ -83,12 +78,7 @@ nav.menulateral.expandir .txtlink{
 ul li.itemmenu a .icon > i{
   font-size: 30px;
 }
-.section {
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+
 h2 {
   margin-top: 0;
 }
@@ -132,18 +122,16 @@ button:hover {
   padding: 20px; 
   background: #fff;
   border-radius: 8px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .cxproduto{
   display: none;
   width: 100%;  
-  max-width: 800px;
+  max-width: 100%;
   margin: auto;
   padding: 20px;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .cxfornecedor{
   display: none;
@@ -162,6 +150,10 @@ button:hover {
   padding-left: 0px;
   min-width: 768 px;
   background-color: rgb(207, 207, 207);
+}
+
+.hidden{
+  display: none;
 }
 
 
