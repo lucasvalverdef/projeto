@@ -79,20 +79,14 @@ btnMais.addEventListener('click', function(){
   }
 );
 
-var btnCliente = document.querySelector('#btncliente')
-var menuCliente = document.querySelector('.classcadastrarcliente')
-var menuFazervenda = document.querySelector('.classfazervenda')
+var menuCliente = document.querySelector('.classfinalizarvenda')
+var btnVoltar = document.querySelector('#btnvoltarvendas')
 
-// btnCliente.addEventListener('click', function(){
-//      menuCliente.style.display = 'block';
-//      menuFazervenda.style.display ='none';
-// });
-
-var btnVoltar = document.querySelector('#btnvoltar')
 btnVoltar.addEventListener('click', function(){
      menuCliente.style.display = 'none';
      menuFazervenda.style.display = 'block';
-});
+}
+);
 
 
 

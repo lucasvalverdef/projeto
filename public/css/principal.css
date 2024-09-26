@@ -7,6 +7,8 @@
 font-family: 'Outfit', sans-serif;
 }
 header{
+  top: 0;
+  position: fixed;
   text-align: center;
   background-color: #ddd;
   width: 100vw;
@@ -102,7 +104,7 @@ button {
 button:hover {
   background-color: #45a049;
 }
-.classcadastrarcliente{
+.classfinalizarvenda{
   display: none;
   margin: 300px;
   margin-top: 30px;

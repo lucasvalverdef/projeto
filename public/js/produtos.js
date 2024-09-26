@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const productList = document.getElementById('productList');
+    const listaprodutos = document.getElementById('listaprodutos');
     const cartItems = document.getElementById('cartitems');
-    const totalElement = document.getElementById('total');
     const productForm = document.getElementById('productform');
     let total = 0;
 
     // Função para adicionar produto à lista de produtos
-    function addProductToList(imageSrc, name, price) {
+    function addProductToList(imageSrc, name, price, descrição) {
         const productDiv = document.createElement('div');
         productDiv.classList.add('itemproduto');
 
@@ -16,26 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const desc = document.createElement('p');
         desc.textContent = `${name} - R$ ${price.toFixed(2)}`;
+        
+        const descricaoElement = document.createElement('p'); // Corrigido para evitar redeclaração
+        descricaoElement.textContent = descrição; // Use a variável correta
 
         productDiv.appendChild(img);
         productDiv.appendChild(desc);
+        productDiv.appendChild(descricaoElement); // Adiciona o parágrafo com a descrição
 
         // Evento de clique para adicionar à comanda
         productDiv.addEventListener('click', function () {
             addToCart(name, price);
         });
 
-        productList.appendChild(productDiv);
-    }
-
-    // Função para adicionar produto à comanda
-    function addToCart(name, price) {
-        const li = document.createElement('li');
-        li.textContent = `${name} - R$ ${price.toFixed(2)}`;
-        cartItems.appendChild(li);
-
-        total += price;
-        totalElement.textContent = total.toFixed(2);
+        listaprodutos.appendChild(productDiv);
     }
 
     // Pré-visualização da imagem ao selecionar um arquivo
@@ -64,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const imgFile = document.getElementById('productimg').files[0];
         const name = document.getElementById('productname').value;
+        const descrição = document.getElementById('productdesc').value; // Captura a descrição
         const price = parseFloat(document.getElementById('productprice').value);
 
         if (!imgFile || !name || isNaN(price)) {
@@ -74,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (event) {
             const imageSrc = event.target.result;
-            addProductToList(imageSrc, name, price);
+            addProductToList(imageSrc, name, price, descrição); // Passa a descrição corretamente
             productForm.reset();
             document.getElementById('imagepreview').innerHTML = ''; // Limpa a pré-visualização
             document.getElementById('imagepreview').style.display = 'none'; // Esconde a pré-visualização
@@ -83,21 +77,19 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(imgFile);
     });
 
+    // Manipuladores de botão para mostrar/ocultar formulários
+    var btncadastrarprodutos = document.querySelector('#btncadastrarprodutos');
+    var containerprodutos = document.querySelector('.containerprodutos');
+    var cadastrarprodutos = document.querySelector('.cadastrarprodutos');
+    var btnvoltarprodutos = document.querySelector('#btnvoltarprodutos');
 
-});
+    btncadastrarprodutos.addEventListener('click', function() {
+        containerprodutos.style.display = 'none';
+        cadastrarprodutos.style.display = 'block';
+    });
 
-    
-var btncadastrarprodutos = document.querySelector('#btncadastrarprodutos');
-var containerprodutos = document.querySelector('.containerprodutos');
-var cadastrarprodutos = document.querySelector('.cadastrarprodutos');
-var btnvoltarprodutos = document.querySelector('#btnvoltarprodutos');
-
-btncadastrarprodutos.addEventListener('click', function() {
-    containerprodutos.style.display = 'none';
-    cadastrarprodutos.style.display = 'block';
-});
-
-btnvoltarprodutos.addEventListener('click', function() {
-    containerprodutos.style.display = 'flex';
-    cadastrarprodutos.style.display = 'none';
+    btnvoltarprodutos.addEventListener('click', function() {
+        containerprodutos.style.display = 'flex';
+        cadastrarprodutos.style.display = 'none';
+    });
 });

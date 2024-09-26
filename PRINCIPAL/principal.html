@@ -57,9 +57,9 @@
   <!-- div principal vendas -->
   <!-- div principal vendas -->
   <div class="cxvenda">
-    <div class="container">
+    <div class="containerprodutos">
         <!-- Seção de Produtos -->
-        <section class="products" id="productList">
+        <section class="listaprodutosvendas" id="listaprodutosvendas">
             <!-- Os produtos serão adicionados aqui dinamicamente -->
         </section>
 
@@ -74,9 +74,9 @@
         </aside>
     </div>
 
-    <!-- div de Cadastrar Cliente -->
-    <div class="classcadastrarcliente">
-        <h2>Cadastrar Cliente</h2>
+    <!-- Div de Cadastrar Cliente -->
+    <div class="classfinalizarvenda">
+        <h2>Finalizar Venda</h2>
         <form action="/add" method="post">
             <label for="nomecliente">Nome do Cliente:</label>
             <input type="text" id="nomeC" name="nomeC" required>
@@ -85,49 +85,60 @@
             <input type="email" id="emailC" name="emailC" required>
 
             <label for="fonecliente">Telefone:</label>
-            <input type="number" id="foneC" name="foneC" required>
+            <input type="tel" id="foneC" name="foneC" required>
 
             <button type="submit">Adicionar Cliente</button>
-            <button type="button" id="btnvoltar">Voltar</button>
+            <button type="button" id="btnvoltarvendas">Voltar</button>
         </form>
     </div>
-    <!-- fim da div de cadastrar clientes -->
+    <!-- Fim da div de cadastrar clientes -->
 </div>
-<!-- fim da div de vendas -->
+<!-- Fim da div de vendas -->
 
-<!-- div produtos -->
-<div class="cxproduto">
-    <div class="containerprodutos" id="containerprodutos">
-        <section class="products" id="productList">
-          
-          <button class="icon" id="btncadastrarprodutos">
-            <i class="bi bi-plus-circle"></i> Cadastrar Produto
-        </button>
-            <!-- Os produtos serão adicionados aqui dinamicamente -->
-        </section>
-    </div>
+  <div class="cxproduto">
+      <div class="barra-opcoes">
+          <button>Opção 1</button>
+          <button>Opção 2</button>
+          <button>Opção 3</button>
+      </div>
+      <section class="listaprodutos" id="listaprodutos">
+          <div class="itemproduto">
+              <img src="/imagemtest/imagem test.jfif" alt="abc">
+              <p>abc - R$ 20.00</p>
+              <p>Fone de ouvido gamer ABC é um fone de ouvido com uma qualidade incrível e que atende muito bem.</p>
+          </div>
+          <!-- Mais produtos podem ser adicionados aqui -->
+      </section>
 
-    <div class="cadastrarprodutos">
-        <h1>Cadastrar Produto</h1>
-        <form id="productform">
-            <label for="productimg">Imagem do Produto:</label>
-            <button type="button" id="btnimportarimagem" onclick="document.getElementById('productimg').click();">
-                <span style="font-size: 24px; font-weight: bold;">+</span>
-            </button>
-            <input type="file" id="productimg" accept="image/*" " required>
-            <div id="imagepreview" style="display: none;"></div>
+      <!-- Botão Cadastrar Produtos -->
+      <button id="btncadastrarprodutos">Cadastrar Produtos</button>
 
-            <label for="productname">Nome do Produto:</label>
-            <input type="text" id="productname" maxlength="20" required>
 
-            <label for="productprice">Valor do Produto:</label>
-            <input type="number" id="productprice" required>
+  <div class="cadastrarprodutos" style="display: none;"> <!-- Inicialmente escondido -->
+      <h1>Cadastrar Produto</h1>
+      <form id="productform">
+          <button type="button" id="btnimportarimagem" onclick="document.getElementById('productimg').click();">
+              <span style="font-size: 24px; font-weight: bold;">+</span>
+              <input type="file" id="productimg" accept="image/*" style="display: none;" required>
+          </button>
+          <div id="imagepreview" style="display: none;"></div>
 
-            <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
-            <button id="btnvoltarprodutos" type="button">Voltar</button>
-        </form>
-    </div>
+          <label for="productname">Nome do Produto:</label>
+          <input type="text" id="productname" maxlength="20" required>
+
+          <label for="productdesc">Descrição do Produto:</label>
+          <input type="text" id="productdesc" maxlength="100" required>
+           
+          <label for="productprice">Valor do Produto:</label>
+          <input type="number" id="productprice" required>
+
+          <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
+          <button id="btnvoltarprodutos" type="button">Voltar</button>
+      </form>
+  </div>
 </div>
+</div>
+
 <!-- fim da div de produtos -->
 
 <!-- fim da div de produtos -->

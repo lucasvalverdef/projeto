@@ -3,6 +3,27 @@
   color: #333;
 }
 
+.cxproduto .barra-opcoes {
+  display: flex;
+  justify-content: space-around; /* Distribui os botões igualmente */
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cxproduto .barra-opcoes button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cxproduto .barra-opcoes button:hover {
+  background-color: #0056b3; /* Efeito hover */
+}
+
 .cxproduto form {
   display: flex;
   flex-direction: column;
@@ -21,82 +42,83 @@
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-#btncadastrarprodutos{
-  padding: 1px;
+#btncadastrarprodutos {
+  padding: 10px 20px; /* Aumentado para melhor clique */
+  width: 200px; /* Tamanho fixo */
+  position: fixed; /* Fixo na tela */
+  bottom: 20px; /* Distância do fundo */
+  right: 20px; /* Distância da direita */
   background-color: #a3a3a3;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
-  height: 100%;
+  z-index: 1000; /* Garante que fique acima de outros elementos */
 }
 
 .cxproduto button:hover {
   background-color: #218838;
 }
-.cadastrarprodutos{
+
+.cadastrarprodutos {
   display: none; /* Inicialmente oculta */
   margin-left: 15vh;
 }
 
-.cxproduto .containerprodutos{
+.cxproduto .containerprodutos {
   display: flex;
-  height: 100vh; /* Altura total da tela */
+  flex-direction: column; /* Para empilhar a barra e a lista */
+  height: auto; /* Altura ajustável */
   width: 100vw;
+  padding-bottom: 80px; /* Espaço para o botão */
 }
 
-.cxproduto .products{
-  flex: 1; /* Ocupa o restante do espaço */
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 20px; /* Espaçamento entre os produtos */
+.cxproduto .listaprodutos {
+  display: flex;
+  flex-direction: column; /* Para empilhar os produtos um abaixo do outro */
   padding: 10px;
   background-color: #fff;
-  margin-right: 25vw; /* Espaço à direita igual à largura da comanda */
-  margin-left: 10vw;
+  margin: 0 10vw; /* Margens laterais ajustadas */
 }
 
-.cxproduto .products h2 {
-  grid-column: span 4; /* O título ocupa a largura total */
+.cxproduto .listaprodutos h2 {
   margin-bottom: 10px;
   font-size: 1.5em;
   color: #333;
 }
 
-.cxproduto .product {
+.itemproduto {
+  width: 100%; /* Garante que o produto ocupe toda a largura */
+  display: flex; /* Alinha imagem e textos */
+  align-items: center; /* Centraliza verticalmente */
   background-color: #f9f9f9;
   padding: 10px; /* Menos padding para mais compactação */
   border: 1px solid #ddd;
   border-radius: 8px;
-  text-align: center;
+  margin-bottom: 10px; /* Margem entre os produtos */
+  text-align: left; /* Alinhamento à esquerda */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer; /* Indica que é clicável */
   transition: box-shadow 0.3s;
 }
-.cxproduto .product:hover {
+
+.itemproduto:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
 }
 
-.cxproduto .products h2 {
-  margin-bottom: 5px;
-  font-size: 1.5em;
-  color: #333;
-}
-.cxproduto .product img {
+.itemproduto img {
   width: 80px;
   height: 80px;
-  margin-bottom: 15px;
+  margin-right: 15px; /* Espaçamento à direita da imagem */
 }
 
-.cxproduto .product p {
-  margin: 0 0 10px 0;
+.itemproduto p {
+  margin: 0 10px 0 0; /* Margem entre os parágrafos */
   font-size: 1em;
   color: #555;
 }
 
-.cxproduto .product button {
+.itemproduto button {
   background-color: #28a745;
   width: 100%;
   color: white;
@@ -107,9 +129,10 @@
   transition: background-color 0.3s;
 }
 
-.cxproduto .product button:hover {
+.itemproduto button:hover {
   background-color: #218838;
 }
+
 #btnprodutos {
   padding: 0;
 }
@@ -125,4 +148,8 @@
 
 .botãoescolherimagem:hover {
   background-color: #004494; /* Escurece ao passar o mouse */
+}
+
+.itemproduto {
+  margin-bottom: 10px; /* Aumentado para separação */
 }

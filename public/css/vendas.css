@@ -30,7 +30,7 @@ body {
 }
 
 /* Seção de Produtos */
-.cxvenda .products{
+.cxvenda .listaprodutos{
     flex: 1; /* Ocupa o restante do espaço */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
@@ -42,7 +42,7 @@ body {
     margin-left: 10vw;
 }
 
-.cxvenda .products h2 {
+.cxvenda .listaprodutos h2 {
     grid-column: span 4; /* O título ocupa a largura total */
     margin-bottom: 10px;
     font-size: 1.5em;
@@ -63,7 +63,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
 }
 
-.cxvenda .products h2 {
+.cxvenda .listaprodutos h2 {
     margin-bottom: 5px;
     font-size: 1.5em;
     color: #333;
