@@ -3,7 +3,18 @@ const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require("body-parser");
 const path = require('path'); // Adicionar o path para manipulação de caminhos
+const mongoose = require('mongoose'); // Importar o Mongoose
 const Post = require('./models/Post');
+
+// Configuração do Mongoose
+mongoose.connect('mongodb://localhost/seu_banco', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Conectado ao MongoDB");
+}).catch((err) => {
+    console.log("Erro ao conectar ao MongoDB: " + err);
+});
 
 // Configuração
 // Template Engine
@@ -21,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Apenas uma vez
 // Rotas
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'principal', 'principal.html')); // Usar path.join para segurança e compatibilidade
-})
+});
 
 app.post('/add', function (req, res) {
     Post.create({
@@ -29,11 +40,11 @@ app.post('/add', function (req, res) {
         emailC: req.body.emailC,
         foneC: req.body.foneC,
     }).then(function () {
-        res.sendFile(path.join(__dirname, 'principal', 'principal.html')); // Enviar novamente o arquivo HTML após o sucesso
+        res.redirect('/'); // Redireciona para a rota principal após adicionar
     }).catch(function (erro) {
         res.send("Erro localizado: " + erro); // Exibir erro
     });
-})
+});
 
 // Iniciar o servidor
 app.listen(8081, function () {

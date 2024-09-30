@@ -1,41 +1,11 @@
-const db = require('./db')
+const mongoose = require('mongoose');
 
-const Post = db.sequelize.define('cliente', {
-    nomeC: {
-        type: db.Sequelize.STRING
-    },
-    emailC: {
-        type: db.Sequelize.STRING
-    },
-    foneC: {
-        type: db.Sequelize.STRING
-    }
-})  
+const PostSchema = new mongoose.Schema({
+    nomeC: { type: String, required: true },
+    emailC: { type: String, required: true },
+    foneC: { type: String, required: true },
+});
 
-const fornec = db.sequelize.define('fornecedore', {
-    txtnome: {
-        type: db.Sequelize.STRING
-    },
-    txtcep: {
-        type: db.Sequelize.STRING
-    },
-    txtnumero: {
-        type: db.Sequelize.STRING
-    },
-    txttelefone: {
-        type: db.Sequelize.STRING
-    },
-    txtemail: {
-        type: db.Sequelize.STRING
-    },
-    txtcnpj: {
-        type:db.Sequelize.STRING
-    },
-    textfornecedor: {
-        type:db.Sequelize.STRING
-    }  
-})
+const Post = mongoose.model('Post', PostSchema);
 
-//fornec.sync({force: true})
-//cliente.sync({force: true})
-module.exports = Post
+module.exports = Post;

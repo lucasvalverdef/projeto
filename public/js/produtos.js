@@ -22,12 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
         productDiv.appendChild(img);
         productDiv.appendChild(desc);
         productDiv.appendChild(descricaoElement); // Adiciona o parágrafo com a descrição
-
-        // Evento de clique para adicionar à comanda
-        productDiv.addEventListener('click', function () {
-            addToCart(name, price);
-        });
-
         listaprodutos.appendChild(productDiv);
     }
 
@@ -92,4 +86,5 @@ document.addEventListener('DOMContentLoaded', function () {
         containerprodutos.style.display = 'flex';
         cadastrarprodutos.style.display = 'none';
     });
+
 });

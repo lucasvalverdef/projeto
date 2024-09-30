@@ -30,18 +30,6 @@ body {
 }
 
 /* Seção de Produtos */
-.cxvenda .listaprodutos{
-    flex: 1; /* Ocupa o restante do espaço */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 20px; /* Espaçamento entre os produtos */
-    padding: 10px;
-    background-color: #fff;
-    margin-right: 25vw; /* Espaço à direita igual à largura da comanda */
-    margin-left: 10vw;
-}
-
 .cxvenda .listaprodutos h2 {
     grid-column: span 4; /* O título ocupa a largura total */
     margin-bottom: 10px;
@@ -108,18 +96,19 @@ body {
 
 /* Seção de Comanda */
 .cxvenda .comanda {
-    width: 20vw; /* 20% da largura da tela para a comanda */
-    height: 80vh; /* Altura ajustada */
+    width: 20vw;
+    height: 80vh;
     background-color: rgb(223, 217, 217);
     padding: 20px;
-    border: 1px solid #333; /* Border fixada */
+    border: 1px solid #333;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Fixa a comanda na tela */
-    right: 0; /* Alinha a comanda à direita */
-    top: 10vh; /* Alinha a comanda um pouco abaixo do topo */
-    display: flex; /* Usar flexbox */
-    flex-direction: column; /* Organiza os itens em coluna */
+    position: fixed;
+    right: 0;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    visibility: visible; /* Garante que a comanda esteja visível */
 }
 .cxvenda .comanda h2 {
     margin-bottom: 15px;
@@ -171,4 +160,40 @@ body {
 
 #finalizarVenda:hover {
     background-color: #0056b3;
+}
+
+.listaprodutosvendas{
+    flex: 1; /* Ocupa o restante do espaço */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 20px; /* Espaçamento entre os produtos */
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 5vh;
+    margin-right: 25vw; /* Espaço à direita igual à largura da comanda */
+    margin-left: 10vw;
+}
+.itemprodutovenda {
+    background-color: #f9f9f9; /* Cor de fundo leve */
+    padding: 0px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    text-align: center; /* Centraliza o conteúdo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações suaves */
+
+    /* Para adicionar efeitos ao passar o mouse */
+    cursor: pointer;
+}
+
+.itemprodutovenda:hover {
+    transform: translateY(-2px); /* Eleva o item */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+}
+.btnexcluircomanda{
+ background-color: red;
+ padding: 10px;
+ height: 5px;
+ width: 5px;
+ 
 }
