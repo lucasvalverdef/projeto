@@ -1,52 +1,33 @@
-const express = require("express");
-const app = express();
-const handlebars = require('express-handlebars');
-const bodyParser = require("body-parser");
-const path = require('path'); // Adicionar o path para manipulação de caminhos
-const mongoose = require('mongoose'); // Importar o Mongoose
-const Post = require('./models/Post');
+//carregar modulos
+   const express = require('express')
+   const exphbs = require('express-handlebars')
+   const bodyParser = require("body-parser")
+   const index = express()  
+   const user = require("./routes/user")  
+   const path = require('path')
+   const mongoose = require("mongoose")
+//configurações 
+   //Body Parser
+   index.use(bodyParser.urlencoded({extended: true}))
+   index.use(bodyParser.json())
+   //Handlebars
+   index.engine('handlebars', exphbs.engine({defaultLayout:'main'}))
+   index.set('view engine', 'handlebars')
+   //Mongoose
+   mongoose.Promise = global.Promise;
+   mongoose.connect("mongodb://localhost/BdImperial").then(() =>{
+      console.log("Conectado com sucesso!")
+   }).catch((erro)=>{
+      console.log("erro localizado: "+erro)
+   })
+   // Conectar CSS
+   index.use(express.static(path.join(__dirname, 'public'))); // Apenas uma vez
 
-// Configuração do Mongoose
-mongoose.connect('mongodb://localhost/seu_banco', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Conectado ao MongoDB");
-}).catch((err) => {
-    console.log("Erro ao conectar ao MongoDB: " + err);
-});
+//rotas
+index.use('/user', user)
 
-// Configuração
-// Template Engine
-app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-
-// Body Parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Conectar CSS
-// Servir a pasta 'public' onde está o CSS
-app.use(express.static(path.join(__dirname, 'public'))); // Apenas uma vez
-
-// Rotas
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'principal', 'principal.html')); // Usar path.join para segurança e compatibilidade
-});
-
-app.post('/add', function (req, res) {
-    Post.create({
-        nomeC: req.body.nomeC,
-        emailC: req.body.emailC,
-        foneC: req.body.foneC,
-    }).then(function () {
-        res.redirect('/'); // Redireciona para a rota principal após adicionar
-    }).catch(function (erro) {
-        res.send("Erro localizado: " + erro); // Exibir erro
-    });
-});
-
-// Iniciar o servidor
-app.listen(8081, function () {
-    console.log("Servidor rodando na url http://localhost:8081");
-});
+//outros 
+const porta = 8081
+index.listen(porta,() =>{
+    console.log("servidor rodando na porta " + porta)
+})

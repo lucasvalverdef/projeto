@@ -78,7 +78,7 @@
   
           <div class="cadastrar-cliente">
               <h3>Cadastrar Cliente</h3>
-              <form id="clienteForm">
+              <form id="clienteForm" action="/user/cliente/add" method="post">
                   <label for="nomeCliente">Nome do Cliente:</label>
                   <input type="text" id="nomeCliente" name="nomeCliente" required>
   
@@ -88,9 +88,9 @@
                   <label for="foneCliente">Telefone:</label>
                   <input type="tel" id="foneCliente" name="foneCliente" required>
   
-                  <button type="submit">Adicionar Cliente</button>
-              </form>
-          </div>
+                  
+              
+          
   
           <div class="forma-pagamento">
               <h3>Forma de Pagamento</h3>
@@ -106,8 +106,12 @@
                   <input type="number" id="parcelas" name="parcelas" min="1" max="12">
               </div>
           </div>
-  
+          <button type="submit">Adicionar Cliente</button>
           <button id="btnFinalizarVenda">Finalizar Venda</button>
+  </form>
+</div>
+  
+          
       </div>
       </div>
       <!-- Fim da div de cadastrar clientes -->
