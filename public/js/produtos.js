@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const listaprodutos = document.getElementById('listaprodutos');
-    const cartItems = document.getElementById('cartitems');
-    const productForm = document.getElementById('productform');
-    let total = 0;
+    const productForm = document.getElementById('productform'); // Formulário de cadastro de produtos
 
     // Função para adicionar produto à lista de produtos
-    function addProductToList(imageSrc, name, price, descrição) {
+    function addProductToList(imageSrc, name, price, descricao) {
         const productDiv = document.createElement('div');
         productDiv.classList.add('itemproduto');
 
@@ -16,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const desc = document.createElement('p');
         desc.textContent = `${name} - R$ ${price.toFixed(2)}`;
         
-        const descricaoElement = document.createElement('p'); // Corrigido para evitar redeclaração
-        descricaoElement.textContent = descrição; // Use a variável correta
+        const descricaoElement = document.createElement('p');
+        descricaoElement.textContent = descricao;
 
         productDiv.appendChild(img);
         productDiv.appendChild(desc);
-        productDiv.appendChild(descricaoElement); // Adiciona o parágrafo com a descrição
+        productDiv.appendChild(descricaoElement);
         listaprodutos.appendChild(productDiv);
     }
 
@@ -47,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Manipulador de envio do formulário de cadastro de produtos
     productForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Evita o comportamento padrão do formulário
 
         const imgFile = document.getElementById('productimg').files[0];
         const name = document.getElementById('productname').value;
-        const descrição = document.getElementById('productdesc').value; // Captura a descrição
+        const descricao = document.getElementById('productdesc').value; // Captura a descrição
         const price = parseFloat(document.getElementById('productprice').value);
 
         if (!imgFile || !name || isNaN(price)) {
@@ -59,16 +57,34 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            const imageSrc = event.target.result;
-            addProductToList(imageSrc, name, price, descrição); // Passa a descrição corretamente
-            productForm.reset();
+        const formData = new FormData();
+        formData.append('image', imgFile);
+        formData.append('name', name);
+        formData.append('description', descricao);
+        formData.append('price', price);
+
+        // Envio da requisição usando fetch
+        fetch('/user/produto/add', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao adicionar produto');
+            }
+            return response.text();
+        })
+        .then(data => {
+            console.log("Produto adicionado com sucesso!");
+            addProductToList(URL.createObjectURL(imgFile), name, price, descricao); // Adiciona produto à lista
+            productForm.reset(); // Limpa o formulário
             document.getElementById('imagepreview').innerHTML = ''; // Limpa a pré-visualização
             document.getElementById('imagepreview').style.display = 'none'; // Esconde a pré-visualização
-        };
-
-        reader.readAsDataURL(imgFile);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao adicionar produto.');
+        });
     });
 
     // Manipuladores de botão para mostrar/ocultar formulários
@@ -86,5 +102,4 @@ document.addEventListener('DOMContentLoaded', function () {
         containerprodutos.style.display = 'flex';
         cadastrarprodutos.style.display = 'none';
     });
-
 });

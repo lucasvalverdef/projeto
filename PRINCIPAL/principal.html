@@ -119,42 +119,44 @@
     <!-- Fim da div de vendas -->
 
     <div class="cxproduto">
-     <div class="containerprodutos">
-      <div class="barra-opcoes">
-        <button>Filtrar</button>
-        <button>Atualizar</button>
-        <button>Excluir</button>
-      </div>
-          <section class="listaprodutos" id="listaprodutos">
-            <div class="itemproduto">
+      <div class="containerprodutos">
+        <div class="barra-opcoes">
+          <button>Filtrar</button>
+          <button>Atualizar</button>
+          <button>Excluir</button>
+        </div>
+    
+        <section class="listaprodutos" id="listaprodutos">
+          <div class="itemproduto">
             <img src="" alt="abc">
             <p>abc - R$ 20.00</p>
             <p>Fone de ouvido gamer ABC é um fone de ouvido com uma qualidade incrível e que atende muito bem.</p>
-      </div>
-        <!-- Mais produtos podem ser adicionados aqui -->
-          </section>
+          </div>
+          <!-- Mais produtos podem ser adicionados aqui -->
+        </section>
       </div>
       <!-- Botão Cadastrar Produtos -->
       <button id="btncadastrarprodutos">Cadastrar Produtos</button>
-
+    
       <div class="cadastrarprodutos" style="display: none;"> <!-- Inicialmente escondido -->
         <h1>Cadastrar Produto</h1>
-        <form id="productform">
+        <!-- Enviando dados ao Node.js para serem salvos no MongoDB -->
+        <form id="productform" action="/user/produto/add" method="post" enctype="multipart/form-data">
           <button type="button" id="btnimportarimagem" onclick="document.getElementById('productimg').click();">
             <span style="font-size: 24px; font-weight: bold;">+</span>
-            <input type="file" id="productimg" accept="image/*" style="display: none;" required>
+            <input type="file" id="productimg" accept="image/*" name="image" style="display: none;" required>
           </button>
           <div id="imagepreview" style="display: none;"></div>
-
+      
           <label for="productname">Nome do Produto:</label>
-          <input type="text" id="productname" maxlength="20" required>
-
+          <input type="text" id="productname" name="name" maxlength="20" required>
+      
           <label for="productdesc">Descrição do Produto:</label>
-          <input type="text" id="productdesc" maxlength="100" required>
-
+          <input type="text" id="productdesc" name="description" maxlength="100" required>
+      
           <label for="productprice">Valor do Produto:</label>
-          <input type="number" id="productprice" required>
-
+          <input type="number" id="productprice" name="price" required>
+      
           <button id="btnadicionarprodutos" type="submit">Adicionar Produto</button>
           <button id="btnvoltarprodutos" type="button">Voltar</button>
         </form>
