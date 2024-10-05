@@ -48,12 +48,21 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault(); // Evita o comportamento padrão do formulário
 
         const imgFile = document.getElementById('productimg').files[0];
-        const name = document.getElementById('productname').value;
-        const descricao = document.getElementById('productdesc').value; // Captura a descrição
+        const name = document.getElementById('productname').value.trim();
+        const descricao = document.getElementById('productdesc').value.trim(); 
         const price = parseFloat(document.getElementById('productprice').value);
 
-        if (!imgFile || !name || isNaN(price)) {
-            alert('Por favor, preencha todos os campos.');
+        // Verifica se os campos estão preenchidos
+        if (!imgFile) {
+            alert('Por favor, selecione uma imagem.');
+            return;
+        }
+        if (!name) {
+            alert('Por favor, preencha o nome do produto.');
+            return;
+        }
+        if (isNaN(price)) {
+            alert('Por favor, insira um preço válido.');
             return;
         }
 
@@ -72,26 +81,26 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 throw new Error('Erro ao adicionar produto');
             }
-            return response.text();
+            return response.json(); // Mudei para json() para pegar a mensagem
         })
         .then(data => {
-            console.log("Produto adicionado com sucesso!");
-            addProductToList(URL.createObjectURL(imgFile), name, price, descricao); // Adiciona produto à lista
+            console.log(data.message); // Mensagem de sucesso
+            addProductToList(URL.createObjectURL(imgFile), name, price, descricao); 
             productForm.reset(); // Limpa o formulário
-            document.getElementById('imagepreview').innerHTML = ''; // Limpa a pré-visualização
-            document.getElementById('imagepreview').style.display = 'none'; // Esconde a pré-visualização
+            document.getElementById('imagepreview').innerHTML = ''; 
+            document.getElementById('imagepreview').style.display = 'none'; 
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Erro ao adicionar produto.');
+            alert(`Erro ao adicionar produto: ${error.message}`);
         });
     });
 
     // Manipuladores de botão para mostrar/ocultar formulários
-    var btncadastrarprodutos = document.querySelector('#btncadastrarprodutos');
-    var containerprodutos = document.querySelector('.containerprodutos');
-    var cadastrarprodutos = document.querySelector('.cadastrarprodutos');
-    var btnvoltarprodutos = document.querySelector('#btnvoltarprodutos');
+    const btncadastrarprodutos = document.querySelector('#btncadastrarprodutos');
+    const containerprodutos = document.querySelector('.containerprodutos');
+    const cadastrarprodutos = document.querySelector('.cadastrarprodutos');
+    const btnvoltarprodutos = document.querySelector('#btnvoltarprodutos');
 
     btncadastrarprodutos.addEventListener('click', function() {
         containerprodutos.style.display = 'none';

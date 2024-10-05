@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs'); // Adicionando o módulo fs
+const fs = require('fs');
 const Produto = require('../models/Produto'); // O modelo do produto no MongoDB
 
 // Verifica se o diretório 'public/uploads' existe e o cria se não existir
@@ -17,11 +17,24 @@ const storage = multer.diskStorage({
     cb(null, uploadDir); // Usa o diretório criado
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Nome único para cada imagem
+    cb(null, Date.now() + '-' + file.originalname); // Nome único para cada imagem
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    const filetypes = /jpeg|jpg|png|gif/; // Tipos de arquivos permitidos
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      return cb(new Error('Erro: Tipo de arquivo não suportado!'));
+    }
+  }
+});
 
 // Rota GET para a página principal (ajuste conforme necessário)
 router.get('/', (req, res) => {
@@ -29,29 +42,40 @@ router.get('/', (req, res) => {
 });
 
 // Rota para adicionar produtos
-router.post('/produto/add', upload.single('image'), (req, res) => {
-  console.log("Recebendo requisição para adicionar produto");
-  console.log("Dados do produto:", req.body);
-  console.log("Imagem:", req.file);
+router.post('/produto/add', upload.single('image'), async (req, res) => {
+  try {
+    console.log("Recebendo requisição para adicionar produto");
+    console.log("Dados do produto:", req.body);
+    console.log("Imagem:", req.file);
 
-  const { name, description, price } = req.body;
+    // Verifica se a imagem foi enviada
+    if (!req.file) {
+      return res.status(400).json({ message: "Erro: Nenhuma imagem foi enviada." });
+    }
 
-  const newProduct = new Produto({
-    productname: name,
-    productdesc: description,
-    productprice: price,
-    productimg: `/uploads/${req.file.filename}` // Caminho da imagem salva
-  });
+    const { name, description, price } = req.body;
 
-  newProduct.save()
-    .then(() => {
-      console.log("Produto adicionado com sucesso!");
-      res.redirect('/'); // Redireciona para a página principal após a adição
-    })
-    .catch((err) => {
-      console.log("Erro ao adicionar produto: " + err);
-      res.status(500).send("Erro ao adicionar produto");
+    // Verifica se os campos necessários foram preenchidos
+    if (!name || !description || !price) {
+      return res.status(400).json({ message: "Erro: Todos os campos devem ser preenchidos." });
+    }
+
+    // Criando um novo produto
+    const newProduct = new Produto({
+      productname: name,
+      productdesc: description,
+      productprice: price,
+      productimg: `/uploads/${req.file.filename}` // Caminho da imagem salva
     });
+
+    // Salvando o novo produto no banco de dados
+    await newProduct.save();
+    console.log("Produto adicionado com sucesso!");
+    res.status(201).json({ message: "Produto adicionado com sucesso!" }); // Retorna status 201
+  } catch (err) {
+    console.log("Erro ao adicionar produto:", err); // Imprime o erro detalhado
+    res.status(500).json({ message: "Erro ao adicionar produto", error: err.message });
+  }
 });
 
 module.exports = router;
