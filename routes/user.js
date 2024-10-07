@@ -78,4 +78,15 @@ router.post('/produto/add', upload.single('image'), async (req, res) => {
   }
 });
 
+// Rota para buscar todos os produtos
+router.get('/produtos', async (req, res) => {
+  try {
+    const produtos = await Produto.find(); // Busca todos os produtos do banco
+    res.status(200).json(produtos); // Envia os produtos como resposta em formato JSON
+  } catch (err) {
+    console.error('Erro ao buscar produtos:', err);
+    res.status(500).json({ message: "Erro ao buscar produtos", error: err.message });
+  }
+});
+
 module.exports = router;

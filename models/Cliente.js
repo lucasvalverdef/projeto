@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Cliente = new Schema({
@@ -7,25 +7,26 @@ const Cliente = new Schema({
         required: true 
     },
     email: {
-      type: String,
-      required: true
+        type: String,
+        required: true
     },
     fone: {
-      type: Number,
-      required: true
+        type: String,
+        required: true
     },
     cpf: {
-      type: Number,
-      required: false 
+        type: String,
+        required: false 
     },
     cnpj: {
-      type: Number,
-      required: false
+        type: String,
+        required: false
     },
-   date: {
-    type: Date,
-    default: Date.now()
-   }
-})
+    date: {
+        type: Date,
+        default: Date.now // Corrigido: não precisa de () aqui
+    }
+});
 
-mongoose.model("clientes", Cliente)
+// Exporta o modelo para uso em outros arquivos
+module.exports = mongoose.model("clientes", Cliente);

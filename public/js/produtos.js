@@ -112,3 +112,54 @@ document.addEventListener('DOMContentLoaded', function () {
         cadastrarprodutos.style.display = 'none';
     });
 });
+// Função para buscar produtos do backend
+async function buscarProdutos() {
+    try {
+      const response = await fetch('/user/produtos');  // Certifique-se de que esta rota retorne os produtos
+      const produtos = await response.json();
+  
+      if (response.ok) {
+        renderizarProdutos(produtos);
+      } else {
+        console.error('Erro ao buscar produtos:', produtos.message);
+      }
+    } catch (err) {
+      console.error('Erro de requisição:', err);
+    }
+  }
+  
+  // Chama a função ao carregar a página
+  document.addEventListener('DOMContentLoaded', buscarProdutos);
+  
+// Função para exibir produtos em ambas as listas
+function renderizarProdutos(produtos) {
+    const listaprodutos = document.getElementById('listaprodutos');
+    const listaprodutosvendas = document.getElementById('listaprodutosvendas');
+  
+    // Limpa as listas antes de adicionar novos produtos
+    listaprodutos.innerHTML = '';
+    listaprodutosvendas.innerHTML = '';
+  
+    produtos.forEach(produto => {
+      // Criar elemento HTML para cada produto na lista principal
+      const itemProduto = document.createElement('div');
+      itemProduto.classList.add('itemproduto');
+      itemProduto.innerHTML = `
+        <img src="${produto.productimg}" alt="${produto.productname}">
+        <p>${produto.productname} - R$ ${produto.productprice.toFixed(2)}</p>
+        <p>${produto.productdesc}</p>
+      `;
+      listaprodutos.appendChild(itemProduto);
+  
+      // Criar elemento HTML para cada produto na lista de vendas
+      const itemProdutoVenda = document.createElement('div');
+      itemProdutoVenda.classList.add('itemprodutovenda');
+      itemProdutoVenda.innerHTML = `
+        <img src="${produto.productimg}" alt="${produto.productname}">
+        <p>${produto.productname} - R$ ${produto.productprice.toFixed(2)}</p>
+      `;
+      listaprodutosvendas.appendChild(itemProdutoVenda);
+    });
+  }
+  
+
