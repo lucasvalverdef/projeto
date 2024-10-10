@@ -13,7 +13,7 @@ const usuarioRota = require('./routes/usuarioRota'); // Roteador de usuários (l
 
 dotenv.config(); // Carregar variáveis de ambiente
 
-const app = express(); // Usando "app" em vez de "index"
+const app = express();
 
 // Configuração do Handlebars
 const hbs = exphbs.create({
@@ -51,7 +51,7 @@ mongoose
   });
 
 // Rota principal da aplicação
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '/PRINCIPAL/login.html')); // Serve o arquivo HTML diretamente
 });
 
@@ -61,8 +61,8 @@ app.get('/home', (req, res) => {
 });
 
 // Rota para o formulário de registro
-app.get('/register', (req, res) => {
-  res.sendFile(path.join(__dirname, '/PRINCIPAL/registro.html')); // Serve o arquivo de registro
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(__dirname, '/PRINCIPAL/cadastro.html')); // Serve o arquivo de cadastro
 });
 
 // Usar rotas importadas

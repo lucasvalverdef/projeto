@@ -1,0 +1,44 @@
+/* Estilo padrão para pop-ups */
+.popup {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1000;
+    width: 300px; /* Largura fixa */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo do botão no pop-up */
+.popup button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para fundo escuro ao abrir o pop-up */
+.popup-overlay {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 999; /* Abaixo do pop-up */
+}

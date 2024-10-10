@@ -63,6 +63,19 @@ router.get('/search', async (req, res) => {
     res.status(500).json({ message: "Erro ao buscar cliente" });
   }
 });
+// Rota para fazer relatório
+router.post('/relatorio', (req, res) => {
+    Cliente.find() // Busca todos os clientes
+    .then(clientes => {
+        console.log("Clientes encontrados:", clientes); // Para depuração
+        res.render('relatorio', { clientes: clientes }); // Envie os dados para o template
+    })
+    .catch(erro => {
+        console.log("Erro ao buscar clientes:", erro);
+        res.status(500).send("Erro ao buscar clientes");
+    });
+});
+
 
 // Rota para deletar cliente
 router.delete('/delete/:id', async (req, res) => {

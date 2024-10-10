@@ -3,21 +3,22 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const Produto = require('../models/Produto'); // O modelo do produto no MongoDB
+const sharp = require('sharp');
+const Produto = require('../models/Produto');
 
-// Verifica se o diretório 'public/uploads' existe e o cria se não existir
+// Diretório de upload
 const uploadDir = path.join(__dirname, '..', 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configuração do multer para salvar imagens
+// Configuração do multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, uploadDir); // Usa o diretório criado
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Nome único para cada imagem
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
@@ -36,20 +37,30 @@ const upload = multer({
   }
 });
 
+// Função para redimensionar a imagem
+async function redimensionarImagem(inputPath, outputPath) {
+  await sharp(inputPath)
+    .resize(250, 250)
+    .toFile(outputPath);
+}
+
 // Rota para adicionar produtos
 router.post('/add', upload.single('image'), async (req, res) => {
   try {
     const { name, description, price } = req.body;
 
-    // Validação adicional
     if (!req.file || !name || !description || !price || isNaN(price)) {
       return res.status(400).json({ message: "Erro: Todos os campos devem ser preenchidos corretamente." });
     }
 
+    const outputPath = path.join(uploadDir, req.file.filename);
+    await redimensionarImagem(req.file.path, outputPath);
+    fs.unlinkSync(req.file.path);
+
     const newProduct = new Produto({
       productname: name,
       productdesc: description,
-      productprice: parseFloat(price), // Garantir que o preço seja um número
+      productprice: parseFloat(price),
       productimg: `/uploads/${req.file.filename}`
     });
 

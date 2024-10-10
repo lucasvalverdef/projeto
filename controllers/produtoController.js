@@ -11,21 +11,27 @@ async function salvarImagem(req, res) {
         }
 
         // Caminho para salvar a imagem redimensionada
-        const outputPath = path.join(__dirname, '../public/img/', req.file.filename);
+        const outputDir = path.join(__dirname, '../public/img');
+        const outputPath = path.join(outputDir, req.file.filename);
 
-        // Usar o sharp para redimensionar a imagem (Exemplo: 300x300 pixels)
+        // Verifica se o diretório de saída existe, se não, cria
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+
+        // Usar o sharp para redimensionar a imagem
         await sharp(req.file.path)
-            .resize(300, 300) // Define o tamanho padronizado
+            .resize(50, 50) // Define o tamanho padronizado
             .toFile(outputPath); // Salva a imagem redimensionada
 
-        // Opcional: Remove a imagem original (sem redimensionar)
+        // Remove a imagem original (sem redimensionar)
         fs.unlinkSync(req.file.path);
 
         // Continuar com o processo de salvar o produto no banco de dados...
         res.status(200).send('Imagem salva com sucesso e redimensionada!');
 
     } catch (error) {
-        console.error(error);
+        console.error('Erro ao processar a imagem:', error);
         res.status(500).send('Erro ao processar a imagem.');
     }
 }
