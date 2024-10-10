@@ -4,10 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const listaprodutosvendas = document.getElementById('listaprodutosvendas'); // Div da cxvenda
     const productForm = document.getElementById('productform');
     const clienteForm = document.getElementById('clienteForm');
-    const btnfinalizarvenda = document.querySelector('#finalizarVenda');
-    const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
-    const containervenda = document.querySelector('.containervenda');
-
     let total = 0;
 
     // Função para adicionar produto à lista de produtos na cxvenda
@@ -85,54 +81,16 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(imgFile);
     });
 
-    // Manipulador de envio do formulário de cadastro de clientes
-    clienteForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+// Finalização de vendas
+const btnfinalizarvenda = document.querySelector('#finalizarVenda');
+const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
+const containervenda = document.querySelector('.containervenda')
 
-        const nomeCliente = document.getElementById('nomeCliente').value;
-        const emailCliente = document.getElementById('emailCliente').value;
-        const foneCliente = document.getElementById('foneCliente').value;
-
-        if (!nomeCliente || !emailCliente || !foneCliente) {
-            alert('Por favor, preencha todos os campos do cliente.');
-            return;
-        }
-
-        const clienteData = {
-            nome: nomeCliente,
-            email: emailCliente,
-            fone: foneCliente
-        };
-
-        fetch('/user/cliente/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(clienteData)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao cadastrar cliente');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Cliente adicionado:', data.message);
-            clienteForm.reset();
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert(`Erro ao cadastrar cliente: ${error.message}`);
-        });
-    });
-
-    // Finalização de vendas
-    btnfinalizarvenda.addEventListener('click', function () {
-        document.getElementById('valorTotal').textContent = total.toFixed(2);
-        classfinalizarvenda.style.display = 'block';
-        containervenda.style.display = 'none';
-    });
+btnfinalizarvenda.addEventListener('click', function () {
+    classfinalizarvenda.style.display = 'block';
+    containervenda.style.display = 'none';
+});
+const btnvoltarvendas = document.querySelector('#btnvoltarvendas');
 
     // Pré-visualização da imagem do produto
     document.getElementById('productimg').addEventListener('change', function() {
@@ -150,5 +108,12 @@ document.addEventListener('DOMContentLoaded', function () {
             preview.innerHTML = '';
             preview.style.display = 'none';
         }
+    });
+
+    document.getElementById('foneCliente').addEventListener('input', function (e) {
+        let telefone = e.target.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
+        telefone = telefone.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses nos dois primeiros dígitos
+        telefone = telefone.replace(/(\d{5})(\d{1,4})/, "$1-$2"); // Coloca um traço entre o quinto e o sexto dígito
+        e.target.value = telefone; // Atualiza o valor no campo de input
     });
 });

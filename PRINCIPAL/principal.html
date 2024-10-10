@@ -79,16 +79,20 @@
           <div class="cadastrar-cliente">
               <h3>Cadastrar Cliente</h3>
               <form id="clienteForm" action="/user/cliente/add" method="post">
-                  <label for="nomeCliente">Nome do Cliente:</label>
-                  <input type="text" id="nomeCliente" name="nomeCliente" required>
+                  <label for="nomeCliente">Nome:</label>
+                  <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Digite o nome do cliente" required>
   
                   <label for="emailCliente">Email:</label>
-                  <input type="email" id="emailCliente" name="emailCliente" required>
+                  <input type="text" id="emailCliente" name="emailCliente" placeholder="email@exemplo.com" required>
   
                   <label for="foneCliente">Telefone:</label>
-                  <input type="tel" id="foneCliente" name="foneCliente" required>
+                  <input type="text" id="foneCliente" name="foneCliente" maxlength="15" placeholder="(99) 99999-9999" required>
   
-                  
+                  <label for="cidadeCliente">Cidade:</label>
+                  <input type="text" id="cidadeCliente" name="cidadeCliente" placeholder="Digite a cidade do cliente" required>
+
+                  <label for="cepCliente">Cep:</label>
+                  <input type="text" id="cepCliente" name="cepCliente" placeholder="Digite o CEP do cliente" required>
               
           
   
@@ -107,7 +111,7 @@
               </div>
           </div> -->
           <button type="submit">Adicionar Cliente</button>
-          <button id="btnFinalizarVenda">Finalizar Venda</button>
+          <!-- <button id="btnFinalizarVenda">Finalizar Venda</button> -->
   </form>
 </div>
   

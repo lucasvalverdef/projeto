@@ -25,19 +25,42 @@ index.use(bodyParser.urlencoded({ extended: true }));
 index.use(bodyParser.json());
 
 // Handlebars
+const hbs = exphbs.create({
+  defaultLayout: 'main', // Certifique-se de que este arquivo existe em views/layouts
+  layoutsDir: path.join(__dirname, 'views', 'layouts'), // Define a pasta de layouts
+  runtimeOptions: {
+      allowProtoPropertiesByDefault: true
+  }
+});
+// Adicionar o helper length
+hbs.handlebars.registerHelper('length', function (array) {
+  return array.length;
+});
+// Adicionar o helper eq
+hbs.handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
+
+// Usar o motor de visualização Handlebars
+index.engine('handlebars', hbs.engine);
+index.set('view engine', 'handlebars');
+
 index.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 index.set('view engine', 'handlebars');
 
+// Middleware para processar dados de formulários
+index.use(express.urlencoded({ extended: true }));
+
 // Conexão com o MongoDB
 mongoose.Promise = global.Promise;
-mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/BdImperial', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Conectado com sucesso ao MongoDB!');
-  })
-  .catch((erro) => {
-    console.error('Erro ao conectar ao MongoDB:', erro);
-  });
+
+mongoose.connect("mongodb://localhost/BdImperial", { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("Conectado com sucesso!");
+    })
+    .catch((erro) => {
+        console.log("Erro localizado: " + erro);
+    });
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
@@ -87,6 +110,7 @@ router.post('/cliente/add', async (req, res) => {
     res.status(500).json({ message: "Erro ao adicionar cliente", error: err.message });
   }
 });
-
+// Configura o diretório de views
+index.set('views', path.join(__dirname, 'views'));
 // Exportando o upload para uso nas rotas
 module.exports = upload;

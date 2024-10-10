@@ -3,8 +3,12 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose')
 const Produto = require('../models/Produto'); // O modelo do produto no MongoDB
 
+//importar os modelos 
+require("../models/Cliente")
+const Cliente = mongoose.model("clientes")
 // Verifica se o diretório 'public/uploads' existe e o cria se não existir
 const uploadDir = path.join(__dirname, '..', 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) {
@@ -88,5 +92,49 @@ router.get('/produtos', async (req, res) => {
     res.status(500).json({ message: "Erro ao buscar produtos", error: err.message });
   }
 });
+router.post('/cliente/search', (req, res) => {
+  const nome = req.query.nomeCliente;  // Captura o valor do nome passado no formulário
+  
+  Cliente.find({ nomeCliente: new RegExp(nome, 'i') }).lean().then((clientes) => {
+      if (clientes.length > 0) {
+          res.render('main', { clientes: clientes }); // Renderiza a página principal com os clientes encontrados
+      } else {
+          res.render('main', { clientes: [] }); // Se não encontrar, renderiza a página com array vazio
+      }
+  }).catch((erro) => {
+      console.log("Erro ao buscar clientes: " + erro);
+      res.redirect('/');
+  });
+});
+
+router.post('/relatorio', (req, res) => {
+  Cliente.find() // Busca todos os clientes
+  .then(clientes => {
+      console.log("Clientes encontrados:", clientes); // Para depuração
+      res.render('relatorio', { clientes: clientes }); // Envie os dados para o template
+  })
+  .catch(erro => {
+      console.log("Erro ao buscar clientes:", erro);
+      res.status(500).send("Erro ao buscar clientes");
+  });
+});
+
+// Rota para adicionar cliente
+router.post('/cliente/add',(req, res) => { 
+  const novoCliente = {
+       nomeCliente: req.body.nomeCliente, 
+       emailCliente: req.body.emailCliente,
+       foneCliente: req.body.foneCliente,
+       cepCliente: req.body.cepCliente,
+       cidadeCliente: req.body.cidade          
+  }
+  new Cliente(novoCliente).save().then(() => {
+      console.log("Cliente salvo com sucesso!")  
+  }).catch((erro) =>{
+      console.log("erro localizado: " + erro)
+  })
+  res.sendFile (path.join(__dirname, '..', 'PRINCIPAL', 'principal.html'))
+})
 
 module.exports = router;
+

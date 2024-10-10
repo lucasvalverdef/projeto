@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="/css/relatorio.css">   
+</head>
+<body class="clientesearch">
+    <form action="/user/cliente/search" method="post">
+        <input type="text" name="nome" placeholder="Digite o nome do cliente" required>
+        <button type="submit">Pesquisar</button>
+    </form>
+    
+    <h1>Lista de Clientes:</h1>
+    
+    <ul>
+        {{#each clientes}} 
+            <li>
+                <h4>Nome: {{nomeCliente}}</h4>
+                <p>E-mail: {{emailCliente}}</p>
+                <p>Telefone: {{foneCliente}}</p>
+                <p>Cidade: {{cidadeCliente}}</p>
+                <p>CEP: {{cepCliente}}</p>
+                <p>Data: {{date}}</p>
+            </li>
+            <br>
+        {{else}}
+            <li>Não há clientes cadastrados.</li>
+        {{/each}}
+    </ul>
+    
+    {{#if (eq (length clientes) 0)}}
+        <p>Não há clientes cadastrados.</p>
+    {{/if}}
+</body>
+</html>
