@@ -11,6 +11,7 @@ body {
     height: 100vh; /* Altura total da tela */
 }
 
+/* Menu lateral */
 .menu-lateral {
     width: 20vh; /* 20vh de largura */
     background-color: #f4f4f4;
@@ -39,43 +40,31 @@ body {
 
 .cxvenda .product {
     background-color: #f9f9f9;
-    padding: 10px; /* Menos padding para mais compactação */
+    padding: 3px; /* Reduzir ainda mais o padding para deixar os produtos menores */
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer; /* Indica que é clicável */
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s;
+    width: 100%; /* Para garantir que os produtos ocupem o espaço disponível */
+    max-width: 120px; /* Reduzir a largura máxima para os produtos */
+    margin: auto; /* Centraliza os produtos */
 }
 .cxvenda .product:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
+    transform: translateY(-5px); /* Eleva o item */
 }
-
-.cxvenda .listaprodutos h2 {
-    margin-bottom: 5px;
-    font-size: 1.5em;
-    color: #333;
-}
-
-/* Produtos individuais */
-/* .cxvenda .product {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
 
 .cxvenda .product img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
+    width: 50px; /* Reduz o tamanho da imagem */
+    height: 50px; /* Reduz a altura da imagem */
+    margin-bottom: 10px; /* Ajusta o espaçamento */
 }
 
 .cxvenda .product p {
-    margin: 0 0 10px 0;
-    font-size: 1em;
+    margin: 0 0 5px 0; /* Ajusta o espaçamento */
+    font-size: 0.8em; /* Reduz o tamanho da fonte */
     color: #555;
 }
 
@@ -84,10 +73,11 @@ body {
     width: 100%;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 5px; /* Reduz o padding do botão */
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 0.8em; /* Reduz o tamanho da fonte */
 }
 
 .cxvenda .product button:hover {
@@ -109,6 +99,7 @@ body {
     display: flex;
     flex-direction: column;
     visibility: visible; /* Garante que a comanda esteja visível */
+    z-index: 1000; /* Garante que a comanda fique acima dos produtos */
 }
 .cxvenda .comanda h2 {
     margin-bottom: 15px;
@@ -162,18 +153,19 @@ body {
     background-color: #0056b3;
 }
 
-.listaprodutosvendas{
+/* Lista de produtos em vendas */
+.listaprodutosvendas {
     flex: 1; /* Ocupa o restante do espaço */
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Grid de 4 colunas */
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 20px; /* Espaçamento entre os produtos */
+    grid-template-columns: repeat(4, 1fr); /* Garante 4 produtos por linha */
+    grid-gap: 10px; /* Espaçamento entre os produtos reduzido */
     padding: 10px;
     background-color: #fff;
     margin-top: 5vh;
-    margin-right: 25vw; /* Espaço à direita igual à largura da comanda */
-    margin-left: 10vw;
+    margin-left: 0; /* Remove a margem esquerda */
+    margin-right: 5vw; /* Reduz ainda mais a margem direita */
 }
+
 .itemprodutovenda {
     background-color: #f9f9f9; /* Cor de fundo leve */
     padding: 0px; /* Espaçamento interno */
@@ -181,8 +173,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
     text-align: center; /* Centraliza o conteúdo */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações suaves */
-
-    /* Para adicionar efeitos ao passar o mouse */
     cursor: pointer;
 }
 
@@ -190,10 +180,29 @@ body {
     transform: translateY(-2px); /* Eleva o item */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
 }
-.btnexcluircomanda{
- background-color: red;
- padding: 10px;
- height: 5px;
- width: 5px;
- 
+
+.btnexcluircomanda {
+    background-color: red;
+    padding: 10px;
+    border: none; /* Remove bordas */
+    border-radius: 4px; /* Borda arredondada */
+    color: white; /* Cor do texto */
+    cursor: pointer; /* Indica que é clicável */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .cxvenda .comanda {
+        width: 70%; /* Reduz a largura da comanda em telas pequenas */
+        right: 5%; /* Ajusta a posição */
+    }
+    
+    .listaprodutosvendas {
+        margin-left: 0; /* Remove a margem à esquerda em telas pequenas */
+        margin-right: 5%; /* Ajusta a margem à direita em telas pequenas */
+    }
+
+    .product {
+        padding: 5px; /* Reduz o padding para se ajustar melhor */
+    }
 }

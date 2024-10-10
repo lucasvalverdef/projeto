@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('price', price);
 
         // Envio da requisição usando fetch
-        fetch('/user/produto/add', {
+        fetch('/user/produtoRota/add', {
             method: 'POST',
             body: formData
         })
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Função para buscar produtos do backend
 async function buscarProdutos() {
     try {
-      const response = await fetch('/user/produtos');  // Certifique-se de que esta rota retorne os produtos
+      const response = await fetch('/user/produtoRota');  // Certifique-se de que esta rota retorne os produtos
       const produtos = await response.json();
   
       if (response.ok) {

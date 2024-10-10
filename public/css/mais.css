@@ -1,39 +1,84 @@
+.cxmais {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .cxmais {
-    display: none; /* Seção "Mais Opções" oculta por padrão */
-    text-align: center;
-    margin: 100px;
-    margin-left: 300px;
-    padding: 20px;
-    background-color: rgb(207, 207, 207);
-  }
-  
+#maisopcoes h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .opcoesinterativas {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.opcao {
+  flex: 1 1 calc(50% - 30px); /* 50% da largura menos o espaçamento */
+  display: flex;
+  justify-content: center;
+}
+
+.opcao button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* O botão se ajusta à largura da opção */
+  max-width: 300px; /* Limite para evitar que fique muito grande */
+}
+
+.opcao button:hover {
+  background-color: #45a049;
+}
+
+.opcao button:focus {
+  outline: none;
+  box-shadow: 0 0 3px 2px rgba(70, 130, 180, 0.5);
+}
+
+#btnrelatorios {
+  background-color: #2196F3;
+}
+
+#btnrelatorios:hover {
+  background-color: #1e88e5;
+}
+
+#btnbackup {
+  background-color: #ff9800;
+}
+
+#btnbackup:hover {
+  background-color: #fb8c00;
+}
+
+#btnhistorico {
+  background-color: #9c27b0;
+}
+
+#btnhistorico:hover {
+  background-color: #8e24aa;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .opcao {
+    flex: 1 1 100%;
   }
-  
-  .opcao button {
-    padding: 15px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+
+  .opcoesinterativas {
+    gap: 10px;
   }
-  
-  .opcao button:hover {
-    background-color: #45a049;
-  }
-  
-  .conteudointerativo {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
+}

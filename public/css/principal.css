@@ -1,4 +1,3 @@
-
 /* Estilização geral da página */
 * {
   margin: 0;
@@ -14,11 +13,12 @@ header {
   background-color: #ddd;
   width: 100vw;
   height: 40px;
+  z-index: 1000;
 }
 
-/* Caixa de menu da página */
+/* Caixa de menu lateral */
 nav.menulateral {
-  width: 70px; 
+  width: 70px;
   height: 100%;
   background-color: aliceblue;
   padding: 40px 0 40px 1%;
@@ -27,36 +27,33 @@ nav.menulateral {
   top: 0;
   left: 0;
   overflow: hidden;
-  transition: .2s;
+  transition: width 0.2s ease-in-out;
+  z-index: 999;
 }
 
-/* Expande o menu lateral */
 nav.menulateral.expandir {
   width: 200px;
 }
 
-/* Div ícone de expandir menu (3 risquinhos) */
 .btnexpandir {
   width: 100%;
   padding-left: 10px;
 }
 
-/* Ícone de expandir menu (3 risquinhos) */
 .btnexpandir > i {
   color: black;
   font-size: 24px;
   cursor: pointer;
 }
 
-/* Caixa geral das ul */
 ul {
   height: 100%;
   list-style-type: none;
+  padding: 0;
 }
 
-/* Ícones dos itens de menu */
 ul li.itemmenu {
-  transition: 0.5s;
+  transition: background-color 0.5s ease;
 }
 
 ul li.ativo {
@@ -73,13 +70,14 @@ ul li.itemmenu a {
   font-size: 15px;
   padding: 20px 4%;
   display: flex;
+  align-items: center;
   margin-bottom: 60px;
   line-height: 40px;
 }
 
 ul li.itemmenu a .txtlink {
   margin-left: 70px;
-  transition: .5s;
+  transition: margin-left 0.5s, opacity 0.5s;
   opacity: 0;
 }
 
@@ -109,17 +107,6 @@ input, select, button {
   border-radius: 5px;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
 .classfinalizarvenda {
   display: none;
   margin: 300px;
@@ -128,25 +115,17 @@ button:hover {
 
 .btnvoltar {
   background-color: red;
+  color: white;
+  cursor: pointer;
 }
 
 .btnvoltar:hover {
   background-color: #ac0b00;
 }
 
-.cxvenda {
-  display: block;
-  width: 100%;  
-  max-width: 100%;
-  margin: auto; 
-  padding: 20px; 
-  background: #fff;
-  border-radius: 8px; 
-}
-
-.cxproduto {
+.cxvenda, .cxproduto {
   display: none;
-  width: 100%;  
+  width: 100%;
   max-width: 100%;
   margin: auto;
   padding: 20px;
@@ -154,19 +133,52 @@ button:hover {
   border-radius: 8px;
 }
 
+.cxvenda {
+  display: block; /* Sempre visível no início */
+}
+
 .cxfornecedor, .cxmais {
   display: none;
   text-align: center;
   margin: 100px;
-  margin-left: 300px;
-  min-width: 768px; /* Corrigido: Removido espaço entre 768 e px */
   background-color: rgb(207, 207, 207);
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .hidden {
   display: none;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+  nav.menulateral {
+    width: 60px; /* Menu menor para telas pequenas */
+  }
 
+  nav.menulateral.expandir {
+    width: 150px; /* Menos expansão para telas menores */
+  }
 
+  ul li.itemmenu a .txtlink {
+    display: none; /* Remove texto em telas pequenas */
+  }
 
+  .cxvenda, .cxproduto {
+    padding: 10px; /* Ajusta o padding */
+  }
+
+  .cxfornecedor, .cxmais {
+    margin: 50px 10px; /* Reduz margens laterais em telas pequenas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .cxvenda, .cxproduto {
+    max-width: 80%; /* Limita a largura em telas grandes */
+  }
+
+  .cxfornecedor, .cxmais {
+    margin: 100px auto; /* Centraliza com margens automáticas */
+  }
+}

@@ -16,7 +16,7 @@
      <h1 class ="cabeçalho">Vender</h1>
 </header>
 
-<body>
+<body action="/home">
   <nav class="menulateral">
     <div class="btnexpandir">
       <i class="bi bi-list" id="btnexp"></i>
@@ -78,7 +78,7 @@
   
           <div class="cadastrar-cliente">
               <h3>Cadastrar Cliente</h3>
-              <form id="clienteForm" action="/user/cliente/add" method="post">
+              <form id="clienteForm" action="/user/clienteRota/add" method="post">
                   <label for="nomeCliente">Nome:</label>
                   <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Digite o nome do cliente" required>
   
@@ -145,7 +145,7 @@
       <div class="cadastrarprodutos" style="display: none;"> <!-- Inicialmente escondido -->
         <h1>Cadastrar Produto</h1>
         <!-- Enviando dados ao Node.js para serem salvos no MongoDB -->
-        <form id="productform" action="/user/produto/add" method="post" enctype="multipart/form-data">
+        <form id="productform" action="/user/produtoRota/add" method="post" enctype="multipart/form-data">
           <button type="button" id="btnimportarimagem" onclick="document.getElementById('productimg').click();">
             <span style="font-size: 24px; font-weight: bold;">+</span>
             <input type="file" id="productimg" accept="image/*" name="image" style="display: none;" required>
@@ -308,11 +308,13 @@
           </button>
         </div>
 
-        <div class="opcao">
-          <button id="btnrelatorios">
-            Relatórios
-          </button>
-        </div>
+        <form id="clienteForm" action="/user/relatorio" method="post">
+          <div class="opcao">
+            <button id="btnrelatorios" type="submit">
+              Relatórios
+            </button>
+          </div>
+  </form>
 
         <div class="opcao">
           <button id="btnusuarios">

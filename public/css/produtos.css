@@ -1,12 +1,13 @@
-
+/* Estilos para a seção de produtos */
 .cxproduto h1 {
   text-align: center;
   color: #333;
 }
 
+/* Barra de opções */
 .cxproduto .barra-opcoes {
   display: flex;
-  justify-content: space-around; /* Distribui os botões igualmente */
+  justify-content: space-around;
   background-color: #f1f1f1;
   padding: 10px;
   border-bottom: 1px solid #ddd;
@@ -22,9 +23,10 @@
 }
 
 .cxproduto .barra-opcoes button:hover {
-  background-color: #0056b3; /* Efeito hover */
+  background-color: #0056b3;
 }
 
+/* Formulário de produtos */
 .cxproduto form {
   display: flex;
   flex-direction: column;
@@ -43,43 +45,46 @@
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
+/* Botão de cadastro de produtos */
 #btncadastrarprodutos {
-  padding: 10px 20px; /* Aumentado para melhor clique */
-  width: 200px; /* Tamanho fixo */
-  position: fixed; /* Fixo na tela */
-  bottom: 20px; /* Distância do fundo */
-  right: 20px; /* Distância da direita */
+  padding: 10px 20px;
+  width: 200px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   background-color: #a3a3a3;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  z-index: 1000; /* Garante que fique acima de outros elementos */
+  z-index: 1000;
 }
 
 .cxproduto button:hover {
   background-color: #218838;
 }
 
+/* Lista de produtos */
 .cadastrarprodutos {
-  display: none; /* Inicialmente oculta */
+  display: none;
   margin-left: 15vh;
 }
 
 .cxproduto .containerprodutos {
   display: flex;
-  flex-direction: column; /* Para empilhar a barra e a lista */
-  height: auto; /* Altura ajustável */
-  width: 100vw;
-  padding-bottom: 80px; /* Espaço para o botão */
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  padding-bottom: 80px;
 }
 
 .cxproduto .listaprodutos {
   display: flex;
-  flex-direction: column; /* Para empilhar os produtos um abaixo do outro */
+  flex-direction: column;
   padding: 10px;
   background-color: #fff;
-  margin: 0 10vw; /* Margens laterais ajustadas */
+  margin: 0 10vw;
 }
 
 .cxproduto .listaprodutos h2 {
@@ -88,33 +93,34 @@
   color: #333;
 }
 
+/* Estilos para cada item de produto */
 .itemproduto {
-  width: 100%; /* Garante que o produto ocupe toda a largura */
-  display: flex; /* Alinha imagem e textos */
-  align-items: center; /* Centraliza verticalmente */
+  width: 100%;
+  display: flex;
+  align-items: center;
   background-color: #f9f9f9;
-  padding: 10px; /* Menos padding para mais compactação */
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 10px; /* Margem entre os produtos */
-  text-align: left; /* Alinhamento à esquerda */
+  margin-bottom: 10px;
+  text-align: left;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* Indica que é clicável */
+  cursor: pointer;
   transition: box-shadow 0.3s;
 }
 
 .itemproduto:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .itemproduto img {
   width: 80px;
   height: 80px;
-  margin-right: 15px; /* Espaçamento à direita da imagem */
+  margin-right: 15px;
 }
 
 .itemproduto p {
-  margin: 0 10px 0 0; /* Margem entre os parágrafos */
+  margin: 0 10px 0 0;
   font-size: 1em;
   color: #555;
 }
@@ -134,23 +140,52 @@
   background-color: #218838;
 }
 
-#btnprodutos {
-  padding: 0;
-}
-
 .botãoescolherimagem {
   padding: 3px;
   background-color: #0056b3;
-  color: white; /* Garante que o texto fique visível */
-  border: none; /* Remove bordas */
-  border-radius: 4px; /* Adiciona bordas arredondadas */
-  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .botãoescolherimagem:hover {
-  background-color: #004494; /* Escurece ao passar o mouse */
+  background-color: #004494;
 }
 
-.itemproduto {
-  margin-bottom: 10px; /* Aumentado para separação */
+/* Responsividade */
+@media (max-width: 768px) {
+  .cxproduto .barra-opcoes {
+    flex-direction: column;
+  }
+
+  .cxproduto .listaprodutos {
+    margin: 0;
+  }
+
+  .itemproduto {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .itemproduto img {
+    margin-bottom: 10px;
+  }
+
+  .itemproduto button {
+    width: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cxproduto .listaprodutos {
+    margin: 0 5vw; /* Ajusta as margens em telas maiores */
+  }
+
+  .itemproduto {
+    display: grid;
+    grid-template-columns: 80px auto 100px;
+    grid-gap: 15px;
+    align-items: center;
+  }
 }

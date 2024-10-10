@@ -1,26 +1,49 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt'); // Use esta linha se você estiver usando bcrypt
+// const bcrypt = require('bcryptjs'); // Use esta linha se optar por bcryptjs
 
-// Definindo o esquema de Usuário
-const UsuarioSchema = new Schema({
-  nome: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  senha: {
-    type: String,
-    required: true
-  },
-  dataCriacao: {
-    type: Date,
-    default: Date.now
-  }
+// Definindo o esquema para o usuário
+const usuarioSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true, // Garante que o nome de usuário seja único
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true, // Garante que o email seja único
+        trim: true
+    },
+    nomeCompleto: {
+        type: String,
+        required: true
+    }
+}, {
+    timestamps: true // Adiciona campos de createdAt e updatedAt automaticamente
 });
 
-// Exportando o modelo de Usuário
-module.exports = mongoose.model('Usuario', UsuarioSchema);
+// Método para criptografar a senha antes de salvar o usuário
+usuarioSchema.pre('save', async function(next) {
+    if (!this.isModified('password')) return next(); // Não criptografa se a senha não foi modificada
+
+    // Gera um sal e hash da senha
+    this.password = await bcrypt.hash(this.password, 10); // 10 é o número de rounds para o sal
+    next();
+});
+
+// Método para comparar a senha fornecida com a senha armazenada
+usuarioSchema.methods.comparePassword = async function(password) {
+    return await bcrypt.compare(password, this.password);
+};
+
+// Criar o modelo
+const Usuario = mongoose.model('Usuario', usuarioSchema);
+
+// Exportar o modelo
+module.exports = Usuario;
