@@ -28,10 +28,7 @@ router.post('/add', async (req, res) => {
 
     // Salvar o cliente no banco de dados
     await novoCliente.save();
-    res.status(201).json({ message: "Cliente adicionado com sucesso!" });
   } catch (err) {
-    console.error("Erro ao adicionar cliente:", err);
-    res.status(500).json({ message: "Erro ao adicionar cliente" });
   }
 });
 

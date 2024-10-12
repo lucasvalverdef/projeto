@@ -206,3 +206,122 @@ body {
         padding: 5px; /* Reduz o padding para se ajustar melhor */
     }
 }
+/* Estilização geral da página de finalização de venda */
+.classfinalizarvenda {
+    max-width: 800px; /* Largura máxima do documento */
+    margin: 20px auto; /* Centraliza a div na página */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #ffffff; /* Cor de fundo branca */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve para dar profundidade */
+    font-family: Arial, sans-serif; /* Fonte semelhante a documentos */
+    line-height: 1.6; /* Espaçamento entre linhas */
+}
+
+/* Estilo para títulos */
+.classfinalizarvenda h2 {
+    text-align: center; /* Centraliza o título */
+    color: #333; /* Cor do texto */
+    font-size: 24px; /* Tamanho do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.classfinalizarvenda h3, .classfinalizarvenda h4 {
+    color: #333; /* Cor para subtítulos */
+    margin-top: 20px; /* Espaço acima do subtítulo */
+}
+
+/* Estilo para o parágrafo do valor total */
+.classfinalizarvenda p {
+    font-size: 18px; /* Tamanho da fonte maior para destaque */
+    font-weight: bold; /* Negrito para o valor total */
+}
+
+/* Estilo para a seção de informações da venda */
+.venda-informacoes {
+    margin: 20px 0; /* Margem superior e inferior */
+    padding: 10px; /* Espaçamento interno */
+    border: 1px dashed #ccc; /* Linha pontilhada para destacar a seção */
+}
+
+#itensVenda {
+    list-style-type: none; /* Remove os marcadores de lista */
+    padding: 0; /* Remove o preenchimento padrão */
+}
+
+#itensVenda li {
+    border-bottom: 1px solid #eee; /* Linha separadora entre itens */
+    padding: 10px 0; /* Espaçamento interno entre os itens */
+}
+
+#itensVenda li:last-child {
+    border-bottom: none; /* Remove a linha do último item */
+}
+
+/* Estilo para a seção de cadastrar cliente */
+.cadastrar-cliente {
+    margin: 20px 0; /* Margem superior e inferior */
+}
+
+/* Estilo para formulários */
+.cadastrar-cliente form {
+    display: flex; /* Usar flexbox para disposição dos elementos */
+    flex-direction: column; /* Disposição vertical */
+}
+
+.cadastrar-cliente label {
+    margin: 10px 0 5px; /* Margens para labels */
+}
+
+.cadastrar-cliente input, .cadastrar-cliente select {
+    padding: 10px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+.cadastrar-cliente button {
+    margin-top: 15px; /* Margem acima do botão */
+    padding: 10px; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    cursor: pointer; /* Cursor de mão ao passar em cima */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave para efeito hover */
+}
+
+.cadastrar-cliente button:hover {
+    background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+/* Estilo para o botão de confirmar venda */
+#btnFinalizarVenda {
+    padding: 10px 15px; /* Espaçamento interno */
+    border: none; /* Remove borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    background-color: #28a745; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de mão ao passar em cima */
+    transition: background-color 0.3s; /* Transição suave para efeito hover */
+    margin-top: 20px; /* Margem acima do botão */
+}
+
+#btnFinalizarVenda:hover {
+    background-color: #218838; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+/* Imprimir estilo (simulando um PDF) */
+@media print {
+    .classfinalizarvenda {
+        box-shadow: none; /* Remove a sombra para impressão */
+        border: none; /* Remove a borda para impressão */
+    }
+
+    .cadastrar-cliente button {
+        display: none; /* Esconde botões ao imprimir */
+    }
+}
