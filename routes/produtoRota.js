@@ -40,7 +40,7 @@ const upload = multer({
 // Função para redimensionar a imagem
 async function redimensionarImagem(inputPath, outputPath) {
   await sharp(inputPath)
-    .resize(250, 250)
+    .resize(50, 50)
     .toFile(outputPath);
 }
 
@@ -77,6 +77,44 @@ router.get('/', async (req, res) => {
   try {
     const produtos = await Produto.find();
     res.status(200).json(produtos);
+  } catch (err) {
+    console.error('Erro ao buscar produtos:', err);
+    res.status(500).json({ message: "Erro ao buscar produtos" });
+  }
+});
+
+// Rota para buscar todos os produtos e adicionar a lógica de clique
+router.get('/produtos', async (req, res) => {
+  try {
+    const produtos = await Produto.find();
+    const produtosHtml = produtos.map(produto => `
+      <div class="produto" id="produto-${produto._id}">
+        <h3>${produto.productname}</h3>
+        <p>${produto.productdesc}</p>
+        <p>R$${produto.productprice.toFixed(2)}</p>
+        <img src="${produto.productimg}" alt="${produto.productname}">
+      </div>
+    `).join('');
+
+    // Enviar HTML com produtos e incluir lógica de clique
+    res.send(`
+      <div id="vendas">${produtosHtml}</div>
+      <script>
+        document.querySelectorAll('.produto').forEach((produto) => {
+          produto.addEventListener('click', function () {
+            const name = this.querySelector('h3').innerText;
+            const price = parseFloat(this.querySelector('p:nth-of-type(2)').innerText.replace('R$', ''));
+            console.log(\`Produto clicado: \${name}, R$\${price}\`); // Verifica no console se o evento de clique está sendo disparado
+            addToCart(name, price);
+          });
+        });
+
+        function addToCart(name, price) {
+          // Aqui você pode implementar a lógica para atualizar o carrinho
+          console.log(\`Produto adicionado ao carrinho: \${name}, R$\${price}\`);
+        }
+      </script>
+    `);
   } catch (err) {
     console.error('Erro ao buscar produtos:', err);
     res.status(500).json({ message: "Erro ao buscar produtos" });

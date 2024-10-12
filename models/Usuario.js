@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt'); // Use esta linha se você estiver usando bcrypt
-// const bcrypt = require('bcryptjs'); // Use esta linha se optar por bcryptjs
+const bcryptjs = require('bcryptjs'); // Alterado para bcryptjs
 
 // Definindo o esquema para o usuário
 const usuarioSchema = new mongoose.Schema({
@@ -28,14 +27,6 @@ const usuarioSchema = new mongoose.Schema({
     timestamps: true // Adiciona campos de createdAt e updatedAt automaticamente
 });
 
-// Método para criptografar a senha antes de salvar o usuário
-usuarioSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next(); // Não criptografa se a senha não foi modificada
-
-    // Gera um sal e hash da senha
-    this.password = await bcrypt.hash(this.password, 10); // 10 é o número de rounds para o sal
-    next();
-});
 
 // Método para comparar a senha fornecida com a senha armazenada
 usuarioSchema.methods.comparePassword = async function(password) {

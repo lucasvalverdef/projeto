@@ -3,34 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalElement = document.getElementById('total');
     const listaprodutosvendas = document.getElementById('listaprodutosvendas'); // Div da cxvenda
     const productForm = document.getElementById('productform');
-    const clienteForm = document.getElementById('clienteForm');
     let total = 0;
 
-    // Função para adicionar produto à lista de produtos na cxvenda
-    function addProductToList(imageSrc, name, price) {
-        const vendasDiv = document.createElement('div');
-        vendasDiv.classList.add('itemprodutovenda');
-
-        const img = document.createElement('img');
-        img.src = imageSrc;
-        img.alt = name;
-
-        const desc = document.createElement('p');
-        desc.textContent = `${name} - R$ ${price.toFixed(2)}`;
-
-        vendasDiv.appendChild(img);
-        vendasDiv.appendChild(desc);
-
-        // Adiciona um evento de clique para adicionar à comanda
-        vendasDiv.addEventListener('click', function () {
-            console.log(`Produto clicado: ${name}, R$${price}`); // Verifique no console se o evento de clique está sendo disparado
-            addToCart(name, price);
-        });
-
-        listaprodutosvendas.appendChild(vendasDiv);
-    }
-
-    // Função para adicionar produto à comanda
+    // Função para adicionar um produto à comanda
     function addToCart(name, price) {
         const li = document.createElement('li');
         li.textContent = `${name} - R$ ${price.toFixed(2)}`;
@@ -55,6 +30,73 @@ document.addEventListener('DOMContentLoaded', function () {
         li.appendChild(btnExcluir);
     }
 
+    // Função genérica para criar um produto com lógica de clique opcional
+    function createProductElement(imageSrc, name, price, descricao = null, addClickToCart = false) {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add(addClickToCart ? 'itemprodutovenda' : 'itemproduto');
+
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.alt = name;
+
+        const desc = document.createElement('p');
+        desc.textContent = `${name} - R$ ${price.toFixed(2)}`;
+
+        productDiv.appendChild(img);
+        productDiv.appendChild(desc);
+
+        if (descricao) {
+            const descricaoElement = document.createElement('p');
+            descricaoElement.textContent = descricao;
+            productDiv.appendChild(descricaoElement);
+        }
+
+        // Se for para "cxvenda", adiciona lógica de clique para adicionar à comanda
+        if (addClickToCart) {
+            productDiv.addEventListener('click', function () {
+                addToCart(name, price);
+            });
+        }
+
+        return productDiv;
+    }
+
+    // Função para buscar e renderizar produtos do backend
+    async function buscarProdutos() {
+        try {
+            const response = await fetch('/user/produtoRota');
+            const produtos = await response.json();
+
+            if (response.ok) {
+                renderizarProdutos(produtos);
+            } else {
+                console.error('Erro ao buscar produtos:', produtos.message);
+            }
+        } catch (err) {
+            console.error('Erro de requisição:', err);
+        }
+    }
+
+    // Função para exibir produtos em ambas as listas
+    function renderizarProdutos(produtos) {
+        const listaprodutos = document.getElementById('listaprodutos');
+        listaprodutos.innerHTML = '';
+        listaprodutosvendas.innerHTML = '';
+
+        produtos.forEach(produto => {
+            // Adiciona produto na lista principal
+            const productElement = createProductElement(produto.productimg, produto.productname, produto.productprice, produto.productdesc);
+            listaprodutos.appendChild(productElement);
+
+            // Adiciona produto na lista de vendas com lógica de clique
+            const vendaElement = createProductElement(produto.productimg, produto.productname, produto.productprice, null, true);
+            listaprodutosvendas.appendChild(vendaElement);
+        });
+    }
+
+    // Chamando a função ao carregar a página
+    document.addEventListener('DOMContentLoaded', buscarProdutos);
+
     // Manipulador de envio do formulário de cadastro de produtos
     productForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -72,7 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (event) {
             const imageSrc = event.target.result;
-            addProductToList(imageSrc, name, price); // Adiciona produto à lista
+            const productElement = createProductElement(imageSrc, name, price, descricao);
+            document.getElementById('listaprodutos').appendChild(productElement);
             productForm.reset();
             document.getElementById('imagepreview').innerHTML = '';
             document.getElementById('imagepreview').style.display = 'none';
@@ -81,22 +124,21 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsDataURL(imgFile);
     });
 
-// Finalização de vendas
-const btnfinalizarvenda = document.querySelector('#finalizarVenda');
-const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
-const containervenda = document.querySelector('.containervenda')
+    // Finalização de vendas
+    const btnfinalizarvenda = document.querySelector('#finalizarVenda');
+    const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
+    const containervenda = document.querySelector('.containervenda')
 
-btnfinalizarvenda.addEventListener('click', function () {
-    classfinalizarvenda.style.display = 'block';
-    containervenda.style.display = 'none';
-});
-const btnvoltarvendas = document.querySelector('#btnvoltarvendas');
+    btnfinalizarvenda.addEventListener('click', function () {
+        classfinalizarvenda.style.display = 'block';
+        containervenda.style.display = 'none';
+    });
 
     // Pré-visualização da imagem do produto
     document.getElementById('productimg').addEventListener('change', function() {
         const imgFile = this.files[0];
         const preview = document.getElementById('imagepreview');
-        
+
         if (imgFile) {
             const reader = new FileReader();
             reader.onload = function(event) {
@@ -108,12 +150,5 @@ const btnvoltarvendas = document.querySelector('#btnvoltarvendas');
             preview.innerHTML = '';
             preview.style.display = 'none';
         }
-    });
-
-    document.getElementById('foneCliente').addEventListener('input', function (e) {
-        let telefone = e.target.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja número
-        telefone = telefone.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses nos dois primeiros dígitos
-        telefone = telefone.replace(/(\d{5})(\d{1,4})/, "$1-$2"); // Coloca um traço entre o quinto e o sexto dígito
-        e.target.value = telefone; // Atualiza o valor no campo de input
     });
 });

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt'); // Para hashing de senhas
+const bcryptjs = require('bcryptjs'); // Para hashing de senhas
 const Usuario = require('../models/Usuario'); // Importa o modelo de usuário
 
+// Rota para cadastro de novo usuário
 // Rota para cadastro de novo usuário
 router.post('/cadastro', async (req, res) => {
     const { username, password, email, nomeCompleto } = req.body;
@@ -15,42 +16,48 @@ router.post('/cadastro', async (req, res) => {
         }
 
         // Criptografa a senha
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcryptjs.hash(password, 10);
         const novoUsuario = new Usuario({ username, password: hashedPassword, email, nomeCompleto });
         await novoUsuario.save();
-
         // Redireciona para a rota principal após cadastro bem-sucedido
-        res.redirect('/?success=Usuário registrado com sucesso!');
+        res.redirect('/login?success=Usuário registrado com sucesso!');
     } catch (err) {
-        console.error(err);
         res.redirect('/cadastro?error=Erro ao registrar o usuário.'); // Redireciona com erro
     }
 });
 
 
 // Rota de login
-// Rota para login de usuário
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
+        // Tente encontrar o usuário
         const usuario = await Usuario.findOne({ username });
+
+        // Se o usuário não for encontrado, redirecione com erro
         if (!usuario) {
             return res.redirect('/login?error=Usuário ou senha incorretos.');
         }
 
-        const isMatch = await bcrypt.compare(password, usuario.password);
+        // Comparar a senha fornecida com a senha armazenada
+        const isMatch = await bcryptjs.compare(password, usuario.password);
+
+        // Se a senha não corresponder, redirecione com erro
         if (!isMatch) {
             return res.redirect('/login?error=Usuário ou senha incorretos.');
         }
 
-        // Redireciona para a rota /home após o login bem-sucedido
+        // Se o login for bem-sucedido, redirecione para a página principal
         res.redirect('/home');
     } catch (err) {
-        console.error('Erro ao fazer login:', err);
+
         return res.redirect('/login?error=Erro ao fazer login.');
     }
 });
 
+
+
 // Exportar as rotas
 module.exports = router;
+  
