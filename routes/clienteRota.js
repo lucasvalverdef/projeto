@@ -5,32 +5,34 @@ const Cliente = require('../models/Cliente'); // Modelo de Cliente
 
 // Rota para adicionar cliente
 router.post('/add', async (req, res) => {
-  try {
-    const { nomeCliente, emailCliente, foneCliente, cpf, cnpj, cepCliente, cidadeCliente } = req.body;
-
-    // Verificar se todos os campos obrigatórios foram preenchidos
-    if (!nomeCliente || !emailCliente || !foneCliente) {
-      return res.status(400).json({ message: "Erro: Todos os campos obrigatórios devem ser preenchidos." });
+    try {
+      const { nomeCliente, emailCliente, foneCliente, cpf, cnpj, cepCliente, cidadeCliente } = req.body;
+  
+      // Verificar se todos os campos obrigatórios foram preenchidos
+      if (!nomeCliente || !emailCliente || !foneCliente) {
+        return res.status(400).json({ message: "Erro: Todos os campos obrigatórios devem ser preenchidos." });
+      }
+  
+      // Criar um novo cliente
+      const novoCliente = new Cliente({
+        nomeCliente,
+        emailCliente,
+        foneCliente,
+        cpf,   // Opcional
+        cnpj,  // Opcional
+        cepCliente, // Opcional
+        cidadeCliente // Opcional
+      });
+  
+      // Salvar o cliente no banco de dados
+      await novoCliente.save();
+      res.status(201).json({ message: "Cliente adicionado com sucesso!" });
+    } catch (err) {
+      console.error("Erro ao adicionar cliente:", err);
+      res.status(500).json({ message: "Erro ao adicionar cliente." });
     }
-
-    // Você pode adicionar validação adicional para CPF e CNPJ aqui, se necessário
-
-    // Criar um novo cliente
-    const novoCliente = new Cliente({
-      nomeCliente,
-      emailCliente,
-      foneCliente,
-      cpf,   // Opcional
-      cnpj, // Opcional
-      cepCliente, // Opcional
-      cidadeCliente // Opcional
-    });
-
-    // Salvar o cliente no banco de dados
-    await novoCliente.save();
-  } catch (err) {
-  }
-});
+  });
+  
 
 // Rota para buscar todos os clientes
 router.get('/all', async (req, res) => {
