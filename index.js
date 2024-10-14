@@ -66,7 +66,7 @@ app.get('/cadastro', (req, res) => {
 });
 
 // Usar rotas importadas
-app.use('/user', usuarioRota); // Rotas de usuários (login e registro)
+app.use('/user/usuarioRota', usuarioRota); // Rotas de usuários (login e registro)
 app.use('/user/produtoRota', produtoRota); // Rotas de produtos
 app.use('/user/clienteRota', clienteRota); // Rotas de clientes
 

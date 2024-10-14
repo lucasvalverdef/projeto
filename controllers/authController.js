@@ -3,7 +3,7 @@
 // const express = require('express');
 // const router = express.Router();
 // const mongoose = require('mongoose');
-// const bcryptjs = require('bcryptjs'); // Para hashing de senhas
+// const bcrypt = require('bcrypt'); // Para hashing de senhas
 // const Usuario = mongoose.model('usuarios'); // Certifique-se de que o modelo de usuário esteja definido
 
 // // Rota para processar o login
@@ -20,7 +20,7 @@
 //         }
 
 //         // Verifique a senha
-//         const match = await bcryptjs.compare(password, usuario.password);
+//         const match = await bcrypt.compare(password, usuario.password);
 //         if (!match) {
 //             return res.status(401).json({ message: 'Credenciais inválidas' });
 //         }
@@ -46,7 +46,7 @@
 //         }
 
 //         // Criptografa a senha
-//         const hashedPassword = await bcryptjs.hash(password, 10);
+//         const hashedPassword = await bcrypt.hash(password, 10);
 
 //         // Cria um novo usuário
 //         const novoUsuario = new Usuario({

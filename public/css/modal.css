@@ -1,0 +1,49 @@
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1; /* Colocado em cima de outros conteúdos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com transparência */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Margem acima do viewport */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+}
+
+.close {
+    color: #aaa;
+    float: right; /* Alinha o 'X' à direita */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#listaClientes {
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding padrão */
+}
+
+#listaClientes li {
+    margin: 10px 0; /* Adiciona margem entre os itens da lista */
+    padding: 10px; /* Adiciona padding interno */
+    border: 1px solid #ccc; /* Opcional: borda para os itens da lista */
+    border-radius: 5px; /* Opcional: borda arredondada */
+    cursor: pointer; /* Adiciona um cursor de ponteiro para interação */
+}
+
+#listaClientes li:hover {
+    background-color: #f0f0f0; /* Adiciona um efeito de destaque ao passar o mouse */
+}

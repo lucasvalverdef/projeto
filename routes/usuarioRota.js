@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcryptjs = require('bcryptjs'); // Para hashing de senhas
+const bcrypt = require('bcrypt'); // Para hashing de senhas
 const Usuario = require('../models/Usuario'); // Importa o modelo de usuário
 
 // Rota para cadastro de novo usuário
@@ -16,7 +16,7 @@ router.post('/cadastro', async (req, res) => {
         }
 
         // Criptografa a senha
-        const hashedPassword = await bcryptjs.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
         const novoUsuario = new Usuario({ username, password: hashedPassword, email, nomeCompleto });
         await novoUsuario.save();
         // Redireciona para a rota principal após cadastro bem-sucedido
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
         }
 
         // Comparar a senha fornecida com a senha armazenada
-        const isMatch = await bcryptjs.compare(password, usuario.password);
+        const isMatch = await bcrypt.compare(password, usuario.password);
 
         // Se a senha não corresponder, redirecione com erro
         if (!isMatch) {

@@ -3,7 +3,6 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const sharp = require('sharp');
 const Produto = require('../models/Produto');
 
 // Diretório de upload
@@ -14,56 +13,35 @@ if (!fs.existsSync(uploadDir)) {
 
 // Configuração do multer
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
+  destination: (req, file, cb) => {
+    cb(null, uploadDir); // Pasta onde as imagens serão salvas
   },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname); // Renomeia o arquivo para evitar duplicatas
+  },
 });
 
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    const filetypes = /jpeg|jpg|png|gif/;
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = filetypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
-      return cb(new Error('Erro: Tipo de arquivo não suportado!'));
-    }
-  }
-});
-
-// Função para redimensionar a imagem
-async function redimensionarImagem(inputPath, outputPath) {
-  await sharp(inputPath)
-    .resize(50, 50)
-    .toFile(outputPath);
-}
+const upload = multer({ storage });
 
 // Rota para adicionar produtos
 router.post('/add', upload.single('image'), async (req, res) => {
   try {
     const { name, description, price } = req.body;
 
+    // Verificar se todos os campos estão preenchidos corretamente
     if (!req.file || !name || !description || !price || isNaN(price)) {
       return res.status(400).json({ message: "Erro: Todos os campos devem ser preenchidos corretamente." });
     }
 
-    const outputPath = path.join(uploadDir, req.file.filename);
-    await redimensionarImagem(req.file.path, outputPath);
-    fs.unlinkSync(req.file.path);
-
+    // Criar um novo produto
     const newProduct = new Produto({
       productname: name,
       productdesc: description,
       productprice: parseFloat(price),
-      productimg: `/uploads/${req.file.filename}`
+      productimg: `/uploads/${req.file.filename}` // Caminho da imagem no servidor
     });
 
+    // Salvar o novo produto no banco de dados
     await newProduct.save();
     res.status(201).json({ message: "Produto adicionado com sucesso!" });
   } catch (err) {
@@ -73,13 +51,14 @@ router.post('/add', upload.single('image'), async (req, res) => {
 });
 
 // Rota para buscar todos os produtos
-router.get('/', async (req, res) => {
-    try {
-        const produtos = await Produto.find();
-        res.json(produtos);
-    } catch (err) {
-        res.status(500).json({ message: 'Erro ao buscar produtos' });
-    }
+router.get('/all', async (req, res) => {
+  try {
+    const produtos = await Produto.find();
+    res.json(produtos);
+  } catch (err) {
+    console.error('Erro ao buscar produtos:', err);
+    res.status(500).json({ message: 'Erro ao buscar produtos' });
+  }
 });
 
 module.exports = router;

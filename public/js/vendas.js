@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Função para buscar e renderizar produtos do backend
     async function buscarProdutos() {
         try {
-            const response = await fetch('/user/produtoRota');  // Verifique a rota no backend
+            const response = await fetch('/user/produtoRota/all');  // Verifique a rota no backend
             const produtos = await response.json();
 
             if (response.ok) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return productDiv;
     }
 
-    // Função para adicionar produto à comanda
+    
     // Função para adicionar produto à comanda
 function addToCart(name, price) {
     // Verifica se o produto já está no carrinho
