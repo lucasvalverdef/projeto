@@ -99,12 +99,11 @@
             <ul id="itensVenda">
                 <!-- Os itens da venda serão adicionados aqui dinamicamente -->
             </ul>
-            
             <p>Total:R$ <span id="totalFinalizar">0.00</span></p>
             
             <h4>Informações sobre Garantia</h4>
-            <p>Os produtos comprados têm garantia de 3 meses a partir da data da compra. Guarde este comprovante para validação da garantia.</p>
-            
+            <p>Os produtos comprados têm garantia de 3 meses a partir da data da compra.</p>
+            <p>Guarde este comprovante para validação da garantia.</p>
             <p>Obrigado pela sua compra!</p>
         </div>
       </div>
@@ -191,7 +190,8 @@
     <div class="cxproduto">
       <div class="containerprodutos">
         <div class="barra-opcoes">
-          <button>Filtrar</button>
+          <input type="text" id="filtroInput" placeholder="Filtrar produtos...">
+          <button id="filtrarBtn">Filtrar</button>
           <button>Atualizar</button>
           <button>Excluir</button>
         </div>

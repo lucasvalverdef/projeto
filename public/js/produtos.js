@@ -143,5 +143,5 @@ document.addEventListener('DOMContentLoaded', function () {
   btnvoltarprodutos.addEventListener('click', function(){
     containerprodutos.style.display = 'block'; //exibe o cadastro
     cadastrarprodutos.style.display = 'none'; //oculta o cadastro
-  })
+  });
 });

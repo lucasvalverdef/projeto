@@ -40,26 +40,28 @@ body {
 
 .cxvenda .product {
     background-color: #f9f9f9;
-    padding: 3px; /* Reduzir ainda mais o padding para deixar os produtos menores */
+    padding: 5px; /* Ajustado para um tamanho menor */
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer; /* Indica que é clicável */
     transition: box-shadow 0.3s, transform 0.3s;
-    width: 100%; /* Para garantir que os produtos ocupem o espaço disponível */
-    max-width: 120px; /* Reduzir a largura máxima para os produtos */
-    margin: auto; /* Centraliza os produtos */
+    width: 80px; /* Ajustado para um tamanho menor */
+    height: 80px; /* Ajustado para um tamanho menor */
+    margin: 5px auto; /* Centraliza os produtos */
+    z-index: 1; /* Garantir que fique acima da comanda */
 }
+
 .cxvenda .product:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
     transform: translateY(-5px); /* Eleva o item */
 }
 
 .cxvenda .product img {
-    width: 50px; /* Reduz o tamanho da imagem */
-    height: 50px; /* Reduz a altura da imagem */
-    margin-bottom: 10px; /* Ajusta o espaçamento */
+    width: 40px; /* Reduz o tamanho da imagem */
+    height: 40px; /* Reduz a altura da imagem */
+    margin-bottom: 5px; /* Ajusta o espaçamento */
 }
 
 .cxvenda .product p {
@@ -73,7 +75,7 @@ body {
     width: 100%;
     color: white;
     border: none;
-    padding: 5px; /* Reduz o padding do botão */
+    padding: 5px; /* Mantém o padding do botão reduzido */
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -101,6 +103,7 @@ body {
     visibility: visible; /* Garante que a comanda esteja visível */
     z-index: 1000; /* Garante que a comanda fique acima dos produtos */
 }
+
 .cxvenda .comanda h2 {
     margin-bottom: 15px;
     font-size: 1.5em;
@@ -153,27 +156,27 @@ body {
     background-color: #0056b3;
 }
 
-/* Lista de produtos em vendas */
+/* Definindo a lista de produtos como um flex container */
 .listaprodutosvendas {
-    flex: 1; /* Ocupa o restante do espaço */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Garante 4 produtos por linha */
-    grid-gap: 10px; /* Espaçamento entre os produtos reduzido */
-    padding: 10px;
-    background-color: #fff;
-    margin-top: 5vh;
-    margin-left: 0; /* Remove a margem esquerda */
-    margin-right: 5vw; /* Reduz ainda mais a margem direita */
+    display: flex; /* Usando flexbox para layout */
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    justify-content: center; /* Centraliza os itens na linha */
+    gap: 10px; /* Espaço entre os produtos */
 }
 
+/* Estilo para cada item do produto */
 .itemprodutovenda {
-    background-color: #f9f9f9; /* Cor de fundo leve */
-    padding: 0px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
-    text-align: center; /* Centraliza o conteúdo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animações suaves */
-    cursor: pointer;
+    background-color: #f0f0f0; /* Cor de fundo */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 5px; /* Cantos arredondados */
+    width: 150px; /* Largura fixada */
+    height: 200px; /* Altura fixada */
+    padding: 10px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    display: flex; /* Usando flexbox para o conteúdo */
+    flex-direction: column; /* Alinhando conteúdo em coluna */
+    align-items: center; /* Centralizando conteúdo */
+    justify-content: space-between; /* Espaço igual entre elementos */
 }
 
 .itemprodutovenda:hover {
@@ -206,6 +209,13 @@ body {
         padding: 5px; /* Reduz o padding para se ajustar melhor */
     }
 }
+@media (max-width: 768px) {
+    .itemprodutovenda {
+        width: 100px; /* Largura menor em telas pequenas */
+        height: 150px; /* Altura menor em telas pequenas */
+    }
+}
+
 /* Estilização geral da página de finalização de venda */
 .classfinalizarvenda {
     max-width: 800px; /* Largura máxima do documento */
@@ -229,99 +239,44 @@ body {
 
 .classfinalizarvenda h3, .classfinalizarvenda h4 {
     color: #333; /* Cor para subtítulos */
-    margin-top: 20px; /* Espaço acima do subtítulo */
+    margin-bottom: 10px; /* Espaço abaixo dos subtítulos */
 }
 
-/* Estilo para o parágrafo do valor total */
-.classfinalizarvenda p {
-    font-size: 18px; /* Tamanho da fonte maior para destaque */
-    font-weight: bold; /* Negrito para o valor total */
-}
-
-/* Estilo para a seção de informações da venda */
-.venda-informacoes {
-    margin: 20px 0; /* Margem superior e inferior */
-    padding: 10px; /* Espaçamento interno */
-    border: 1px dashed #ccc; /* Linha pontilhada para destacar a seção */
-}
-
-#itensVenda {
-    list-style-type: none; /* Remove os marcadores de lista */
+.classfinalizarvenda ul {
+    list-style-type: none; /* Remove a lista padrão */
     padding: 0; /* Remove o preenchimento padrão */
 }
 
-#itensVenda li {
-    border-bottom: 1px solid #eee; /* Linha separadora entre itens */
-    padding: 10px 0; /* Espaçamento interno entre os itens */
+/* Estilo para a tabela */
+.classfinalizarvenda table {
+    width: 100%; /* Largura total da tabela */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+    margin-bottom: 20px; /* Espaço abaixo da tabela */
 }
 
-#itensVenda li:last-child {
-    border-bottom: none; /* Remove a linha do último item */
+.classfinalizarvenda th, .classfinalizarvenda td {
+    border: 1px solid #ddd; /* Borda para células */
+    padding: 8px; /* Espaço interno */
+    text-align: left; /* Alinhamento à esquerda */
 }
 
-/* Estilo para a seção de cadastrar cliente */
-.cadastrar-cliente {
-    margin: 20px 0; /* Margem superior e inferior */
+.classfinalizarvenda th {
+    background-color: #f4f4f4; /* Cor de fundo para cabeçalhos */
+    font-weight: bold; /* Negrito para cabeçalhos */
 }
 
-/* Estilo para formulários */
-.cadastrar-cliente form {
-    display: flex; /* Usar flexbox para disposição dos elementos */
-    flex-direction: column; /* Disposição vertical */
-}
-
-.cadastrar-cliente label {
-    margin: 10px 0 5px; /* Margens para labels */
-}
-
-.cadastrar-cliente input, .cadastrar-cliente select {
-    padding: 10px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda padrão */
-    border-radius: 4px; /* Bordas arredondadas */
-    font-size: 16px; /* Tamanho da fonte */
-}
-
-.cadastrar-cliente button {
-    margin-top: 15px; /* Margem acima do botão */
-    padding: 10px; /* Espaçamento interno */
-    border: none; /* Remove borda padrão */
-    border-radius: 4px; /* Bordas arredondadas */
-    background-color: #007bff; /* Cor de fundo azul */
+/* Botões na seção de finalização */
+.classfinalizarvenda button {
+    background-color: #007bff; /* Cor do botão */
     color: white; /* Cor do texto */
-    cursor: pointer; /* Cursor de mão ao passar em cima */
+    border: none; /* Remove bordas */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Indica que é clicável */
     font-size: 16px; /* Tamanho da fonte */
-    transition: background-color 0.3s; /* Transição suave para efeito hover */
+    margin-right: 10px; /* Espaçamento entre botões */
 }
 
-.cadastrar-cliente button:hover {
-    background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
-}
-
-/* Estilo para o botão de confirmar venda */
-#btnFinalizarVenda {
-    padding: 10px 15px; /* Espaçamento interno */
-    border: none; /* Remove borda padrão */
-    border-radius: 4px; /* Bordas arredondadas */
-    background-color: #28a745; /* Cor de fundo verde */
-    color: white; /* Cor do texto */
-    font-size: 16px; /* Tamanho da fonte */
-    cursor: pointer; /* Cursor de mão ao passar em cima */
-    transition: background-color 0.3s; /* Transição suave para efeito hover */
-    margin-top: 20px; /* Margem acima do botão */
-}
-
-#btnFinalizarVenda:hover {
-    background-color: #218838; /* Cor de fundo mais escura ao passar o mouse */
-}
-
-/* Imprimir estilo (simulando um PDF) */
-@media print {
-    .classfinalizarvenda {
-        box-shadow: none; /* Remove a sombra para impressão */
-        border: none; /* Remove a borda para impressão */
-    }
-
-    .cadastrar-cliente button {
-        display: none; /* Esconde botões ao imprimir */
-    }
+.classfinalizarvenda button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
 }

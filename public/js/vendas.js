@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const cartItems = document.getElementById('cartitems');
     const totalElement = document.getElementById('total');
+    const totalFinalizarElement = document.getElementById('totalFinalizar'); // Selecione o elemento totalFinalizar
     const listaprodutosvendas = document.getElementById('listaprodutosvendas');
     const productForm = document.getElementById('productform');
     let total = 0; // Inicializa a variável total
@@ -68,61 +69,63 @@ document.addEventListener('DOMContentLoaded', function () {
         return productDiv;
     }
 
-    
     // Função para adicionar produto à comanda
-function addToCart(name, price) {
-    // Verifica se o produto já está no carrinho
-    const existingItem = Array.from(cartItems.children).find(item => item.dataset.name === name);
+    function addToCart(name, price) {
+        // Verifica se o produto já está no carrinho
+        const existingItem = Array.from(cartItems.children).find(item => item.dataset.name === name);
 
-    if (existingItem) {
-        // Se o produto já está no carrinho, atualiza a quantidade e o valor total
-        const quantityElement = existingItem.querySelector('.quantity');
-        const totalPriceElement = existingItem.querySelector('.totalprice');
+        if (existingItem) {
+            // Se o produto já está no carrinho, atualiza a quantidade e o valor total
+            const quantityElement = existingItem.querySelector('.quantity');
+            const totalPriceElement = existingItem.querySelector('.totalprice');
 
-        let quantity = parseInt(quantityElement.textContent);
-        quantity++;
+            let quantity = parseInt(quantityElement.textContent);
+            quantity++;
 
-        const newTotalPrice = quantity * price;
+            const newTotalPrice = quantity * price;
 
-        // Atualiza a exibição da quantidade e do valor total do produto
-        quantityElement.textContent = quantity;
-        totalPriceElement.textContent = ` ${newTotalPrice.toFixed(2)}`;
+            // Atualiza a exibição da quantidade e do valor total do produto
+            quantityElement.textContent = quantity;
+            totalPriceElement.textContent = ` R$ ${newTotalPrice.toFixed(2)}`;
 
-        // Atualiza o total geral corretamente
-        total += price; // Aumenta o total com o preço do produto adicionado
-        totalElement.textContent = ` ${total.toFixed(2)}`; // Substitui o texto anterior
-    } else {
-        // Se o produto não está no carrinho, adiciona-o como novo
-        const li = document.createElement('li');
-        li.dataset.name = name; // Usado para verificar se o item já existe
-        li.innerHTML = `  
-            <span class="quantity">1</span>x ${name} - R$ ${price.toFixed(2)}
-            <span class="totalprice">R$ ${price.toFixed(2)}</span> (Total)
-        `;
+            // Atualiza o total geral corretamente
+            total += price; // Aumenta o total com o preço do produto adicionado
+            totalElement.textContent = ` R$ ${total.toFixed(2)}`; // Substitui o texto anterior
+            totalFinalizarElement.textContent = totalElement.textContent; // Atualiza o totalFinalizar
+        } else {
+            // Se o produto não está no carrinho, adiciona-o como novo
+            const li = document.createElement('li');
+            li.dataset.name = name; // Usado para verificar se o item já existe
+            li.innerHTML = `  
+                <span class="quantity">1</span>x ${name} - R$ ${price.toFixed(2)}
+                <span class="totalprice">R$ ${price.toFixed(2)}</span> (Total)
+            `;
 
-        // Botão de excluir produto da comanda
-        const btnExcluir = document.createElement('button');
-        btnExcluir.textContent = 'Excluir';
-        btnExcluir.classList.add('btnexcluircomanda');
+            // Botão de excluir produto da comanda
+            const btnExcluir = document.createElement('button');
+            btnExcluir.textContent = 'Excluir';
+            btnExcluir.classList.add('btnexcluircomanda');
 
-        // Evento de exclusão do item
-        btnExcluir.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const quantity = parseInt(li.querySelector('.quantity').textContent);
-            li.remove();
-            total -= price * quantity; // Atualiza o total corretamente ao remover
-            totalElement.textContent = ` ${total.toFixed(2)}`; // Substitui o texto anterior
-        });
+            // Evento de exclusão do item
+            btnExcluir.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const quantity = parseInt(li.querySelector('.quantity').textContent);
+                li.remove();
+                total -= price * quantity; // Atualiza o total corretamente ao remover
+                totalElement.textContent = ` R$ ${total.toFixed(2)}`; // Substitui o texto anterior
+                totalFinalizarElement.textContent = totalElement.textContent; // Atualiza o totalFinalizar
+            });
 
-        li.appendChild(btnExcluir);
-        cartItems.appendChild(li);
+            li.appendChild(btnExcluir);
+            cartItems.appendChild(li);
 
-        // Atualiza o total geral corretamente
-        total += price; // Aumenta o total com o preço do novo produto
-        totalElement.textContent = ` ${total.toFixed(2)}`; // Substitui o texto anterior
+            // Atualiza o total geral corretamente
+            total += price; // Aumenta o total com o preço do novo produto
+            totalElement.textContent = ` R$ ${total.toFixed(2)}`; // Substitui o texto anterior
+            totalFinalizarElement.textContent = totalElement.textContent; // Atualiza o totalFinalizar
+        }
     }
-}
-    
+
     // Chamada da função para buscar produtos ao carregar a página
     buscarProdutos();
 
@@ -159,34 +162,31 @@ function addToCart(name, price) {
     const containervenda = document.querySelector('.containervenda');
 
     btnfinalizarvenda.addEventListener('click', function () {
-        const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
-        const containervenda = document.querySelector('.containervenda');
-    
         // Exibe os itens da venda
         const itensVenda = document.getElementById('itensVenda');
         itensVenda.innerHTML = ''; // Limpa a lista antes de adicionar os itens
-    
+
         Array.from(cartItems.children).forEach(item => {
             const quantity = item.querySelector('.quantity').textContent;
             const name = item.dataset.name;
             const totalprice = item.querySelector('.totalprice').textContent;
-    
+
             const listItem = document.createElement('li');
             listItem.textContent = `${quantity} x ${name} - ${totalprice}`;
             itensVenda.appendChild(listItem);
         });
-    
+
         // Atualiza o valor total
-        const total = totalElement.textContent.split('R$ ')[1];
-    
+        const totalValue = totalElement.textContent.split('R$ ')[1]; // Extrai o valor total
+
         // Verifique se o elemento de valor total existe antes de definir textContent
         const valorTotalElement = document.getElementById('valorTotal');
         if (valorTotalElement) {
-            valorTotalElement.textContent = total;
+            valorTotalElement.textContent = totalValue;
         } else {
             console.error('Elemento valorTotal não encontrado.');
         }
-    
+
         classfinalizarvenda.style.display = 'block';
         containervenda.style.display = 'none';
     });
