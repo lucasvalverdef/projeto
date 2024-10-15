@@ -121,8 +121,12 @@ function gerarPDF() {
         doc.setTextColor(150, 150, 150); // Cor do texto do rodapé
         doc.text("Imperial Mobile | Rua Exemplo, 123 | Telefone: (31) 99626-2171", margin + 5, y);
 
-        // Salvando o PDF
-        doc.save('comprovante_venda_estilizado.pdf');
+        // Nome e CPF do cliente para o nome do arquivo
+        const clienteNome = document.querySelector('#clienteNomeComprovante').textContent.trim().replace(/\s+/g, '-'); // Substitui espaços por hífens
+        const clienteCpf = document.querySelector('#clienteCpfComprovante').textContent.trim();
+
+        // Salvando o PDF com o nome formatado
+        doc.save(`comprovante-${clienteNome}-${clienteCpf}.pdf`);
     };
 }
 
