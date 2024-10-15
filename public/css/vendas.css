@@ -30,49 +30,86 @@ body {
     color: #333;
 }
 
-/* Seção de Produtos */
-.cxvenda .listaprodutos h2 {
-    grid-column: span 4; /* O título ocupa a largura total */
-    margin-bottom: 10px;
-    font-size: 1.5em;
-    color: #333;
+/* Seção de Vendas */
+.cxvenda {
+    display: block; /* Mantém os produtos e a comanda em linha */
+    flex-grow: 1; /* Faz a seção de produtos ocupar o espaço restante */
+    position: relative; /* Para ajustar a posição dos elementos filhos */
 }
 
-.cxvenda .product {
+/* Ajustando a lista de produtos */
+.listaprodutosvendas {
+    display: grid; /* Usando grid para layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px; /* Espaço entre os produtos */
+    padding: 10px; /* Espaçamento interno */
+    margin-right: 20vw; /* Margem de 5px do topo e dos lados */
+    margin-left: 2vw;
+    margin-top: 3vw;
+    
+    overflow-y: auto; /* Permitir rolagem vertical */
+    height: calc(100vh - 20px); /* Ajusta a altura para caber na tela */
+    background-color: rgb(223, 217, 217); /* Cor de fundo igual à comanda */
+    box-sizing: border-box; /* Inclui padding e bordas na largura/altura total */
+    text-align: center;
+    
+}
+
+/* Comanda */
+.cxvenda .comanda {
+    width: 20vw; /* Largura fixa da comanda */
+    height: 80vh; /* Altura fixa da comanda */
+    background-color: rgb(223, 217, 217);
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixa a comanda à direita */
+    right: 0; /* Fixa na borda direita */
+    top: 10vh; /* Distância do topo */
+    display: flex;
+    flex-direction: column;
+    visibility: visible; /* Garante que a comanda esteja visível */
+    z-index: 1000; /* Garante que a comanda fique acima dos produtos */
+}
+
+/* Estilo dos produtos */
+.listaprodutosvendas .itemprodutovenda {
     background-color: #f9f9f9;
-    padding: 5px; /* Ajustado para um tamanho menor */
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 10px; /* Ajustado para um tamanho adequado */
+    border: 1px solid #ddd; /* Borda sutil ao redor do produto */
+    border-radius: 8px; /* Bordas arredondadas */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer; /* Indica que é clicável */
     transition: box-shadow 0.3s, transform 0.3s;
-    width: 80px; /* Ajustado para um tamanho menor */
-    height: 80px; /* Ajustado para um tamanho menor */
-    margin: 5px auto; /* Centraliza os produtos */
-    z-index: 1; /* Garantir que fique acima da comanda */
+    width: 100%; /* O produto ocupa 100% da largura da célula do grid */
+    height: 150px; /* Altura fixa para os produtos */
+    display: flex; /* Usando flexbox para o conteúdo */
+    flex-direction: column; /* Alinhando conteúdo em coluna */
+    align-items: center; /* Centralizando conteúdo */
+    justify-content: center; /* Centralizando conteúdo verticalmente */
+    margin-bottom: 3px; /* Distância entre os produtos */
 }
-
-.cxvenda .product:hover {
+.listaprodutosvendas .itemprodutovenda:not(:last-child) {
+    border-bottom: 2px solid #000000; /* Linha separadora */
+    padding-bottom: 5px; /* Espaçamento abaixo do conteúdo do produto */
+}
+.listaprodutosvendas .itemprodutovenda:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Efeito ao passar o mouse */
     transform: translateY(-5px); /* Eleva o item */
 }
 
-.cxvenda .product img {
-    width: 40px; /* Reduz o tamanho da imagem */
-    height: 40px; /* Reduz a altura da imagem */
-    margin-bottom: 5px; /* Ajusta o espaçamento */
-}
-
-.cxvenda .product p {
+.listaprodutosvendas .itemprodutovenda p {
     margin: 0 0 5px 0; /* Ajusta o espaçamento */
-    font-size: 0.8em; /* Reduz o tamanho da fonte */
+    font-size: 0.9em; /* Reduz o tamanho da fonte */
     color: #555;
 }
 
-.cxvenda .product button {
+.cxvenda .itemprodutovenda button {
     background-color: #28a745;
-    width: 100%;
+    width: 100%; /* O botão ocupa 100% da largura do produto */
     color: white;
     border: none;
     padding: 5px; /* Mantém o padding do botão reduzido */
@@ -82,28 +119,11 @@ body {
     font-size: 0.8em; /* Reduz o tamanho da fonte */
 }
 
-.cxvenda .product button:hover {
+.cxvenda .itemprodutovenda button:hover {
     background-color: #218838;
 }
 
 /* Seção de Comanda */
-.cxvenda .comanda {
-    width: 20vw;
-    height: 80vh;
-    background-color: rgb(223, 217, 217);
-    padding: 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    right: 0;
-    top: 10vh;
-    display: flex;
-    flex-direction: column;
-    visibility: visible; /* Garante que a comanda esteja visível */
-    z-index: 1000; /* Garante que a comanda fique acima dos produtos */
-}
-
 .cxvenda .comanda h2 {
     margin-bottom: 15px;
     font-size: 1.5em;
@@ -156,66 +176,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Definindo a lista de produtos como um flex container */
-.listaprodutosvendas {
-    display: flex; /* Usando flexbox para layout */
-    flex-wrap: wrap; /* Permite que os itens quebrem linha */
-    justify-content: center; /* Centraliza os itens na linha */
-    gap: 10px; /* Espaço entre os produtos */
-}
-
-/* Estilo para cada item do produto */
-.itemprodutovenda {
-    background-color: #f0f0f0; /* Cor de fundo */
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 5px; /* Cantos arredondados */
-    width: 150px; /* Largura fixada */
-    height: 200px; /* Altura fixada */
-    padding: 10px; /* Espaçamento interno */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
-    display: flex; /* Usando flexbox para o conteúdo */
-    flex-direction: column; /* Alinhando conteúdo em coluna */
-    align-items: center; /* Centralizando conteúdo */
-    justify-content: space-between; /* Espaço igual entre elementos */
-}
-
-.itemprodutovenda:hover {
-    transform: translateY(-2px); /* Eleva o item */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
-}
-
-.btnexcluircomanda {
-    background-color: red;
-    padding: 10px;
-    border: none; /* Remove bordas */
-    border-radius: 4px; /* Borda arredondada */
-    color: white; /* Cor do texto */
-    cursor: pointer; /* Indica que é clicável */
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .cxvenda .comanda {
-        width: 70%; /* Reduz a largura da comanda em telas pequenas */
-        right: 5%; /* Ajusta a posição */
-    }
-    
-    .listaprodutosvendas {
-        margin-left: 0; /* Remove a margem à esquerda em telas pequenas */
-        margin-right: 5%; /* Ajusta a margem à direita em telas pequenas */
-    }
-
-    .product {
-        padding: 5px; /* Reduz o padding para se ajustar melhor */
-    }
-}
-@media (max-width: 768px) {
-    .itemprodutovenda {
-        width: 100px; /* Largura menor em telas pequenas */
-        height: 150px; /* Altura menor em telas pequenas */
-    }
-}
-
 /* Estilização geral da página de finalização de venda */
 .classfinalizarvenda {
     max-width: 800px; /* Largura máxima do documento */
@@ -237,7 +197,8 @@ body {
     margin-bottom: 20px; /* Espaço abaixo do título */
 }
 
-.classfinalizarvenda h3, .classfinalizarvenda h4 {
+.classfinalizarvenda h3,
+.classfinalizarvenda h4 {
     color: #333; /* Cor para subtítulos */
     margin-bottom: 10px; /* Espaço abaixo dos subtítulos */
 }
@@ -254,7 +215,8 @@ body {
     margin-bottom: 20px; /* Espaço abaixo da tabela */
 }
 
-.classfinalizarvenda th, .classfinalizarvenda td {
+.classfinalizarvenda th,
+.classfinalizarvenda td {
     border: 1px solid #ddd; /* Borda para células */
     padding: 8px; /* Espaço interno */
     text-align: left; /* Alinhamento à esquerda */
@@ -279,4 +241,26 @@ body {
 
 .classfinalizarvenda button:hover {
     background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .cxvenda .comanda {
+        width: 70%; /* Reduz a largura da comanda em telas pequenas */
+        right: 5%; /* Ajusta a posição */
+    }
+
+    .listaprodutosvendas {
+        margin-left: 0; /* Remove a margem à esquerda em telas pequenas */
+        margin-right: 5%; /* Ajusta a margem à direita em telas pequenas */
+    }
+
+    .product {
+        padding: 5px; /* Reduz o padding para se ajustar melhor */
+    }
+
+    .itemprodutovenda {
+        width: 100px; /* Largura menor em telas pequenas */
+        height: 150px; /* Altura menor em telas pequenas */
+    }
 }
