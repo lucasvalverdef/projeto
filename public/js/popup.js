@@ -20,3 +20,28 @@ window.onload = function() {
         showPopup(successMessage);
     }
 };
+
+// Função para abrir o popup
+function abrirPopup() {
+    document.getElementById('popupOpcoesVenda').style.display = 'block'; // Mostra o popup
+}
+
+// Função para fechar o popup
+function fecharPopup() {
+    document.getElementById('popupOpcoesVenda').style.display = 'none'; // Esconde o popup
+}
+
+// Adiciona evento de clique ao botão "Confirmar Venda"
+document.getElementById('btnConfirmarVenda').addEventListener('click', abrirPopup);
+
+// Adiciona evento de clique ao botão de fechar do popup
+document.getElementById('btnFecharPopup').addEventListener('click', fecharPopup);
+
+// Fechar o popup ao clicar fora dele
+window.addEventListener('click', function(event) {
+    const popup = document.getElementById('popupOpcoesVenda');
+    if (event.target === popup) {
+        fecharPopup();
+    }
+});
+

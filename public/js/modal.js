@@ -128,4 +128,21 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Erro ao adicionar cliente.");
         }
     });
+    // Função para formatar a data no formato DD/MM/YYYY
+function formatarData(data) {
+    const dia = String(data.getDate()).padStart(2, '0'); // Adiciona zero à esquerda se necessário
+    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+}
+
+// Função para definir a data atual no elemento dataVenda
+function definirDataVenda() {
+    const dataAtual = new Date(); // Obtém a data atual
+    const dataFormatada = formatarData(dataAtual); // Formata a data
+    document.getElementById('dataVenda').innerText = dataFormatada; // Define o texto do elemento
+}
+
+// Chama a função para definir a data quando a página é carregada
+window.onload = definirDataVenda;
 });
