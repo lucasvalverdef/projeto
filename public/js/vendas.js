@@ -159,56 +159,35 @@ function addToCart(name, price) {
     const containervenda = document.querySelector('.containervenda');
 
     btnfinalizarvenda.addEventListener('click', function () {
+        const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
+        const containervenda = document.querySelector('.containervenda');
+    
+        // Exibe os itens da venda
+        const itensVenda = document.getElementById('itensVenda');
+        itensVenda.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+    
+        Array.from(cartItems.children).forEach(item => {
+            const quantity = item.querySelector('.quantity').textContent;
+            const name = item.dataset.name;
+            const totalprice = item.querySelector('.totalprice').textContent;
+    
+            const listItem = document.createElement('li');
+            listItem.textContent = `${quantity} x ${name} - ${totalprice}`;
+            itensVenda.appendChild(listItem);
+        });
+    
+        // Atualiza o valor total
+        const total = totalElement.textContent.split('R$ ')[1];
+    
+        // Verifique se o elemento de valor total existe antes de definir textContent
+        const valorTotalElement = document.getElementById('valorTotal');
+        if (valorTotalElement) {
+            valorTotalElement.textContent = total;
+        } else {
+            console.error('Elemento valorTotal não encontrado.');
+        }
+    
         classfinalizarvenda.style.display = 'block';
         containervenda.style.display = 'none';
     });
-
-    // Pré-visualização da imagem do produto
-    document.getElementById('productimg').addEventListener('change', function () {
-        previewImage(this, document.getElementById('imagepreview'));
-    });
-
-    // Função para pré-visualização de imagem
-    function previewImage(input, previewElement) {
-        const imgFile = input.files[0];
-
-        if (imgFile) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                previewElement.innerHTML = `<img src="${event.target.result}" alt="Pré-visualização" style="max-width: 100px;">`;
-                previewElement.style.display = 'block';
-            };
-            reader.readAsDataURL(imgFile);
-        } else {
-            previewElement.innerHTML = '';
-            previewElement.style.display = 'none';
-        }
-    }
-    
-    // Exibe o formulário de finalização de venda com informações dos itens vendidos
-btnfinalizarvenda.addEventListener('click', function () {
-    const classfinalizarvenda = document.querySelector('.classfinalizarvenda');
-    const containervenda = document.querySelector('.containervenda');
-
-    // Exibe os itens da venda
-    const itensVenda = document.getElementById('itensVenda');
-    itensVenda.innerHTML = ''; // Limpa a lista antes de adicionar os itens
-
-    Array.from(cartItems.children).forEach(item => {
-        const quantity = item.querySelector('.quantity').textContent;
-        const name = item.dataset.name;
-        const totalprice = item.querySelector('.totalprice').textContent;
-
-        const listItem = document.createElement('li');
-        listItem.textContent = `${quantity} x ${name} - ${totalprice}`;
-        itensVenda.appendChild(listItem);
-    });
-
-    // Atualiza o valor total
-    const total = totalElement.textContent.split('R$ ')[1];
-    document.getElementById('valorTotal').textContent = total;
-
-    classfinalizarvenda.style.display = 'block';
-    containervenda.style.display = 'none';
-});
 });

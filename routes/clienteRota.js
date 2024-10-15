@@ -6,7 +6,7 @@ const Cliente = require('../models/Cliente'); // Modelo de Cliente
 // Rota para adicionar cliente
 router.post('/add', async (req, res) => {
     try {
-      const { nomeCliente, emailCliente, foneCliente, cpfCliente, cepCliente, cidadeCliente } = req.body;
+      const { nomeCliente, emailCliente, foneCliente, cpfCliente, cepCliente, enderecoCliente } = req.body;
   
       // Verificar se todos os campos obrigatórios foram preenchidos
       if (!nomeCliente || !emailCliente || !foneCliente || !cpfCliente) {
@@ -20,7 +20,7 @@ router.post('/add', async (req, res) => {
         foneCliente,
         cpfCliente,
         cepCliente,
-        cidadeCliente 
+        enderecoCliente 
       });
   
       // Salvar o cliente no banco de dados

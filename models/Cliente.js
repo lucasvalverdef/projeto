@@ -22,6 +22,10 @@ const ClienteSchema = new Schema({
         type: String,
         required: true
     },
+    enderecoCliente: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

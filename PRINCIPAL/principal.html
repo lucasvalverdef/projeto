@@ -90,8 +90,11 @@
           <div class="venda-informacoes">
             <h3>Comprovante de Venda</h3>
             <p><strong>Data:</strong> <span id="dataVenda"></span></p>
-            <p><strong>Cliente:</strong> <span id="clienteNomeSelecionado"></span></p>
-            <p><strong>CPF:</strong> <span id="clienteCpfSelecionado"></span></p>
+            <p><strong>Cliente:</strong> <span id="clienteNomeComprovante"></span></p>
+            <p><strong>CPF:</strong> <span id="clienteCpfComprovante"></span></p>
+            <p><strong>Email:</strong> <span id="clienteEmailComprovante"></span></p>
+            <p><strong>Telefone:</strong> <span id="clienteTelefoneComprovante"></span></p>
+            <p><strong>Endereço:</strong> <span id="clienteEnderecoComprovante"></span></p>
             <h4>Itens da Venda</h4>
             <ul id="itensVenda">
                 <!-- Os itens da venda serão adicionados aqui dinamicamente -->
@@ -100,7 +103,7 @@
             <p>Total:R$ <span id="totalFinalizar">0.00</span></p>
             
             <h4>Informações sobre Garantia</h4>
-            <p>Os produtos comprados têm garantia de 12 meses a partir da data da compra. Guarde este comprovante para validação da garantia.</p>
+            <p>Os produtos comprados têm garantia de 3 meses a partir da data da compra. Guarde este comprovante para validação da garantia.</p>
             
             <p>Obrigado pela sua compra!</p>
         </div>
@@ -132,14 +135,14 @@
         <label for="foneCliente">Telefone:</label>
         <input type="text" id="foneCliente" name="foneCliente" maxlength="15" placeholder="(99) 99999-9999" required>
     
-        <label for="cidadeCliente">Cidade:</label>
-        <input type="text" id="cidadeCliente" name="cidadeCliente" placeholder="Digite a cidade do cliente" required>
-    
         <label for="cepCliente">CEP:</label>
         <input type="text" id="cepCliente" name="cepCliente" placeholder="Digite o CEP do cliente" required>
     
         <label for="cpfCliente">CPF:</label>
         <input type="text" id="cpfCliente" name="cpfCliente" maxlength="14" placeholder="Digite o CPF do cliente" required>
+    
+        <label for="enderecoCliente">Endereço:</label>
+        <input type="text" id="enderecoCliente" name="enderecoCliente" placeholder="Digite o endereço do cliente" required>
 
           <button type="button" id="adicionarClienteBtn">Adicionar Cliente</button>
       </form>
@@ -175,7 +178,7 @@
         <button id="btnCompartilharWhatsApp">Compartilhar no WhatsApp</button>
     </div>
 </div>
-  </div>
+  </div> 
     
   
           

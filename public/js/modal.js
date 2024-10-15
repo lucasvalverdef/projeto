@@ -4,80 +4,93 @@ document.addEventListener("DOMContentLoaded", function () {
     const fecharModalBtn = document.getElementById("fecharModal");
     const listaClientes = document.getElementById("listaClientes");
     const clienteSelecionadoInput = document.getElementById("clienteSelecionado");
-    const clienteNomeSelecionado = document.getElementById("clienteNomeSelecionado");
-    const clienteCpfSelecionado = document.getElementById("clienteCpfSelecionado");
-    const pesquisaClienteInput = document.getElementById("pesquisarCliente"); // Campo de pesquisa
-    
+    const clienteNomeSelecionado = document.getElementById("clienteNomeComprovante");
+    const clienteCpfSelecionado = document.getElementById("clienteCpfComprovante");
+    const pesquisaClienteInput = document.getElementById("pesquisarCliente");
+
     // Modal de Cadastrar Cliente
     const modalCadastrarCliente = document.getElementById("modalCadastrarCliente");
-    const adicionarClienteBtn = document.getElementById("adicionarClienteBtn"); // Botão de adicionar cliente
+    const adicionarClienteBtn = document.getElementById("adicionarClienteBtn");
     const fecharModalCadastrarBtn = document.getElementById("fecharModalCadastrar");
 
     // Função para abrir o modal de seleção de cliente
-    abrirModalBtn.addEventListener("click", function () {
+    abrirModalBtn.addEventListener("click", async function () {
         modal.style.display = "block";
-
-        // Fazer requisição AJAX para buscar os clientes
-        fetch('/user/clienteRota/all')
-            .then(response => response.json())
-            .then(clientes => {
-                listaClientes.innerHTML = ''; // Limpar a lista
-
-                // Adicionar cada cliente à lista
-                clientes.forEach(cliente => {
-                    const li = document.createElement('li');
-                    li.textContent = `${cliente.nomeCliente} - CPF: ${cliente.cpfCliente}`; // Adicionado CPF na lista
-                    li.setAttribute('data-id', cliente._id);
-                    listaClientes.appendChild(li);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao buscar clientes:', error);
-            });
+        await carregarClientes(); // Carrega os clientes
     });
 
+    async function carregarClientes() {
+        try {
+            const response = await fetch('/user/clienteRota/all');
+            const clientes = await response.json();
+            listaClientes.innerHTML = ''; // Limpar a lista
+
+            // Adicionar cada cliente à lista
+            clientes.forEach(cliente => {
+                const li = document.createElement('li');
+                li.textContent = `Nome: ${cliente.nomeCliente}, CPF: ${cliente.cpfCliente}, Email: ${cliente.emailCliente}, Telefone: ${cliente.foneCliente}, Endereço: ${cliente.enderecoCliente}`;
+                li.dataset.id = cliente._id;
+                li.dataset.nome = cliente.nomeCliente;
+                li.dataset.cpf = cliente.cpfCliente;
+                li.dataset.email = cliente.emailCliente;
+                li.dataset.telefone = cliente.foneCliente;
+                li.dataset.endereco = cliente.enderecoCliente;
+                listaClientes.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Erro ao buscar clientes:', error);
+        }
+    }
+
     // Função para fechar o modal de seleção de cliente
-    fecharModalBtn.addEventListener("click", function () {
+    fecharModalBtn.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
     // Função para abrir o modal de cadastro de cliente
-    const botaoCadastrarCliente = document.getElementById("botaoCadastrarCliente");
-    botaoCadastrarCliente.addEventListener("click", function () {
-        modalCadastrarCliente.style.display = "block";
+    document.getElementById("botaoCadastrarCliente").addEventListener("click", () => {
+        modalCadastrarCliente.style.display = "block"; // Abrir o modal
     });
 
     // Função para fechar o modal de cadastro de cliente
-    fecharModalCadastrarBtn.addEventListener("click", function () {
+    fecharModalCadastrarBtn.addEventListener("click", () => {
         modalCadastrarCliente.style.display = "none";
     });
 
     // Fechar o modal clicando fora da área de conteúdo
-    window.onclick = function (event) {
-        if (event.target == modal) {
+    window.onclick = (event) => {
+        if (event.target === modal || event.target === modalCadastrarCliente) {
             modal.style.display = "none";
-        }
-        if (event.target == modalCadastrarCliente) {
             modalCadastrarCliente.style.display = "none";
         }
     };
 
     // Função para selecionar um cliente da lista
     listaClientes.addEventListener("click", function (event) {
-        const clienteId = event.target.getAttribute('data-id');
-        const clienteNomeCpf = event.target.textContent;
-        const [clienteNome, clienteCpf] = clienteNomeCpf.split(' - CPF: '); // Extrai o nome e CPF
+        const li = event.target.closest('li');
+        if (!li) return; // Verifica se o clique foi em um li
+
+        // Armazenar informações do cliente selecionado
+        clienteInformacoes = {
+            nome: li.dataset.nome,
+            cpf: li.dataset.cpf,
+            email: li.dataset.email,
+            telefone: li.dataset.telefone,
+            endereco: li.dataset.endereco
+        };
+
         // Definir o valor do cliente selecionado
-        clienteSelecionadoInput.value = clienteId;
-        clienteNomeSelecionado.textContent = ` ${clienteNome}`;
-        clienteCpfSelecionado.textContent = ` ${clienteCpf}`; // Adicionado CPF ao texto
+        clienteSelecionadoInput.value = li.dataset.id;
+
+        // Atualizando os elementos no DOM com as informações do cliente
+        clienteNomeSelecionado.textContent = clienteInformacoes.nome;
+        clienteCpfSelecionado.textContent = clienteInformacoes.cpf;
+        document.getElementById("clienteEmailComprovante").textContent = clienteInformacoes.email;
+        document.getElementById("clienteTelefoneComprovante").textContent = clienteInformacoes.telefone;
+        document.getElementById("clienteEnderecoComprovante").textContent = clienteInformacoes.endereco;
+
         // Fechar o modal
         modal.style.display = "none";
-    });
-
-    // Função para filtrar clientes
-    pesquisaClienteInput.addEventListener('input', function () {
-        filtrarClientes();
     });
 
     // Função para adicionar cliente
@@ -86,13 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
             nomeCliente: document.getElementById("nomeCliente").value,
             emailCliente: document.getElementById("emailCliente").value,
             foneCliente: document.getElementById("foneCliente").value,
-            cidadeCliente: document.getElementById("cidadeCliente").value,
             cepCliente: document.getElementById("cepCliente").value,
+            enderecoCliente: document.getElementById("enderecoCliente").value,
             cpfCliente: document.getElementById("cpfCliente").value
         };
 
         try {
-            // Fazer requisição AJAX para adicionar o cliente
             const response = await fetch('/user/clienteRota/add', {
                 method: 'POST',
                 headers: {
@@ -104,10 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await response.json();
 
             if (response.ok) {
-                alert(data.message); // Mensagem de sucesso
-                modalCadastrarCliente.style.display = "none"; // Fechar o modal
-                // Limpar os campos do formulário
-                document.getElementById("clienteForm").reset();
+                alert(data.message);
+                modalCadastrarCliente.style.display = "none";
+                document.getElementById("clienteForm").reset(); // Limpar o formulário após a adição
+                await carregarClientes(); // Atualiza a lista de clientes
             } else {
                 alert(data.message || "Erro ao adicionar cliente.");
             }
@@ -116,66 +128,4 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Erro ao adicionar cliente.");
         }
     });
-});
-
-// Função para filtrar a lista de clientes
-function filtrarClientes() {
-    const input = document.getElementById('pesquisarCliente');
-    const filter = input.value.toLowerCase();
-    const ul = document.getElementById('listaClientes');
-    const li = ul.getElementsByTagName('li');
-
-    // Itera sobre todos os itens da lista e oculta aqueles que não correspondem à pesquisa
-    for (let i = 0; i < li.length; i++) {
-        const txtValue = li[i].textContent || li[i].innerText;
-        if (txtValue.toLowerCase().indexOf(filter) > -1) {
-            li[i].style.display = '';
-        } else {
-            li[i].style.display = 'none';
-        }
-    }
-}
-
-// Adiciona a data atual no formato "DD/MM/YYYY"
-function adicionarDataVenda() {
-    const dataAtual = new Date();
-    const dataFormatada = dataAtual.toLocaleDateString('pt-BR'); // Formata a data
-    document.getElementById('dataVenda').textContent = dataFormatada; // Adiciona a data ao elemento
-}
-
-// Chame essa função quando a venda for finalizada
-adicionarDataVenda();
-
-function finalizarVenda() {
-        // Pega o total da comanda
-        const total = parseFloat(document.querySelector('#total').textContent); // Pega o total como número
-    
-        // Atualiza o total na seção de venda
-        document.querySelector('#totalFinalizar').textContent = total.toFixed(2); // Formata para duas casas decimais
-}
-document.getElementById("finalizarVenda").addEventListener("click", finalizarVenda);
-
-// Evento para o botão "Confirmar Venda"
-document.getElementById("btnFinalizarVenda").addEventListener("click", function () {
-    // Lógica para finalizar a venda
-    const total = parseFloat(document.querySelector('#total').textContent);
-    document.getElementById('valorTotalComprovante').textContent = total.toFixed(2);
-    
-    // Exibir o pop-up
-    document.getElementById("popupOpcoesVenda").style.display = "flex"; 
-});
-
-// Fechar o pop-up
-document.getElementById("btnFecharPopup").addEventListener("click", function () {
-    document.getElementById("popupOpcoesVenda").style.display = "none"; 
-});
-
-// Imprimir PDF
-document.getElementById("btnImprimirPDF").addEventListener("click", function () {
-    console.log("Imprimir PDF"); // Aqui você deve adicionar sua lógica de impressão
-});
-
-// Compartilhar no WhatsApp
-document.getElementById("btnCompartilharWhatsApp").addEventListener("click", function () {
-    console.log("Compartilhar no WhatsApp"); // Aqui você deve adicionar sua lógica de compartilhamento
 });
