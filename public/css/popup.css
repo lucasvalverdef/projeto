@@ -42,3 +42,39 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     z-index: 999; /* Abaixo do pop-up */
 }
+/* Estilos do pop-up */
+.popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fixa na tela */
+    top: 0;
+    left: 0;
+    width: 100%; /* Cobrir toda a tela */
+    height: 100%; /* Cobrir toda a tela */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro e semi-transparente */
+    z-index: 1000; /* Sobrepor outros elementos */
+}
+
+/* Estilo do conteúdo do pop-up */
+.popup-content {
+    background-color: #fff; /* Fundo branco */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
+    width: 300px; /* Largura do pop-up */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo do botão de fechar */
+.fechar {
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    float: right; /* Alinha o botão de fechar à direita */
+    font-size: 20px; /* Tamanho da fonte */
+    color: #aaa; /* Cor do texto */
+}
+
+/* Estilo do botão de fechar ao passar o mouse */
+.fechar:hover {
+    color: #000; /* Altera a cor ao passar o mouse */
+}

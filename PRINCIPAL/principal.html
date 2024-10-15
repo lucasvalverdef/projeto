@@ -148,34 +148,33 @@
 
 
   
-        <button id="btnFinalizarVenda">Confirmar Venda</button>
-    
-        <!-- Comprovante de Venda -->
-        <div class="comprovante" id="comprovante" style="display:none;">
-            <h2>Comprovante de Venda</h2>
-            <p><strong>Valor Total:</strong> R$ <span id="valorTotalComprovante">0.00</span></p>
-            <h3>Itens da Venda</h3>
-            <ul id="itensVendaComprovante"></ul>
-            <div class="cadastrar-cliente">
-                <h3>Selecionar Cliente</h3>
-                <select id="selectCliente" required>
-                    <option value="">Selecione um cliente</option>
-                    <!-- Clientes carregados do banco de dados -->
-                </select>
-                <button id="btnGerarPDF">Gerar PDF</button>
-            </div>
-        </div>
+<button id="btnFinalizarVenda">Confirmar Venda</button>
 
-        <!-- Pop-up de opções -->
-    
-        <div id="popupOpcoesVenda" class="popup" style="display: none;">
-          <div class="popup-content">
-            <span id="btnFecharPopup" class="fechar">&times;</span>
-             <h3>Escolha uma Opção</h3>
-             <button id="btnImprimirPDF">Imprimir PDF</button>
-            <button id="btnCompartilharWhatsApp">Compartilhar no WhatsApp</button>
-         </div>
-       </div>
+<!-- Comprovante de Venda -->
+<div class="comprovante" id="comprovante" style="display:none;">
+    <h2>Comprovante de Venda</h2>
+    <p><strong>Valor Total:</strong> R$ <span id="valorTotalComprovante">0.00</span></p>
+    <h3>Itens da Venda</h3>
+    <ul id="itensVendaComprovante"></ul>
+    <div class="cadastrar-cliente">
+        <h3>Selecionar Cliente</h3>
+        <select id="selectCliente" required>
+            <option value="">Selecione um cliente</option>
+            <!-- Clientes carregados do banco de dados -->
+        </select>
+    </div>
+</div>
+
+<!-- Pop-up de opções -->
+<div id="popupOpcoesVenda" class="popup" style="display: none;">
+    <div class="popup-content">
+        <span id="btnFecharPopup" class="fechar">&times;</span>
+        <h3>Escolha uma Opção</h3>
+        <button id="btnGerarPDF">Gerar PDF</button>
+        <button id="btnImprimirPDF">Imprimir PDF</button>
+        <button id="btnCompartilharWhatsApp">Compartilhar no WhatsApp</button>
+    </div>
+</div>
   </div>
     
   
@@ -425,8 +424,9 @@
 <script src="/js/vendas.js"></script>
 <script src="/js/produtos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="/js/gerarPdf"></script>
+<script src="/js/geradorPdf.js"></script>
 <script src="/js/modal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- <script src="/js/fornecedores.js"></script>
 <script src="/js/mais.js"></script> -->
 <!-- JAVA SCRIPT-->
