@@ -18,6 +18,10 @@ const ClienteSchema = new Schema({
         type: String,
         required: true
     },
+    cpfCliente: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

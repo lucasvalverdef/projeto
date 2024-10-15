@@ -6,10 +6,10 @@ const Cliente = require('../models/Cliente'); // Modelo de Cliente
 // Rota para adicionar cliente
 router.post('/add', async (req, res) => {
     try {
-      const { nomeCliente, emailCliente, foneCliente, cpf, cnpj, cepCliente, cidadeCliente } = req.body;
+      const { nomeCliente, emailCliente, foneCliente, cpfCliente, cepCliente, cidadeCliente } = req.body;
   
       // Verificar se todos os campos obrigatórios foram preenchidos
-      if (!nomeCliente || !emailCliente || !foneCliente) {
+      if (!nomeCliente || !emailCliente || !foneCliente || !cpfCliente) {
         return res.status(400).json({ message: "Erro: Todos os campos obrigatórios devem ser preenchidos." });
       }
   
@@ -18,10 +18,9 @@ router.post('/add', async (req, res) => {
         nomeCliente,
         emailCliente,
         foneCliente,
-        cpf,   // Opcional
-        cnpj,  // Opcional
-        cepCliente, // Opcional
-        cidadeCliente // Opcional
+        cpfCliente,
+        cepCliente,
+        cidadeCliente 
       });
   
       // Salvar o cliente no banco de dados

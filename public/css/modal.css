@@ -47,3 +47,31 @@
 #listaClientes li:hover {
     background-color: #f0f0f0; /* Adiciona um efeito de destaque ao passar o mouse */
 }
+.venda-informacoes {
+    border: 1px solid #ccc; /* Bordas do comprovante */
+    padding: 20px; /* Espaçamento interno */
+    margin: 20px auto; /* Margem automática para centralizar */
+    width: 80%; /* Largura do documento */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+    font-family: Arial, sans-serif; /* Fonte */
+    background-color: #f9f9f9; /* Cor de fundo */
+}
+
+.venda-informacoes h3, .venda-informacoes h4 {
+    border-bottom: 1px solid #ccc; /* Linha abaixo dos títulos */
+    padding-bottom: 10px; /* Espaçamento inferior */
+}
+
+.venda-informacoes p {
+    margin: 5px 0; /* Margens para parágrafos */
+}
+
+#itensVenda {
+    list-style-type: none; /* Remove marcadores da lista */
+    padding: 0; /* Remove padding da lista */
+}
+
+#itensVenda li {
+    border-bottom: 1px solid #ddd; /* Linha separadora entre itens */
+    padding: 5px 0; /* Espaçamento entre itens */
+}
