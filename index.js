@@ -10,7 +10,7 @@ const dotenv = require('dotenv');
 const produtoRota = require('./routes/produtoRota'); // Roteador de produtos
 const clienteRota = require('./routes/clienteRota'); // Roteador de clientes
 const usuarioRota = require('./routes/usuarioRota'); // Roteador de usuários (login)
-
+const fornecedorRota = require('./routes/fornecedorRota'); //roteador de fornecedores
 dotenv.config(); // Carregar variáveis de ambiente
 
 const app = express();
@@ -69,6 +69,7 @@ app.get('/cadastro', (req, res) => {
 app.use('/user/usuarioRota', usuarioRota); // Rotas de usuários (login e registro)
 app.use('/user/produtoRota', produtoRota); // Rotas de produtos
 app.use('/user/clienteRota', clienteRota); // Rotas de clientes
+app.use('/user/fornecedorRota', fornecedorRota); //Rotas de fornecedores
 
 // Middleware para tratamento de erros
 app.use((err, req, res, next) => {

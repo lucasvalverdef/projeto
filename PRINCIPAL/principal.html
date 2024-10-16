@@ -245,46 +245,47 @@
 
       <div class="cxfornecedor">
         <!-- Blocos de Fornecedores Cadastrados -->
-        <div id="fornecedoresCadastrados" class="fornecedor-list">
-            <h2>Fornecedores Cadastrados</h2>
-            <div class="supplier-block" onclick="showSupplierDetails(1)">Fornecedor 1</div>
-            <div class="supplier-block" onclick="showSupplierDetails(2)">Fornecedor 2</div>
-            <div class="supplier-block" onclick="showSupplierDetails(3)">Fornecedor 3</div>
+        <div id="fornecedoresCadastrados" class="fornecedorescadastrados" action="/user/fornecedorRota/all" method = "get">
             <!-- Mais fornecedores serão carregados dinamicamente -->
-            <button class="action-button" onclick="showCadastroFornecedor()">Cadastrar Novo Fornecedor</button>
+            <button id="btncadastrarfornecedor">Cadastrar Novo Fornecedor</button>
         </div>
     
         <!-- Informações Básicas do Fornecedor (escondido inicialmente) -->
-        <div class="fornecedor-section" id="informacoesBasicas" style="display: none;">
-            <h2>Informações Básicas</h2>
-            <div class="form-group">
-                <label for="supplierName">Nome do Fornecedor:</label>
-                <input type="text" id="supplierName" placeholder="Digite o nome do fornecedor">
-            </div>
-            <div class="form-group">
-                <label for="supplierCNPJ">CNPJ/CPF:</label>
-                <input type="text" id="supplierCNPJ" placeholder="Digite o CNPJ ou CPF">
-            </div>
-            <div class="form-group">
-                <label for="supplierAddress">Endereço:</label>
-                <input type="text" id="supplierAddress" placeholder="Digite o endereço">
-            </div>
-            <div class="form-group">
-                <label for="supplierPhone">Telefone:</label>
-                <input type="text" id="supplierPhone" placeholder="Digite o telefone">
-            </div>
-            <div class="form-group">
-                <label for="supplierEmail">Email:</label>
-                <input type="email" id="supplierEmail" placeholder="Digite o email">
-            </div>
-            <div class="form-group">
-                <label for="supplierWebsite">Site:</label>
-                <input type="url" id="supplierWebsite" placeholder="Digite o site do fornecedor">
-            </div>
-        </div>
+        <form class="cadastrofornecedor" action="/user/fornecedorRota/add" method="post" id="informacoesBasicas" style="display: none;">
+          <h2>Informações Básicas</h2>
+          <div class="form-group">
+              <label for="nomeFornecedor">Nome do Fornecedor:</label>
+              <input type="text" id="nomeFornecedor" name="nomeFornecedor" placeholder="Digite o nome do fornecedor" required>
+          </div>
+          <div class="form-group">
+              <label for="cnpjFornecedor">CNPJ/CPF:</label>
+              <input type="text" id="cnpjFornecedor" name="cnpjFornecedor" placeholder="Digite o CNPJ ou CPF" required>
+          </div>
+          <div class="form-group">
+              <label for="enderecoFornecedor">Endereço:</label>
+              <input type="text" id="enderecoFornecedor" name="enderecoFornecedor" placeholder="Digite o endereço" required>
+          </div>
+          <div class="form-group">
+              <label for="foneFornecedor">Telefone:</label>
+              <input type="text" id="foneFornecedor" name="foneFornecedor" placeholder="Digite o telefone" required>
+          </div>
+          <div class="form-group">
+              <label for="emailFornecedor">Email:</label>
+              <input type="email" id="emailFornecedor" name="emailFornecedor" placeholder="Digite o email" required>
+          </div>
+          <div class="form-group">
+              <label for="siteFornecedor">Site:</label>
+              <input type="url" id="siteFornecedor" name="siteFornecedor" placeholder="Digite o site do fornecedor" required>
+          </div>
+          <div>
+              <button type="submit" id="btncadastrarfornecedor">Cadastrar Fornecedor</button>
+              <button type="button" id="btnvoltarfornecedor">Voltar Fornecedor</button>
+          </div>
+      </form>
+      
     
         <!-- Detalhes de Contato (escondido inicialmente) -->
-        <div class="fornecedor-section" id="detalhesContato" style="display: none;">
+        <div class="detalhesfornecedor" id="detalhesContato" style="display: none;">
             <h2>Detalhes de Contato</h2>
             <div class="form-group">
                 <label for="contactName">Nome do Contato:</label>
@@ -301,7 +302,7 @@
         </div>
     
         <!-- Informações Comerciais (escondido inicialmente) -->
-        <div class="fornecedor-section" id="informacoesComerciais" style="display: none;">
+        <div class="informacoesfornecedor" id="informacoesComerciais" style="display: none;">
             <h2>Informações Comerciais</h2>
             <div class="form-group">
                 <label for="paymentTerms">Condições de Pagamento:</label>
@@ -326,7 +327,7 @@
             </div>
         </div>
     
-        <div class="fornecedor-section" id="documentacaoCertificacoes" style="display: none;">
+        <div class="documentacaofornecedor" id="documentacaoCertificacoes" style="display: none;">
             <h2>Documentação e Certificações</h2>
             <div class="form-group">
                 <label for="certifications">Certificações:</label>
@@ -339,7 +340,7 @@
         </div>
     
         <!-- Botões de ação (exibidos ao cadastrar ou editar fornecedor) -->
-        <div class="fornecedor-section" id="acoesFornecedor" style="display: none;">
+        <div class="botoesacaofornecedor" id="acoesFornecedor" style="display: none;">
             <button class="action-button" onclick="saveSupplier()">Salvar Fornecedor</button>
             <button class="action-button" onclick="removeSupplier()">Remover Fornecedor</button>
         </div>
@@ -428,8 +429,8 @@
 <script src="/js/modal.js"></script>
 <script src="/js/popup.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- <script src="/js/fornecedores.js"></script>
-<script src="/js/mais.js"></script> -->
+<script src="/js/fornecedores.js"></script>
+<script src="/js/mais.js"></script>
 <!-- JAVA SCRIPT-->
 </body>
 </html>
