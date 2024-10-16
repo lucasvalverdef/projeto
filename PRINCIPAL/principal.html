@@ -243,112 +243,109 @@
 
       <!-- div fornecedores -->
 
-    <div class="cxfornecedor">
-      <div class="classfazerpedido" id="idfazerpedido">
-        <h2>Fazer Pedidos</h2>
-        <br><br>
-        <form>
-          <select id="selectfornecedor" name="selectfornecedor" >
-             <option value="">Selecione um Fornecedor</option></select>
-               <select id="selectproduto" name="selectproduto" >
-                  <option value="">Selecione um Produto</option>
-                    </select>
-                      <br><br>
-                        <h4>Quantidade de Produtos:</h4><input type="number"  id="quantidade" name="quantidade">
-                        <br>
-                      <label><h4>Numero</h4></label>
-                    <input id="numerofornecedor" type="text" name="numeromesagemfornecedor" maxlength="14">
-             <br>
-
-
-              <button  type="submit" id="btnenviar">Enviar Mensagem</button>
-              <button type="submit" id="btnfornecedor">Cadastrar Fornecedor</button>
-
-                 </div>
-
-<div class="classcadastrarfornecedor">
-      <h2>Cadastro de Fornecedor</h2>
-       <form id="cnpjvalida">
-       <br><br>
-              <label for="nomefornecedor"><h4> Nome do Fornecedor:</h4></label>
-                <input type="text" id="nomefornecedor" maxlength="200" name="nome">
-                 <br>
-                 <div class="row">
-                  <div class="inputfield col m6">
-                 <label for="txtcep"><h4>CEP</h4> </label>
-                  <input type="text" id="txtcep" name="cep">
-                  </div>
-                 </div>
-
-                <div class="row">
-                  <div class="inputfield col m6">
-                    <label for="txtrua"><h4>Rua:</h4></label>
-                    <input type="text" id="txtrua" name="txtrua">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="inputfield col m6">
-                    <label for="txtbairro"><h4>Bairro:</h4> </label>
-                    <input type="text" id="txtbairro" name="txtbairro">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="inputfield col m6">
-                    <label for="txtcidade"><h4>Cidade:</h4></label>
-                    <input type="text" id="txtcidade" name="txtcidade">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="inputfield col m6">
-                    <label for="txtestado"><h4> Estado:</h4></label>
-                    <input type="text" id="txtestado" name="txtestado">
-                  </div>
-                </div>
-
-
-                 <div class="row">
-                  <div class="inputfiel col m6">
-                     <label for="txtnumero"><h4>Numero:</h4></label>
-                     <input type="text" id="txtnumero" maxlength="200" name="numero">
-                  </div>
-                 </div>
-
-                 <div class="row">
-                  <div class="inputfiel col m6">
-                        <label for="txttelefone"><h4>Telefone (fone):</h4></label>
-                          <input type="text" id="txttelefone" maxlength="200" name="telefone">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="inputfiel col m6">
-                           <label for="txtemail"><h4>Email:</h4></label>
-                              <input type="text" id="txtemail" maxlength="200" name="email">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="inputfiel col m6">
-                                <label for="txtcnpj"><h4>CNPJ do Fornecedor:</h4></label>
-                                  <input type="text" id="txtcnpj" name="cnpj">
-                  </div>
-                </div>
-                       <br>
-                            <label  for="descricaofornecedor"><h4>Descrição do Fornecedor:</h4></label>
-                               <textarea id="textfornecedor" name="descfornecedor" cols="72" maxlength="4000" ></textarea>
-
-
-        <br><br>
-        <button>Cadastrar</button>
-        <button id="btnvoltarfonecedor" name="btnvoltar">Voltar</button>
-
-        </form>
- </div>
-</div>
-
+      <div class="cxfornecedor">
+        <!-- Blocos de Fornecedores Cadastrados -->
+        <div id="fornecedoresCadastrados" class="fornecedor-list">
+            <h2>Fornecedores Cadastrados</h2>
+            <div class="supplier-block" onclick="showSupplierDetails(1)">Fornecedor 1</div>
+            <div class="supplier-block" onclick="showSupplierDetails(2)">Fornecedor 2</div>
+            <div class="supplier-block" onclick="showSupplierDetails(3)">Fornecedor 3</div>
+            <!-- Mais fornecedores serão carregados dinamicamente -->
+            <button class="action-button" onclick="showCadastroFornecedor()">Cadastrar Novo Fornecedor</button>
+        </div>
+    
+        <!-- Informações Básicas do Fornecedor (escondido inicialmente) -->
+        <div class="fornecedor-section" id="informacoesBasicas" style="display: none;">
+            <h2>Informações Básicas</h2>
+            <div class="form-group">
+                <label for="supplierName">Nome do Fornecedor:</label>
+                <input type="text" id="supplierName" placeholder="Digite o nome do fornecedor">
+            </div>
+            <div class="form-group">
+                <label for="supplierCNPJ">CNPJ/CPF:</label>
+                <input type="text" id="supplierCNPJ" placeholder="Digite o CNPJ ou CPF">
+            </div>
+            <div class="form-group">
+                <label for="supplierAddress">Endereço:</label>
+                <input type="text" id="supplierAddress" placeholder="Digite o endereço">
+            </div>
+            <div class="form-group">
+                <label for="supplierPhone">Telefone:</label>
+                <input type="text" id="supplierPhone" placeholder="Digite o telefone">
+            </div>
+            <div class="form-group">
+                <label for="supplierEmail">Email:</label>
+                <input type="email" id="supplierEmail" placeholder="Digite o email">
+            </div>
+            <div class="form-group">
+                <label for="supplierWebsite">Site:</label>
+                <input type="url" id="supplierWebsite" placeholder="Digite o site do fornecedor">
+            </div>
+        </div>
+    
+        <!-- Detalhes de Contato (escondido inicialmente) -->
+        <div class="fornecedor-section" id="detalhesContato" style="display: none;">
+            <h2>Detalhes de Contato</h2>
+            <div class="form-group">
+                <label for="contactName">Nome do Contato:</label>
+                <input type="text" id="contactName" placeholder="Digite o nome do contato">
+            </div>
+            <div class="form-group">
+                <label for="contactPhone">Telefone do Contato:</label>
+                <input type="text" id="contactPhone" placeholder="Digite o telefone do contato">
+            </div>
+            <div class="form-group">
+                <label for="contactEmail">Email do Contato:</label>
+                <input type="email" id="contactEmail" placeholder="Digite o email do contato">
+            </div>
+        </div>
+    
+        <!-- Informações Comerciais (escondido inicialmente) -->
+        <div class="fornecedor-section" id="informacoesComerciais" style="display: none;">
+            <h2>Informações Comerciais</h2>
+            <div class="form-group">
+                <label for="paymentTerms">Condições de Pagamento:</label>
+                <input type="text" id="paymentTerms" placeholder="Digite as condições de pagamento">
+            </div>
+            <div class="form-group">
+                <label for="creditLimit">Limite de Crédito:</label>
+                <input type="text" id="creditLimit" placeholder="Digite o limite de crédito">
+            </div>
+            <div class="form-group">
+                <label for="supplierRating">Classificação:</label>
+                <input type="text" id="supplierRating" placeholder="Digite a classificação do fornecedor">
+            </div>
+        </div>
+    
+        <!-- Outros campos, como Produtos Fornecidos, Documentação, etc. (escondidos inicialmente) -->
+        <div class="fornecedor-section" id="produtosFornecidos" style="display: none;">
+            <h2>Produtos Fornecidos</h2>
+            <div class="form-group">
+                <label for="supplierProducts">Lista de Produtos:</label>
+                <textarea id="supplierProducts" rows="5" placeholder="Liste os produtos fornecidos..."></textarea>
+            </div>
+        </div>
+    
+        <div class="fornecedor-section" id="documentacaoCertificacoes" style="display: none;">
+            <h2>Documentação e Certificações</h2>
+            <div class="form-group">
+                <label for="certifications">Certificações:</label>
+                <input type="text" id="certifications" placeholder="Digite as certificações">
+            </div>
+            <div class="form-group">
+                <label for="legalDocuments">Documentação Legal:</label>
+                <textarea id="legalDocuments" rows="5" placeholder="Adicione a documentação legal..."></textarea>
+            </div>
+        </div>
+    
+        <!-- Botões de ação (exibidos ao cadastrar ou editar fornecedor) -->
+        <div class="fornecedor-section" id="acoesFornecedor" style="display: none;">
+            <button class="action-button" onclick="saveSupplier()">Salvar Fornecedor</button>
+            <button class="action-button" onclick="removeSupplier()">Remover Fornecedor</button>
+        </div>
+    </div>
+    
+    
 <!-- fim da div Fornecedores -->
 
 
