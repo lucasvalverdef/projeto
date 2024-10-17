@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/popup.css"> <!-- CSS para pop-ups -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/user/login" method="POST">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>Não tem uma conta? <a href="/cadastro">Cadastre-se aqui!</a></p>
+    </div>
+
+    <!-- Overlay do pop-up -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+
+    <!-- Pop-up -->
+    <div id="popup" class="popup">
+        <span id="popup-message"></span>
+        <button onclick="closePopup()">Fechar</button>
+    </div>
+
+    <script src="/js/popup.js"></script> <!-- Inclua seu JavaScript aqui -->
+</body>
+</html>
