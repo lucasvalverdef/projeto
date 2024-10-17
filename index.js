@@ -3,15 +3,18 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const {connectToMongo } = require("./config/connect")
+dotenv.config(); // Carregar variáveis de ambiente
+
+ connectToMongo();
 
 // Importar rotas
 const produtoRota = require('./routes/produtoRota'); // Roteador de produtos
 const clienteRota = require('./routes/clienteRota'); // Roteador de clientes
 const usuarioRota = require('./routes/usuarioRota'); // Roteador de usuários (login)
 const fornecedorRota = require('./routes/fornecedorRota'); //roteador de fornecedores
-dotenv.config(); // Carregar variáveis de ambiente
+
 
 const app = express();
 
@@ -36,19 +39,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Conexão com o MongoDB
-mongoose.Promise = global.Promise;
-mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/BdImperial', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log('Conectado com sucesso!');
-  })
-  .catch((erro) => {
-    console.log('Erro localizado: ' + erro);
-  });
 
 // Rota principal da aplicação
 app.get('/', (req, res) => {
