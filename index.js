@@ -51,7 +51,7 @@ mongoose
   });
 
 // Rota principal da aplicação
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/PRINCIPAL/login.html')); // Serve o arquivo HTML diretamente
 });
 

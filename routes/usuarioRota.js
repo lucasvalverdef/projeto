@@ -28,7 +28,7 @@ router.post('/cadastro', async (req, res) => {
 
 
 // Rota de login
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     const { username, password } = req.body;
 
     try {
