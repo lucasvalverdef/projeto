@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>Cadastro de Usuário</h1>
-        <form action="/user/cadastro" method="POST">
+        <form action="/user/usuarioRota/cadastro" method="POST">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <br>
@@ -25,17 +25,18 @@
             <br>
             <button type="submit">Cadastrar</button>
         </form>
-        <p>Já tem uma conta? <a href="/login">Faça seu login!</a></p>
+        <p>Já tem uma conta? <a href="/">Faça seu login!</a></p>
     </div>
 
     <!-- Overlay do pop-up -->
-    <div id="popup-overlay" class="popup-overlay"></div>
+    <div id="registrationPopupOverlay" class="popup-overlay"></div>
 
     <!-- Pop-up -->
-    <div id="popup" class="popup">
-        <span id="popup-message"></span>
-        <button onclick="closePopup()">Fechar</button>
+    <div id="registrationPopup" class="registration-popup">
+        <span id="registrationPopupMessage"></span>
+        <button onclick="closeRegistrationPopup()">Fechar</button>
     </div>
+    
 
     <script src="/js/popup.js"></script> <!-- Inclua seu JavaScript aqui -->
 </body>

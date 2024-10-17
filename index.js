@@ -68,7 +68,7 @@ app.use((err, req, res, next) => {
 });
 
 // Porta do servidor
-const porta = process.env.PORT || 8081;
+const porta = process.env.PORT || 8080;
 app.listen(porta, () => {
   console.log(`Servidor rodando na porta ${porta}`);
 });

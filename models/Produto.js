@@ -1,4 +1,6 @@
+const { number } = require('handlebars-helpers/lib');
 const mongoose = require('mongoose');
+const { DECIMAL } = require('mysql/lib/protocol/constants/types');
 
 const ProdutoSchema = new mongoose.Schema({
   productname: {
@@ -10,7 +12,7 @@ const ProdutoSchema = new mongoose.Schema({
     required: true
   },
   productprice: {
-    type: Number,
+    type: mongoose.Schema.Types.Decimal128,
     required: true
   },
   productimg: {

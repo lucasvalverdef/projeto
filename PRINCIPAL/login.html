@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form action="/" method="POST">
+        <form action="user/usuarioRota/" method="POST">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <br>
@@ -24,13 +24,14 @@
     </div>
 
     <!-- Overlay do pop-up -->
-    <div id="popup-overlay" class="popup-overlay"></div>
+    <div id="loginPopupOverlay" class="popup-overlay"></div>
 
     <!-- Pop-up -->
-    <div id="popup" class="popup">
-        <span id="popup-message"></span>
-        <button onclick="closePopup()">Fechar</button>
+    <div id="loginPopup" class="login-popup">
+        <span id="loginPopupMessage"></span>
+        <button onclick="closeLoginPopup()">Fechar</button>
     </div>
+    
 
     <script src="/js/popup.js"></script> <!-- Inclua seu JavaScript aqui -->
 </body>

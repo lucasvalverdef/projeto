@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/mais.css">
   <link rel="stylesheet" href="/css/fornecedores.css">
   <link rel ="stylesheet" href="/css/modal.css">
+  <link rel ="stylesheet" href="/css/popup.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <header>
@@ -168,15 +169,19 @@
 </div>
 
 <!-- Pop-up de opções -->
-<div id="popupOpcoesVenda" class="popup" style="display: none;">
-    <div class="popup-content">
-        <span id="btnFecharPopup" class="fechar">&times;</span>
+<div id="optionsPopupOverlay" class="options-popup-overlay" style="display: none;"></div>
+
+<!-- Pop-up -->
+<div id="optionsPopup" class="options-popup">
+    <div class="options-popup-content">
+        <span id="closeOptionsPopup" class="close-button">&times;</span>
         <h3>Escolha uma Opção</h3>
-        <button id="btnGerarPDF">Gerar PDF</button>
-        <button id="btnImprimirPDF">Imprimir PDF</button>
-        <button id="btnCompartilharWhatsApp">Compartilhar no WhatsApp</button>
+        <button id="btnGerarPDF" class="popup-button">Gerar PDF</button>
+        <button id="btnPrintPDF" class="popup-button">Imprimir PDF</button>
+        <button id="btnShareWhatsApp" class="popup-button">Compartilhar no WhatsApp</button>
     </div>
 </div>
+
   </div> 
     
   

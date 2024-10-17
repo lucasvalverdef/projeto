@@ -1,12 +1,12 @@
-function showPopup(message) {
-    document.getElementById('popup-message').innerText = message;
-    document.getElementById('popup-overlay').style.display = 'block';
-    document.getElementById('popup').style.display = 'block';
+function showRegistrationPopup(message) {
+    document.getElementById('registrationPopupMessage').innerText = message;
+    document.getElementById('registrationPopupOverlay').style.display = 'block';
+    document.getElementById('registrationPopup').style.display = 'block';
 }
 
-function closePopup() {
-    document.getElementById('popup-overlay').style.display = 'none';
-    document.getElementById('popup').style.display = 'none';
+function closeRegistrationPopup() {
+    document.getElementById('registrationPopupOverlay').style.display = 'none';
+    document.getElementById('registrationPopup').style.display = 'none';
 }
 
 window.onload = function() {
@@ -15,33 +15,34 @@ window.onload = function() {
     const successMessage = urlParams.get('success');
 
     if (errorMessage) {
-        showPopup(errorMessage);
+        showRegistrationPopup(errorMessage);
     } else if (successMessage) {
-        showPopup(successMessage);
+        showRegistrationPopup(successMessage);
     }
 };
 
-// Função para abrir o popup
-function abrirPopup() {
-    document.getElementById('popupOpcoesVenda').style.display = 'block'; // Mostra o popup
+// Função para abrir o pop-up de opções de venda
+function abrirOptionsPopup() {
+    document.getElementById('optionsPopup').style.display = 'block'; // Mostra o pop-up
+    document.getElementById('optionsPopupOverlay').style.display = 'block'; // Mostra o overlay
 }
 
-// Função para fechar o popup
-function fecharPopup() {
-    document.getElementById('popupOpcoesVenda').style.display = 'none'; // Esconde o popup
+// Função para fechar o pop-up de opções de venda
+function fecharOptionsPopup() {
+    document.getElementById('optionsPopup').style.display = 'none'; // Esconde o pop-up
+    document.getElementById('optionsPopupOverlay').style.display = 'none'; // Esconde o overlay
 }
 
 // Adiciona evento de clique ao botão "Confirmar Venda"
-document.getElementById('btnConfirmarVenda').addEventListener('click', abrirPopup);
+document.getElementById('btnConfirmarVenda').addEventListener('click', abrirOptionsPopup);
 
-// Adiciona evento de clique ao botão de fechar do popup
-document.getElementById('btnFecharPopup').addEventListener('click', fecharPopup);
+// Adiciona evento de clique ao botão de fechar do pop-up de opções
+document.getElementById('closeOptionsPopup').addEventListener('click', fecharOptionsPopup);
 
-// Fechar o popup ao clicar fora dele
+// Fechar o pop-up ao clicar fora dele
 window.addEventListener('click', function(event) {
-    const popup = document.getElementById('popupOpcoesVenda');
-    if (event.target === popup) {
-        fecharPopup();
+    const optionsPopup = document.getElementById('optionsPopup');
+    if (event.target === optionsPopup) {
+        fecharOptionsPopup();
     }
 });
-

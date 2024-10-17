@@ -20,7 +20,7 @@ router.post('/cadastro', async (req, res) => {
         const novoUsuario = new Usuario({ username, password: hashedPassword, email, nomeCompleto });
         await novoUsuario.save();
         // Redireciona para a rota principal após cadastro bem-sucedido
-        res.redirect('/login?success=Usuário registrado com sucesso!');
+        res.redirect('/home');
     } catch (err) {
         res.redirect('/cadastro?error=Erro ao registrar o usuário.'); // Redireciona com erro
     }
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 
         // Se o usuário não for encontrado, redirecione com erro
         if (!usuario) {
-            return res.redirect('/login?error=Usuário ou senha incorretos.');
+            return res.redirect('/?error=Usuário ou senha incorretos.');
         }
 
         // Comparar a senha fornecida com a senha armazenada
@@ -45,14 +45,14 @@ router.post('/', async (req, res) => {
 
         // Se a senha não corresponder, redirecione com erro
         if (!isMatch) {
-            return res.redirect('/login?error=Usuário ou senha incorretos.');
+            return res.redirect('/?error=Usuário ou senha incorretos.');
         }
 
         // Se o login for bem-sucedido, redirecione para a página principal
         res.redirect('/home');
     } catch (err) {
 
-        return res.redirect('/login?error=Erro ao fazer login.');
+        return res.redirect('/?error=Erro ao fazer login.');
     }
 });
 
