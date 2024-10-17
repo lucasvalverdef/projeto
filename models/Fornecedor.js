@@ -28,6 +28,6 @@ const FornecedorSchema = new Schema({
     }
 });
 
-// Defina e exporte o modelo
+// Defina e exporte o modelo 
 const Fornecedor = mongoose.model("Fornecedor", FornecedorSchema);
 module.exports = Fornecedor;
