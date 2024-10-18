@@ -1,23 +1,23 @@
 
- const fornecedorescadastrados = document.querySelector('.fornecedorescadastrados')
- const cadastrofornecedor = document.querySelector('.cadastrofornecedor');
- const informacoesfornecedor = document.querySelector('.informacoesfornecedor');
- const detalhesfornecedor = document.querySelector('.detalhesfornecedor');
- const botoesacaofornecedor = document.querySelector('.botoesacaofornecedor');
- const documentacaofornecedor = document.querySelector('.documentacaofornecedor');
- const btncadastrarfornecedor = document.querySelector('#btncadastrarfornecedor')
- const btnvoltarfornecedor = document.querySelector('#btnvoltarfornecedor')
+const fornecedorescadastrados = document.querySelector('.fornecedorescadastrados');
+const cadastrofornecedor = document.querySelector('.cadastrofornecedor');
+const informacoesfornecedor = document.querySelector('.informacoesfornecedor');
+const detalhesfornecedor = document.querySelector('.detalhesfornecedor');
+const botoesacaofornecedor = document.querySelector('.botoesacaofornecedor');
+const documentacaofornecedor = document.querySelector('.documentacaofornecedor');
+const btncadastrarfornecedor = document.querySelector('#btncadastrarfornecedor');
+const btnvoltarfornecedor = document.querySelector('#btnvoltarfornecedor');
 
 
- btncadastrarfornecedor.addEventListener('click', function(){
- cadastrofornecedor.style.display = 'block';
- fornecedorescadastrados.style.display = 'none';
+btncadastrarfornecedor.addEventListener('click', function(){
+cadastrofornecedor.style.display = "block";
+fornecedorescadastrados.style.display = "none";
 });
 
- btnvoltarfornecedor.addEventListener('click', function(){
-  cadastrofornecedor.style.display = "none";
-  fornecedorescadastrados.style.display = "block";
- });
+btnvoltarfornecedor.addEventListener('click', function(){
+ cadastrofornecedor.style.display = "none";
+ fornecedorescadastrados.style.display = "block";
+});
 
  document.addEventListener("DOMContentLoaded", async () => {
   try {

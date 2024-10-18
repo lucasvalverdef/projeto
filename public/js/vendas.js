@@ -191,3 +191,39 @@ document.addEventListener('DOMContentLoaded', function () {
         containervenda.style.display = 'none';
     });
 });
+const cepInput = document.getElementById('cepCliente');
+
+cepInput.addEventListener('input', function(e) {
+    let cep = e.target.value;
+
+    // Remove tudo que não é número
+    cep = cep.replace(/\D/g, '');
+
+    // Aplica a máscara
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d{0,3})/, '$1-$2');
+    }
+
+    // Atualiza o valor do input
+    e.target.value = cep;
+});
+const cpfInput = document.getElementById('cpfCliente');
+
+cpfInput.addEventListener('input', function(e) {
+    let cpf = e.target.value;
+
+    // Remove tudo que não é número
+    cpf = cpf.replace(/\D/g, '');
+
+    // Aplica a máscara
+    if (cpf.length > 9) {
+        cpf = cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    } else if (cpf.length > 6) {
+        cpf = cpf.replace(/^(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+    } else if (cpf.length > 3) {
+        cpf = cpf.replace(/^(\d{3})(\d{0,3})/, '$1.$2');
+    }
+
+    // Atualiza o valor do input
+    e.target.value = cpf;
+});

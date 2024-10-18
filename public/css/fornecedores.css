@@ -175,4 +175,25 @@ textarea {
 #fornecedoresTable a:hover {
   text-decoration: underline; /* Sublinhado ao passar o mouse */
 }
+#btncadastrarfornecedor{
+  display: block;
+  padding: 10px 20px;
+  width: 200px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #a3a3a3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.cadastrofornecedor{
+  display: none;
+}
+.fornecedorescadastrados{
+  display: block;
+}
+
 

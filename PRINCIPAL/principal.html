@@ -141,8 +141,8 @@
         <label for="cpfCliente">CPF:</label>
         <input type="text" id="cpfCliente" name="cpfCliente" maxlength="14" placeholder="Digite o CPF do cliente" required>
     
-        <label for="enderecoCliente">Endereço:</label>
-        <input type="text" id="enderecoCliente" name="enderecoCliente" placeholder="Digite o endereço do cliente" required>
+        <label for="enderecoCliente">Número Residência:</label>
+        <input type="text" id="enderecoCliente" name="enderecoCliente" placeholder="Digite o Número da residência" required>
 
           <button type="button" id="adicionarClienteBtn">Adicionar Cliente</button>
       </form>
@@ -252,11 +252,10 @@
         <!-- Blocos de Fornecedores Cadastrados -->
         <div id="fornecedoresCadastrados" class="fornecedorescadastrados" action="/user/fornecedorRota/all" method = "get">
             <!-- Mais fornecedores serão carregados dinamicamente -->
-            <button id="btncadastrarfornecedor">Cadastrar Novo Fornecedor</button>
         </div>
-    
+        <button id="btncadastrarfornecedor" type="button">Cadastrar Fornecedor</button>
         <!-- Informações Básicas do Fornecedor (escondido inicialmente) -->
-        <form class="cadastrofornecedor" action="/user/fornecedorRota/add" method="post" id="informacoesBasicas" style="display: none;">
+        <form class="cadastrofornecedor" action="/user/fornecedorRota/add" method="post" id="informacoesBasicas">
           <h2>Informações Básicas</h2>
           <div class="form-group">
               <label for="nomeFornecedor">Nome do Fornecedor:</label>
@@ -283,7 +282,7 @@
               <input type="url" id="siteFornecedor" name="siteFornecedor" placeholder="Digite o site do fornecedor" required>
           </div>
           <div>
-              <button type="submit" id="btncadastrarfornecedor">Cadastrar Fornecedor</button>
+              <button type="submit" id="btnsalvarfornecedor">Salvar Fornecedor</button>
               <button type="button" id="btnvoltarfornecedor">Voltar Fornecedor</button>
           </div>
       </form>

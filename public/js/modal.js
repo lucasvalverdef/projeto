@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Adicionar cada cliente à lista
             clientes.forEach(cliente => {
                 const li = document.createElement('li');
-                li.textContent = `Nome: ${cliente.nomeCliente}, CPF: ${cliente.cpfCliente}, Email: ${cliente.emailCliente}, Telefone: ${cliente.foneCliente}, Endereço: ${cliente.enderecoCliente}`;
+                li.textContent = `Nome: ${cliente.nomeCliente}, CPF: ${cliente.cpfCliente}, Email: ${cliente.emailCliente}, Telefone: ${cliente.foneCliente}, Num Residência: ${cliente.enderecoCliente}`;
                 li.dataset.id = cliente._id;
                 li.dataset.nome = cliente.nomeCliente;
                 li.dataset.cpf = cliente.cpfCliente;
